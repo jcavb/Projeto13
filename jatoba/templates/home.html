@@ -3,55 +3,62 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home</title>
+    <title>Home Page</title>
     <style>
         body {
-            font-family: 'Arial', sans-serif;
-            background-color: #f9fafb;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
+            font-family: Arial, sans-serif;
             margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
         }
 
-        .container {
+        header {
+            background-color: #4CAF50;
+            color: white;
             text-align: center;
-            background-color: white;
-            padding: 40px;
-            border-radius: 10px;
-            box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+            padding: 1em 0;
         }
 
-        h1 {
-            color: #2563eb;
-            font-size: 36px;
-            margin-bottom: 20px;
+        main {
+            padding: 20px;
+            text-align: center;
         }
 
-        p {
-            font-size: 18px;
-            color: #374151;
-            margin-bottom: 20px;
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
         }
 
-        a {
-            color: #2563eb;
+        .signup-link {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
             text-decoration: none;
-            font-size: 16px;
-            font-weight: 600;
+            border-radius: 5px;
         }
 
-        a:hover {
-            text-decoration: underline;
+        .signup-link:hover {
+            background-color: #45a049;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Welcome to the App!</h1>
-        <p>You are successfully logged in.</p>
-        <a href="{% url 'logout' %}">Logout</a>
-    </div>
+    <header>
+        <h1>Bem-vindo à Página Inicial!</h1>
+    </header>
+    <main>
+        <p>Esta é a sua página inicial. Sinta-se à vontade para explorar!</p>
+        <a href="{% url 'signup' %}" class="signup-link">Cadastre-se</a>
+    </main>
+    <footer>
+        <p>© 2024 Minha Empresa. Todos os direitos reservados.</p>
+    </footer>
 </body>
 </html>

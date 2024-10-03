@@ -1,13 +1,14 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth import login
+
+def home(request):
+    return render(request, 'home.html')
 
 @login_required
 def dashboard(request):
     return render(request, 'dashboard.html')
-
-from django.shortcuts import render, redirect
-from django.contrib.auth.forms import UserCreationForm
-from django.contrib.auth import login
 
 def signup(request):
     if request.method == 'POST':
@@ -19,6 +20,3 @@ def signup(request):
     else:
         form = UserCreationForm()
     return render(request, 'signup.html', {'form': form})
-
-def home(request):
-    return render(request, 'home.html')
