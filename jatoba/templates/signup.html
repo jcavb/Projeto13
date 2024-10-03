@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create a Free Account</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f9fafb;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .signup-container {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+            padding: 40px;
+            max-width: 400px;
+            width: 100%;
+        }
+
+        h2 {
+            text-align: center;
+            color: #1f2937;
+            margin-bottom: 20px;
+            font-size: 24px;
+            font-weight: 600;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            font-size: 14px;
+            color: #374151;
+            margin-bottom: 5px;
+        }
+
+        input[type="text"], input[type="password"], input[type="email"] {
+            width: 100%;
+            padding: 10px 15px;
+            font-size: 16px;
+            border: 1px solid #d1d5db;
+            border-radius: 4px;
+            box-sizing: border-box;
+            transition: border-color 0.2s;
+        }
+
+        input[type="text"]:focus, input[type="password"]:focus, input[type="email"]:focus {
+            border-color: #2563eb;
+            outline: none;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 12px 15px;
+            font-size: 16px;
+            background-color: #2563eb;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        .submit-btn:hover {
+            background-color: #1e40af;
+        }
+
+        .login-link {
+            text-align: center;
+            color: #374151;
+            font-size: 14px;
+            margin-top: 20px;
+        }
+
+        .login-link a {
+            color: #2563eb;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .login-link a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="signup-container">
+        <h2>Crie sua conta!</h2>
+        <form method="post">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="email">Seu email</label>
+                <input type="email" id="email" name="email" placeholder="nome@exemplo.com" required>
+            </div>
+            <div class="form-group">
+                <label for="password1">Sua senha</label>
+                <input type="password" id="password1" name="password1" placeholder="••••••••" required>
+            </div>
+            <div class="form-group">
+                <label for="password2">Confirme sua senha</label>
+                <input type="password" id="password2" name="password2" placeholder="••••••••" required>
+            </div>
+            <button type="submit" class="submit-btn">Criar</button>
+        </form>
+        <div class="login-link">
+            Já tem uma conta? <a href="{% url 'login' %}">Clique aqui</a>
+        </div>
+    </div>
+</body>
+</html>
