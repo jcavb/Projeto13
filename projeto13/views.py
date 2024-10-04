@@ -8,15 +8,15 @@ def home(request):
 
 @login_required
 def dashboard(request):
-    return render(request, 'dashboard.html')
+    return render(request, 'protegida.html')
 
 def signup(request):
     if request.method == 'POST':
         form = UserCreationForm(request.POST)
         if form.is_valid():
             user = form.save()
-            login(request, user)  # Faz login automático após o cadastro
-            return redirect('home')  # Redireciona para a página inicial
+            login(request, user)  
+            return redirect('protegida') 
     else:
         form = UserCreationForm()
     return render(request, 'signup.html', {'form': form})
