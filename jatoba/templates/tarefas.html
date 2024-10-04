@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Tarefas</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+
+        .task-list {
+            max-width: 400px;
+            margin: 0 auto;
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .task-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid #e5e5e5;
+        }
+
+        .task-item:last-child {
+            border-bottom: none;
+        }
+
+        .task-item strong {
+            font-weight: 600;
+            color: #34495e;
+        }
+
+        .task-category {
+            color: #95a5a6;
+            font-size: 0.85em;
+        }
+
+        .task-checkbox {
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+            accent-color: #27ae60;
+        }
+
+        .task-info {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .task-info span {
+            font-size: 0.8em;
+            color: #7f8c8d;
+        }
+
+        /* Feedback visual */
+        #feedback {
+            display: none;
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 10px;
+            background-color: #d4edda;
+            border: 1px solid #c3e6cb;
+            color: #155724;
+            border-radius: 5px;
+            font-size: 0.9em;
+            z-index: 100;
+        }
+
+        #feedback.error {
+            background-color: #f8d7da;
+            border-color: #f5c6cb;
+            color: #721c24;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Cuidados de Hoje</h1>
+
+    <div class="task-list">
+        <div id="feedback">Tarefa atualizada com sucesso!</div>
+
+        <ul>
+            {% for tarefa in tarefas %}
+            <li class="task-item">
+                <div class="task-info">
+                    <strong>{{ tarefa.nome }}</strong>
+                    <span class="task-category">{{ tarefa.categoria }} - Última vez: {{ tarefa.data_ultima_acao }}</span>
+                </div>
+                <input type="checkbox" class="task-checkbox" id="tarefa_{{ tarefa.id }}" {% if tarefa.concluida %}checked{% endif %}
+                       onchange="atualizarTarefa({{ tarefa.id }});">
+            </li>
+            {% empty %}
+            <li>Nenhuma tarefa encontrada.</li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    <script>
+        function atualizarTarefa(tarefaId) {
+            const checkbox = document.getElementById(`tarefa_${tarefaId}`);
+            checkbox.disabled = true; 
+
+            fetch('/tarefas/', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                    'X-CSRFToken': '{{ csrf_token }}'
+                },
+                body: `tarefa_id=${tarefaId}`
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    exibirFeedback('Tarefa atualizada com sucesso!', false);
+                } else {
+                    exibirFeedback('Erro ao atualizar tarefa!', true);
+                }
+            })
+            .finally(() => {
+                checkbox.disabled = false; 
+            })
+            .catch(error => {
+                console.error('Erro:', error);
+                exibirFeedback('Erro ao atualizar tarefa!', true);
+                checkbox.disabled = false; 
+            });
+        }
+
+        function exibirFeedback(mensagem, isError) {
+            const feedback = document.getElementById('feedback');
+            feedback.textContent = mensagem;
+            feedback.classList.toggle('error', isError);
+            feedback.style.display = 'block';
+            setTimeout(() => {
+                feedback.style.display = 'none';
+            }, 2000);
+        }
+    </script>
+
+</body>
+</html>
