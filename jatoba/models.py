@@ -10,13 +10,6 @@ class Usuario(models.Model):
         self.senha = make_password(self.senha)
         super(Usuario, self).save(*args, **kwargs)
 
-class Checkbox(models.Model):
-    titulo = models.TextField(max_length = 200)
-    tarefa = models.BooleanField(default= False)
-    def __str__(self):
-        return self.titulo
-
-from django.db import models
 
 class Tarefa(models.Model):
     CATEGORIA_CHOICES = [
