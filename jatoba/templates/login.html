@@ -1,3 +1,5 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,6 +7,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
     <style>
+        .back-arrow {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            text-decoration: none;
+        }
+        
+        .arrow-icon {
+            width: 48px;  /* Tamanho da seta */
+            height: auto;
+            filter: invert(30%) sepia(100%) saturate(300%) hue-rotate(190deg) brightness(90%) contrast(90%);
+        }
+        
+        .back-arrow:hover .arrow-icon {
+            opacity: 0.8;
+        }
+        
         body {
             font-family: 'Arial', sans-serif;
             background-color: #f9fafb;
@@ -120,6 +139,10 @@
     </style>
 </head>
 <body>
+    <a href="{% url 'home' %}" class="back-arrow">
+        <img src="{% static 'images/seta-esquerda.png' %}" alt="Seta para voltar" class="arrow-icon">
+    </a>
+    
     <div class="login-container">
         <h2>Login</h2>
         <form method="post">

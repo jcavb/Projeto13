@@ -120,7 +120,7 @@ USE_TZ = True
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'templates/static'),
+    os.path.join(BASE_DIR, 'icones/static'),
 ]
 
 STATIC_URL = '/static/'
@@ -131,6 +131,9 @@ STATIC_URL = '/static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 LOGIN_REDIRECT_URL = '/protegida/'
+
+STATIC_URL = '/static/'
+
 
 
 
