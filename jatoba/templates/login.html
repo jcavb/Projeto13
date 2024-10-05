@@ -1,170 +1,178 @@
 {% load static %}
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
+    <title>Login - Doutor Agro</title>
     <style>
-        .back-arrow {
-            position: absolute;
-            top: 20px;
-            left: 20px;
-            text-decoration: none;
-        }
-        
-        .arrow-icon {
-            width: 48px;  /* Tamanho da seta */
-            height: auto;
-            filter: invert(30%) sepia(100%) saturate(300%) hue-rotate(190deg) brightness(90%) contrast(90%);
-        }
-        
-        .back-arrow:hover .arrow-icon {
-            opacity: 0.8;
-        }
-        
         body {
-            font-family: 'Arial', sans-serif;
-            background-color: #f9fafb;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
             margin: 0;
+            font-family: 'Arial', sans-serif;
         }
 
-        .login-container {
-            background-color: white;
-            border-radius: 8px;
-            box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
-            padding: 40px;
-            max-width: 400px;
-            width: 100%;
+        a {
+            text-decoration: none;
+            color: inherit;
         }
 
-        h2 {
-            text-align: center;
-            color: #333;
-            margin-bottom: 20px;
-            font-size: 24px;
-            font-weight: 600;
-        }
-
-        .form-group {
-            margin-bottom: 20px;
-        }
-
-        label {
-            display: block;
-            font-size: 14px;
-            color: #555;
-            margin-bottom: 5px;
-        }
-
-        input[type="email"], input[type="password"] {
-            width: 100%;
-            padding: 10px 15px;
-            font-size: 16px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            box-sizing: border-box;
-            transition: border-color 0.2s;
-        }
-
-        input[type="email"]:focus, input[type="password"]:focus {
-            border-color: #2563eb;
-            outline: none;
-        }
-
-        .form-footer {
+        .main-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
+            background-color: white;
+            padding: 20px;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .logo img {
+            height: 50px;
+        }
+
+        .nav-menu ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+
+        .nav-menu ul li {
+            margin-right: 50px;
+        }
+
+        .nav-menu ul li a {
+            font-weight: bold;
+            color: #333;
+        }
+
+        .nav-menu ul li a:hover {
+            color: #007bff;
+        }
+
+        .login-section {
+            position: relative;
+            text-align: center;
+            color: white;
+            margin-top: 100px; /* Para evitar sobreposição com o header fixo */
+        }
+
+        .login-image {
+            width: 100%;
+            height: 80vh;
+            object-fit: cover;
+            filter: brightness(70%);
+        }
+
+        .login-box {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            color: black;
+        }
+
+        .login-box h2 {
             margin-bottom: 20px;
         }
 
-        .form-footer a {
-            color: #2563eb;
-            text-decoration: none;
-            font-size: 14px;
+        .login-box label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
         }
 
-        .form-footer a:hover {
-            text-decoration: underline;
-        }
-
-        .checkbox-container {
-            display: flex;
-            align-items: center;
-        }
-
-        input[type="checkbox"] {
-            margin-right: 10px;
-        }
-
-        .submit-btn {
+        .login-box input[type="text"], 
+        .login-box input[type="password"] {
             width: 100%;
-            padding: 12px 15px;
-            font-size: 16px;
-            background-color: #2563eb;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .login-box button {
+            background-color: #32cd32;
             color: white;
+            padding: 10px;
+            width: 100%;
             border: none;
-            border-radius: 4px;
+            border-radius: 5px;
             cursor: pointer;
-            transition: background-color 0.2s;
+            font-size: 16px;
         }
 
-        .submit-btn:hover {
-            background-color: #1e4bbf;
+        .login-box button:hover {
+            background-color: #28a745;
         }
 
-        .signup-link {
+        /* Footer */
+        .main-footer {
+            background-color: #f8f9fa;
             text-align: center;
-            color: #555;
-            font-size: 14px;
+            padding: 20px 0;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+            margin-top: 20px;
         }
 
-        .signup-link a {
-            color: #2563eb;
-            text-decoration: none;
-            font-weight: 500;
+        .main-footer p {
+            color: #333;
         }
-
-        .signup-link a:hover {
-            text-decoration: underline;
+        .login-box input[type="email"], 
+        .login-box input[type="password"] {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 20px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
         }
-        
 
     </style>
 </head>
 <body>
-    <a href="{% url 'home' %}" class="back-arrow">
-        <img src="{% static 'images/seta-esquerda.png' %}" alt="Seta para voltar" class="arrow-icon">
-    </a>
-    
-    <div class="login-container">
-        <h2>Login</h2>
-        <form method="post">
-            {% csrf_token %}
-            <div class="form-group">
-                <label for="email">Seu email</label>
-                <input type="email" id="email" name="email" placeholder="nome@exemplo.com" required>
-            </div>
-            <div class="form-group">
-                <label for="password">Sua senha</label>
-                <input type="password" id="password" name="password" placeholder="••••••••" required>
-            </div>
-            <div class="form-footer">
-                <div class="checkbox-container">
-                </div>
-            </div>
-            <button type="submit" class="submit-btn"><a href="{% url 'protegida' %}">Entrar</a></button>
-            </button>
-        </form>
-        <div class="signup-link">
-            Não tem cadastro? <a href="{% url 'signup' %}">Crie sua conta aqui</a>
+    <header class="main-header">
+        <div class="logo">
+            <img src="{% static 'images/logo.png' %}" alt="Logo">
         </div>
-    </div>
+        <nav class="nav-menu">
+            <ul>
+                <li><a href="{% url 'home' %}">Início</a></li>
+                <li><a href="{% url 'signup' %}">Cadastre-se</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="login-section">
+        <img src="{% static 'images/br-agro.jpg' %}" alt="Imagem de fundo" class="login-image">
+        <div class="login-box">
+            <h2>Login</h2>
+            <form method="POST" action="{% url 'login' %}">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="email">Seu email</label>
+                    <input type="email" name="email" id="email" placeholder="nome@exemplo.com" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Sua senha</label>
+                    <input type="password" name="password" id="password" placeholder="*******" required>
+                </div>
+                <button type="submit" class="submit-btn">Entrar</button>
+            </form>            
+        </div>
+    </section>
+
+    <footer class="main-footer">
+        <p>&copy; 2024 Jatoba. Todos os direitos reservados.</p>
+    </footer>
 </body>
 </html>

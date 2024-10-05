@@ -1,27 +1,15 @@
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import login
 from django.shortcuts import render, redirect
 from .models import Tarefa
 from django.core.exceptions import ObjectDoesNotExist
 from django.http import JsonResponse
 from django.contrib.auth import login, authenticate
-from .models import Usuario
 from django.contrib import messages
+from django.contrib.auth.models import User
 
 def home(request):
     return render(request, 'home.html')
-
-def signup(request):
-    if request.method == 'POST':
-        form = UserCreationForm(request.POST)
-        if form.is_valid():
-            user = form.save()
-            login(request, user)
-            return redirect('protegida') 
-    else:
-        form = UserCreationForm()
-    return render(request, 'signup.html', {'form': form})
 
 def lista_tarefas(request):
     tarefas = Tarefa.objects.all()
@@ -38,28 +26,46 @@ def lista_tarefas(request):
     
     return render(request, 'tarefas.html', {'tarefas': tarefas})
 
+def signup_view(request):
+    if request.method == 'POST':
+        username = request.POST['username']
+        email = request.POST['email']
+        password = request.POST['password']
+        confirm_password = request.POST['confirm-password']
+
+        if password == confirm_password:
+            if User.objects.filter(username=username).exists():
+                messages.error(request, 'Nome de usuário já existe.')
+            elif User.objects.filter(email=email).exists():
+                messages.error(request, 'Email já cadastrado.')
+            else:
+                user = User.objects.create_user(username=username, email=email, password=password)
+                user.save()
+
+                login(request, user)
+
+                return redirect('protegida')
+        else:
+            messages.error(request, 'As senhas não coincidem.')
+    return render(request, 'signup.html')
+
+def login_view(request):
+    if request.method == 'POST':
+        email = request.POST['email']
+        password = request.POST['password']
+
+        user = authenticate(request, username=email, password=password)
+
+        if user is not None:
+            login(request, user)
+            return redirect('protegida') 
+        else:
+            messages.error(request, 'Email ou senha inválidos.')
+    return render(request, 'login.html')
+
 @login_required
 def pagina_protegida(request):
     return render(request, 'protegida.html')
-
-def signup(request):
-    if request.method == 'POST':
-        email = request.POST.get('email')
-        senha = request.POST.get('senha')
-        nome = request.POST.get('nome')
-
-        if email and senha and nome:
-            if Usuario.objects.filter(email=email).exists():
-                messages.error(request, 'Usuário com este e-mail já existe.')
-            else:
-                usuario = Usuario(email=email, senha=senha, nome=nome)
-                usuario.save() 
-                messages.success(request, 'Cadastro realizado com sucesso!')
-                return redirect('login')
-        else:
-            messages.error(request, 'Preencha todos os campos.')
-
-    return render(request, 'signup.html')
 
 
 

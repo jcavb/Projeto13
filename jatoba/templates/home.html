@@ -1,64 +1,151 @@
+{% load static %}
+
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home Page</title>
+    <title>Home - Doutor Agro</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
             margin: 0;
-            padding: 0;
-            background-color: #f4f4f4;
+            font-family: 'Arial', sans-serif;
         }
 
-        header {
-            background-color: #4CAF50;
-            color: white;
-            text-align: center;
-            padding: 1em 0;
+        a {
+            text-decoration: none;
+            color: inherit;
         }
 
-        main {
+        /* Cabeçalho */
+        .main-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: white;
             padding: 20px;
-            text-align: center;
-        }
-
-        footer {
-            background-color: #333;
-            color: white;
-            text-align: center;
-            padding: 10px 0;
             position: fixed;
             width: 100%;
-            bottom: 0;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
         }
 
-        .signup-link {
+        .logo img {
+            height: 50px;
+        }
+
+        .nav-menu ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+
+        .nav-menu ul li {
+            margin-right: 50px;
+        }
+
+        .nav-menu ul li a {
+            font-weight: bold;
+            color: #333;
+        }
+
+        .nav-menu ul li a:hover {
+            color: #007bff;
+        }
+
+        /* Hero Section */
+        .hero-section {
+            position: relative;
+            text-align: center;
+            color: white;
+            margin-top: 100px; /* para evitar sobreposição com o header fixo */
+        }
+
+        .hero-image {
+            width: 100%;
+            height: 100vh;
+            object-fit: cover;
+            filter: brightness(70%);
+        }
+
+        .hero-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .hero-text h1 {
+            font-size: 64px;
+            margin: 0;
+        }
+
+        .hero-text h2 {
+            font-size: 48px;
+            margin: 10px 0;
+        }
+
+        .highlight {
+            color: #32cd32;
+        }
+
+        .cta-button {
+            background-color: #32cd32;
+            color: white;
+            padding: 15px 30px;
+            border-radius: 5px;
+            font-size: 18px;
             display: inline-block;
             margin-top: 20px;
-            padding: 10px 20px;
-            background-color: #4CAF50;
-            color: white;
-            text-decoration: none;
-            border-radius: 5px;
         }
 
-        .signup-link:hover {
-            background-color: #45a049;
+        .cta-button:hover {
+            background-color: #28a745;
+        }
+
+        /* Footer */
+        .main-footer {
+            background-color: #f8f9fa;
+            text-align: center;
+            padding: 20px 0;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        .main-footer p {
+            color: #333;
         }
     </style>
 </head>
 <body>
-    <header>
-        <h1>Bem-vindo à Página Inicial!</h1>
+    <!-- Cabeçalho -->
+    <header class="main-header">
+        <div class="logo">
+            <img src="{% static 'images/logo.png' %}" alt="Logo">
+        </div>
+        <nav class="nav-menu">
+            <ul>
+                <li><a href="{% url 'login' %}">Login</a></li>
+                <li><a href="{% url 'signup' %}">Cadastre-se</a></li>
+            </ul>
+        </nav>
     </header>
-    <main>
-        <p>Esta é a sua página inicial. Sinta-se à vontade para explorar!</p>
-        <a href="{% url 'signup' %}" class="signup-link">Cadastre-se</a>
-    </main>
-    <footer>
-        <p>© 2024 Minha Empresa. Todos os direitos reservados.</p>
+
+    <!-- Seção Principal -->
+    <section class="hero-section">
+        <img src="{% static 'images/br-agro.jpg' %}" alt="Imagem de fundo" class="hero-image">
+        <div class="hero-text">
+            <h1>Gerencie</h1>
+            <h2><span class="highlight">Acompanhe</span> e conecte-se</h2>
+        </div>
+    </section>
+
+    <footer class="main-footer">
+        <p>&copy; 2024 Jatoba. Todos os direitos reservados.</p>
     </footer>
 </body>
 </html>

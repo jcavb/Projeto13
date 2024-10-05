@@ -28,6 +28,10 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',  # Backend padrão do Django
+    'jatoba.backends.EmailBackend',  # Seu backend customizado
+]
 
 # Application definition
 
@@ -119,9 +123,7 @@ USE_TZ = True
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'icones/static'),
-]
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 
 STATIC_URL = '/static/'
 
@@ -131,6 +133,9 @@ STATIC_URL = '/static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 LOGIN_REDIRECT_URL = '/protegida/'
+LOGIN_URL = '/login/'
+LOGOUT_REDIRECT_URL = '/'
+
 
 STATIC_URL = '/static/'
 
