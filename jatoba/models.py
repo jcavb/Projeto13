@@ -1,9 +1,14 @@
 from django.db import models
+from django.contrib.auth.hashers import make_password
 
 class Usuario(models.Model):
-    id_usuario = models.AutoField(primary_key= True)
-    nome = models.TextField(max_length = 255)
-    
+    id_usuario = models.AutoField(primary_key=True)
+    email = models.EmailField(unique=True, default='', null=True) 
+    senha = models.CharField(max_length=255, default='')
+
+    def save(self, *args, **kwargs):
+        self.senha = make_password(self.senha)
+        super(Usuario, self).save(*args, **kwargs)
 
 class Checkbox(models.Model):
     titulo = models.TextField(max_length = 200)

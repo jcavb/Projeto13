@@ -6,6 +6,8 @@ from .models import Tarefa
 from django.core.exceptions import ObjectDoesNotExist
 from django.http import JsonResponse
 from django.contrib.auth import login, authenticate
+from .models import Usuario
+from django.contrib import messages
 
 def home(request):
     return render(request, 'home.html')
@@ -39,6 +41,25 @@ def lista_tarefas(request):
 @login_required
 def pagina_protegida(request):
     return render(request, 'protegida.html')
+
+def signup(request):
+    if request.method == 'POST':
+        email = request.POST.get('email')
+        senha = request.POST.get('senha')
+        nome = request.POST.get('nome')
+
+        if email and senha and nome:
+            if Usuario.objects.filter(email=email).exists():
+                messages.error(request, 'Usuário com este e-mail já existe.')
+            else:
+                usuario = Usuario(email=email, senha=senha, nome=nome)
+                usuario.save() 
+                messages.success(request, 'Cadastro realizado com sucesso!')
+                return redirect('login')
+        else:
+            messages.error(request, 'Preencha todos os campos.')
+
+    return render(request, 'signup.html')
 
 
 
