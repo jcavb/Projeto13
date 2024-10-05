@@ -40,8 +40,5 @@ def lista_tarefas(request):
 def pagina_protegida(request):
     return render(request, 'protegida.html')
 
-@login_required
-def dashboard(request):
-    return render(request, 'dashboard.html')
 
 

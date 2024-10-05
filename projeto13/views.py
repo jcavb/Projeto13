@@ -7,7 +7,7 @@ def home(request):
     return render(request, 'home.html')
 
 @login_required
-def dashboard(request):
+def pagina_protegida(request):
     return render(request, 'protegida.html')
 
 def signup(request):

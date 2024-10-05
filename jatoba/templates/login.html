@@ -115,6 +115,8 @@
         .signup-link a:hover {
             text-decoration: underline;
         }
+        
+
     </style>
 </head>
 <body>
@@ -134,7 +136,8 @@
                 <div class="checkbox-container">
                 </div>
             </div>
-            <button type="submit" class="submit-btn">Entrar</button>
+            <button type="submit" class="submit-btn"><a href="{% url 'protegida' %}">Entrar</a></button>
+            </button>
         </form>
         <div class="signup-link">
             Não tem cadastro? <a href="{% url 'signup' %}">Crie sua conta aqui</a>
