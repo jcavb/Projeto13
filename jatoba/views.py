@@ -90,5 +90,5 @@ def buscar_cultura(request):
     resultados = None
     if query:
         resultados = Cultura.objects.filter(nome__icontains=query)
-    return render(request, 'infoculturas.html', {'resultados': resultados})
+    return render(request, 'infos.html', {'resultados': resultados})
 

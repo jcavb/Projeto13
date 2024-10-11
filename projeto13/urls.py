@@ -23,6 +23,7 @@ urlpatterns = [
 
     path('protegida/', views.pagina_protegida, name='protegida'),
 
-    path('infoculturas/', views.infoculturas, name='infoculturas'),
+    path('infoculturas/', views.buscar_cultura, name='infoculturas'),
+
 ]
 
