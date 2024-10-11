@@ -24,3 +24,14 @@ class Tarefa(models.Model):
 
     def __str__(self):
         return self.nome
+
+
+class Cultura(models.Model):
+    nome = models.CharField(max_length=100)
+    temperatura_ideal = models.CharField(max_length=50)
+    tipo_solo = models.CharField(max_length=100)
+    rotacao_cultivo = models.CharField(max_length=100)
+    umidade_ideal = models.CharField(max_length=50)
+
+    def __str__(self):
+        return self.nome

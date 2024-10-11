@@ -22,5 +22,7 @@ urlpatterns = [
     path('tarefas/', views.lista_tarefas, name='tarefas'),
 
     path('protegida/', views.pagina_protegida, name='protegida'),
+
+    path('infoculturas/', views.infoculturas, name='infoculturas'),
 ]
 

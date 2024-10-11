@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Info-Culturas</title>
+</head>
+<body>
+    
+<form method="GET" action="">
+    <input type="text" name="q" placeholder="Buscar cultura...">
+    <button type="submit">Pesquisar</button>
+</form>
+
+{% if resultados %}
+    <h2>Resultados da pesquisa:</h2>
+    <table>
+        <tr>
+            <th>Nome</th>
+            <th>Temperatura Ideal</th>
+            <th>Solo</th>
+            <th>Rotação de Cultivo</th>
+            <th>Umidade Ideal</th>
+        </tr>
+        {% for cultura in resultados %}
+        <tr>
+            <td>{{ cultura.nome }}</td>
+            <td>{{ cultura.temperatura_ideal }}</td>
+            <td>{{ cultura.tipo_solo }}</td>
+            <td>{{ cultura.rotacao_cultivo }}</td>
+            <td>{{ cultura.umidade_ideal }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+{% else %}
+    <p>Nenhuma cultura encontrada.</p>
+{% endif %}
+
+</body>
+</html>

@@ -6,6 +6,7 @@ from django.core.exceptions import ObjectDoesNotExist
 from django.http import JsonResponse
 from django.contrib import messages
 from django.contrib.auth.models import User
+from .models import Cultura
 from django.utils.timezone import now 
 
 def home(request):
@@ -84,5 +85,10 @@ def login_view(request):
 def pagina_protegida(request):
     return render(request, 'protegida.html')
 
-
+def buscar_cultura(request):
+    query = request.GET.get('q')
+    resultados = None
+    if query:
+        resultados = Cultura.objects.filter(nome__icontains=query)
+    return render(request, 'infoculturas.html', {'resultados': resultados})
 
