@@ -19,7 +19,7 @@ urlpatterns = [
     
     path('', views.home, name='home'),  
 
-    path('tarefas/', views.lista_tarefas, name='lista_tarefas'),
+    path('tarefas/', views.lista_tarefas, name='tarefas'),
 
     path('protegida/', views.pagina_protegida, name='protegida'),
 ]

@@ -81,13 +81,45 @@
             border-radius: 5px;
             font-size: 0.9em;
             z-index: 100;
-        }
-
+        }   
         #feedback.error {
             background-color: #f8d7da;
             border-color: #f5c6cb;
             color: #721c24;
         }
+        .new-task-form {
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            background-color: #fff;
+            padding: 20px;
+            box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .new-task-form input[type="text"] {
+            width: 70%;
+            padding: 10px;
+            margin-right: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        .new-task-form button {
+            padding: 10px 20px;
+            background-color: #27ae60;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .new-task-form button:hover {
+            background-color: #2ecc71;
+        }
+
     </style>
 </head>
 <body>
@@ -111,6 +143,18 @@
             <li>Nenhuma tarefa encontrada.</li>
             {% endfor %}
         </ul>
+    </div>
+
+    <div class="new-task-form">
+        <form method="POST" action="/tarefas/">
+            {% csrf_token %}
+            <input type="text" name="nome_tarefa" placeholder="Nova tarefa..." required>
+            <select name="categoria_tarefa" required>
+                <option value="REGA">Rega</option>
+                <option value="COLHEITA">Colheita</option>
+            </select>
+            <button type="submit">Adicionar</button>
+        </form>
     </div>
 
     <script>

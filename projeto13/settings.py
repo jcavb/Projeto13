@@ -29,8 +29,8 @@ DEBUG = True
 ALLOWED_HOSTS = []
 
 AUTHENTICATION_BACKENDS = [
-    'django.contrib.auth.backends.ModelBackend',  # Backend padrão do Django
-    'jatoba.backends.EmailBackend',  # Seu backend customizado
+    'django.contrib.auth.backends.ModelBackend',  # Backend padrão
+    'jatoba.backends.EmailBackend',  # Seu backend de email
 ]
 
 # Application definition

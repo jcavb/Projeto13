@@ -6,6 +6,7 @@ from django.core.exceptions import ObjectDoesNotExist
 from django.http import JsonResponse
 from django.contrib import messages
 from django.contrib.auth.models import User
+from django.utils.timezone import now 
 
 def home(request):
     return render(request, 'home.html')
@@ -14,15 +15,30 @@ def lista_tarefas(request):
     tarefas = Tarefa.objects.all()
 
     if request.method == 'POST':
-        tarefa_id = request.POST.get('tarefa_id')
-        try:
-            tarefa = Tarefa.objects.get(id=tarefa_id)
-            tarefa.concluida = not tarefa.concluida
-            tarefa.save()
-            return JsonResponse({'success': True})
-        except ObjectDoesNotExist:
-            return JsonResponse({'success': False, 'error': 'Tarefa não encontrada'}, status=404)
-    
+        # Verifica se é um pedido de atualização de tarefa ou de criação de nova tarefa
+        if 'tarefa_id' in request.POST:
+            tarefa_id = request.POST.get('tarefa_id')
+            try:
+                tarefa = Tarefa.objects.get(id=tarefa_id)
+                tarefa.concluida = not tarefa.concluida
+                tarefa.save()
+                return JsonResponse({'success': True})
+            except ObjectDoesNotExist:
+                return JsonResponse({'success': False, 'error': 'Tarefa não encontrada'}, status=404)
+        
+        # Adicionando nova tarefa
+        elif 'nome_tarefa' in request.POST and 'categoria_tarefa' in request.POST:
+            nome_tarefa = request.POST.get('nome_tarefa')
+            categoria_tarefa = request.POST.get('categoria_tarefa')
+            nova_tarefa = Tarefa(
+                nome=nome_tarefa, 
+                categoria=categoria_tarefa, 
+                data_ultima_acao=now(),  # Define a data atual como data_ultima_acao
+                concluida=False
+            )
+            nova_tarefa.save()
+            return redirect('tarefas')  # Redireciona de volta para a lista de tarefas
+
     return render(request, 'tarefas.html', {'tarefas': tarefas})
 
 def signup_view(request):
@@ -41,11 +57,13 @@ def signup_view(request):
                 user = User.objects.create_user(username=username, email=email, password=password)
                 user.save()
 
-                login(request, user)
+                # Especificando o backend explicitamente ao logar o usuário
+                login(request, user, backend='jatoba.backends.EmailBackend')
 
                 return redirect('protegida')
         else:
             messages.error(request, 'As senhas não coincidem.')
+    
     return render(request, 'signup.html')
 
 def login_view(request):
