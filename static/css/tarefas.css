@@ -31,7 +31,7 @@ header{
 
 .direita{
     display: flex;
-    justify-content: flex-end; 
+    justify-content: space-around; 
     align-items: center;
     position: absolute; 
     top: 20px; 
@@ -79,7 +79,6 @@ header{
     padding: 0px;
     justify-content: space-around;
     margin-bottom: 100px;
-    margin-left: ;
 }
 
 footer{
@@ -92,3 +91,27 @@ footer{
 h3{
     margin: 20px;
 }
+
+
+.btn-tarefas {
+    background: none;            
+    border: none;                
+    color: white;              
+    font-size: 1em;
+    padding: 10px 20px;
+    border-radius: 0;            
+    cursor: pointer;
+    text-decoration: none;
+    font-weight: bold;
+    margin: 0 10px;              
+  }
+  
+  .btn-tarefas:hover {
+    color: #FF8C00;              
+  }
+  
+  .btn-tarefas.active {
+    color: greenyellow;          
+    font-weight: bold;
+  }
+    
