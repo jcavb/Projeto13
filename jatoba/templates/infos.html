@@ -22,44 +22,53 @@
   </header>
 
   <section class="list">
-    <div class="list-item">
-        <span>BANANA</span>
-        <a href="{% url 'banana_infos' %}" class="more-info">Mais informações ></a>
-    </div>
+<div class="list-item">
+    <span>BANANA</span>
+    {% url 'banana_infos' as banana_url %}
+    <button class="more-info" onclick="window.location.href='{{ banana_url }}'">Mais informações ></button>    
+</div>
+
 
     <div class="list-item">
         <span>ABACATE</span>
-        <span class="more-info">Mais informações ></span>
+        {% url 'abacate_infos' as abacate_url %}
+        <button class="more-info" onclick="window.location.href='{{ abacate_url }}'">Mais informações ></button>
     </div>
 
     <div class="list-item">
         <span>BRÓCOLIS</span>
-        <span class="more-info">Mais informações ></span>
+        {% url 'brocolis_infos' as brocolis_url %}
+        <button class="more-info" onclick="window.location.href='{{ brocolis_url }}'">Mais informações ></button>
     </div>
 
     <div class="list-item">
         <span>RÚCULA</span>
-        <span class="more-info">Mais informações ></span>
+        {% url 'rucula_infos' as rucula_url %}
+        <button class="more-info" onclick="window.location.href='{{ rucula_url }}'">Mais informações ></button>
     </div>
 
     <div class="list-item">
         <span>COUVE</span>
-        <span class="more-info">Mais informações ></span>
+        {% url 'couve_infos' as couve_url %}
+        <button class="more-info" onclick="window.location.href='{{ couve_url }}'">Mais informações ></button>
     </div>
 
     <div class="list-item">
         <span>TOMATE</span>
-        <span class="more-info">Mais informações ></span>
+        {% url 'tomate_infos' as tomate_url %}
+        <button class="more-info" onclick="window.location.href='{{ tomate_url }}'">Mais informações ></button>
     </div>
 
     <div class="list-item">
         <span>CENOURA</span>
-        <span class="more-info">Mais informações ></span>
+        {% url 'cenoura_infos' as cenoura_url %}
+        <button class="more-info" onclick="window.location.href='{{ cenoura_url }}'">Mais informações ></button>
     </div>
     
     <div class="list-item">
         <span>MACAXEIRA</span>
-        <span class="more-info">Mais informações ></span>
+        {% url 'macaxeira_infos' as macaxeira_url %}
+        <button class="more-info" onclick="window.location.href='{{ macaxeira_url }}'">Mais informações ></button>
     </div>
     
   </section>

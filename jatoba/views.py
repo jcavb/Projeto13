@@ -95,3 +95,24 @@ def buscar_cultura(request):
 def banana_infos(request):
     return render(request, 'culturas/banana.html')
 
+def abacate_infos(request):
+    return render(request, 'culturas/abacate.html')
+
+def brocolis_infos(request):
+    return render(request, 'culturas/brocolis.html')
+
+def cenoura_infos(request):
+    return render(request, 'culturas/cenoura.html')
+
+def couve_infos(request):
+    return render(request, 'culturas/couve.html')
+
+def macaxeira_infos(request):
+    return render(request, 'culturas/macaxeira.html')
+
+def rucula_infos(request):
+    return render(request, 'culturas/rucula.html')
+
+def tomate_infos(request):
+    return render(request, 'culturas/tomate.html')
+

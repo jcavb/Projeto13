@@ -1,0 +1,46 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Detalhes da Planta</title>
+<link rel="stylesheet" href="{% static 'css/cenoura.css' %}">
+</head>
+<body>
+<div class="container">
+    <header>
+        <h1>BRÓCOLIS</h1>
+    </header>
+    <section>
+        <div class="info">
+            <p>Clima: --- Quentes,temperaturas até 28°C</p>
+            <p>Solo: --- Fertilizado,argiloso </p>
+        </div>
+        <div class="timeline">
+            <h2>Linha do tempo de crescimento</h2>
+            <div class="timeline-bar">
+                <span class="tag">Dia 1</span>
+
+                <span class="tag">Dia 7 - 10</span>
+
+                <span class="tag">Dia 15</span>
+                
+                <span class="tag">Dia 40 - 60</span>
+               
+                <div class="progress-bar">
+                    <div class="progress"></div>
+                    <span class="progress-point"></span>
+                    <span class="progress-point"></span>
+                    <span class="progress-point"></span>
+                    <span class="progress-point progress-point-last"></span>
+                </div>
+            </div>
+        </div>
+        <div class="info">
+            <p>PH do solo ---  Neutro</p>
+        </div>
+    </section>
+    
+</div>
+</body>

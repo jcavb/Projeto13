@@ -58,12 +58,6 @@ input[type="search"] {
   font-weight: bold;
 }
 
-.more-info {
-  display: flex;
-  align-items: center;
-  font-size: 0.9em;
-}
-
 .more-info::before {
   content: '';
   display: inline-block;
@@ -73,4 +67,22 @@ input[type="search"] {
   mask: url('arrow.svg') no-repeat center;
   mask-size: contain;
   margin-right: 10px;
+}
+
+.more-info {
+    background-color: #FFA500;  /* Cor de fundo laranja */
+    border: none;               /* Remova as bordas */
+    color: white;               /* Cor do texto branca */
+    font-size: 1em;             /* Tamanho do texto */
+    padding: 10px 20px;         /* Espaçamento interno */
+    border-radius: 10px;        /* Borda arredondada */
+    cursor: pointer;            /* Cursor de ponteiro para indicar clique */
+    display: inline-block;      /* Para comportar como um botão */
+    font-weight: bold;          /* Texto em negrito */
+    text-align: center;         /* Centraliza o texto no botão */
+}
+
+.more-info:hover {
+    background-color: #FF8C00;  /* Cor laranja mais escura ao passar o mouse */
+    text-decoration: none;      /* Remova sublinhado ao passar o mouse */
 }
