@@ -14,7 +14,7 @@ O Jatobá é um aliado na jornada de pequenos agricultores que desejam cultivar 
 
 [Link do Jira](https://cesar-ecotrack.atlassian.net/jira/software/projects/G13/boards/34)
 
-Apresentação conceitual
+[Apresentação conceitual](https://docs.google.com/document/d/1YcFWUKt5CzpJgBr-Ovjdaf_afpZoh-Ol2bMEGYuE8Uc/edit)
 
 Protótipo de Baixa Fidelidade
 
@@ -22,4 +22,9 @@ Diagrama de atividades do sistema
 
 Azure
 
-Programação em par
+## Programação em par
+
+Maria Fernanda Oliveira e Sofia Gomes
+Arthur Leal e Davi Arruda
+João Vitor Moraes e Thiago Vinnicius
+Miguel Arcanjo e Júlio Vilas Boas
