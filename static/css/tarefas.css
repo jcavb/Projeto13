@@ -1,0 +1,94 @@
+body{
+    background-color: #FFF7F8;
+    color: #222222;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+header{
+    background-color: #06A678;
+    display: flex;
+    padding: 20px;
+    width: 100%;
+    position: relative;
+}
+
+.perfil{
+    height: 5px;
+    width: 5px;
+    margin: 20px;
+    padding: 20px;
+}
+
+#cabeca{
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+}
+
+.direita{
+    display: flex;
+    justify-content: flex-end; 
+    align-items: center;
+    position: absolute; 
+    top: 20px; 
+    right: 20px;
+}
+
+#cabeca a{
+    padding: 10px;
+    margin: 20px;
+
+}
+
+#logo{
+    display: flex;
+    margin: 20px 0;
+    align-items: center;
+    height: auto;
+}
+
+.data{
+    display: flex;
+    justify-content: flex-start; 
+    align-items: center;
+    position: absolute; 
+    top: 500px; 
+    left: 20px;
+}
+
+.Carpina{
+    display: flex;
+    justify-content: flex-end; 
+    align-items: center;
+    position: absolute; 
+    top: 500px; 
+    right: 20px;
+}
+
+#check{
+    justify-content: space-around;
+}
+
+.coluna{
+    float: left;
+    width: 33.33%;
+    padding: 0px;
+    justify-content: space-around;
+    margin-bottom: 100px;
+    margin-left: ;
+}
+
+footer{
+    background-color: #06A678;
+    color: #222222;
+    justify-content: flex-start;
+    width: 100%;
+}
+
+h3{
+    margin: 20px;
+}
