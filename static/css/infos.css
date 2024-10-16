@@ -30,6 +30,7 @@ header {
   padding: 0 20px;
 }
 
+
 input[type="search"] {
   width: 100%;
   padding: 10px;
@@ -70,19 +71,57 @@ input[type="search"] {
 }
 
 .more-info {
-    background-color: #FFA500;  
-    border: none;               
-    color: white;              
-    font-size: 1em;             
-    padding: 10px 20px;
-    border-radius: 10px;        
-    cursor: pointer;            
-    display: inline-block;      
-    font-weight: bold;          
-    text-align: center;         
+  background-color: #FFA500;
+  border: none;
+  color: white;
+  font-size: 1em;
+  padding: 10px 20px;
+  border-radius: 10px;
+  cursor: pointer;
+  display: inline-block;
+  font-weight: bold;
+  text-align: center;
 }
 
 .more-info:hover {
-    background-color: #FF8C00;  
-    text-decoration: none;     
+  background-color: #FF8C00;
+  text-decoration: none;
+}
+
+.btn-tarefas {
+  background: none;
+  border: none;
+  color: white;  
+  font-size: 1em;
+  cursor: pointer;
+  padding: 0;
+  text-decoration: underline; 
+}
+
+.btn-tarefas:hover {
+  text-decoration: none;
+  color: #FFA500;  
+}
+
+/* CSS atualizado para remover o fundo laranja */
+.btn-tarefas {
+  background: none;            /* Remove o fundo laranja */
+  border: none;                /* Remove a borda */
+  color: #222222;              /* Define a cor do texto (ajuste conforme desejado) */
+  font-size: 1em;
+  padding: 10px 20px;
+  border-radius: 0;            /* Remove o arredondamento */
+  cursor: pointer;
+  text-decoration: none;
+  font-weight: bold;
+  margin: 0 10px;              /* Espaçamento entre os botões */
+}
+
+.btn-tarefas:hover {
+  color: #FF8C00;              /* Cor do texto ao passar o mouse */
+}
+
+.btn-tarefas.active {
+  color: greenyellow;          /* Cor do botão ativo */
+  font-weight: bold;
 }

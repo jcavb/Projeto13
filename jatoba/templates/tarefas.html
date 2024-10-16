@@ -5,98 +5,138 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="{% static 'css/tarefas.css' %}"
+    <link rel="stylesheet" href="{% static 'css/tarefas.css' %}">
 </head>
 <body>
     <header>
         <section id="cabeca">
             <div id="perfil">
-                <img src="{% static 'images/perfil.avif' %}" alt="Perfil"  width="75" height="75">
+                <img src="{% static 'images/perfil.avif' %}" alt="Perfil" width="75" height="75">
             </div>
             <h3>Nome</h3>
             <div class="direita">
-                <a href="checklist.html">Cuidados Diários</a>
-                <a>Calendário</a>
-                <a>Info Culturas</a>
+                <button class="btn-tarefas active" onclick="window.location.href='{% url 'tarefas' %}'">Cuidados Diários</button>
+                <button class="btn-tarefas">Calendário</button>
+                <a href="{% url 'infoculturas' %}" class="btn-tarefas">Info Culturas</a>
             </div>
         </section>
     </header>
+    
     <main>
         <section id="logo">
             <img src="{% static 'images/logo.jpg' %}" alt="Logo" width="400" height="400">
         </section>
         <section id="centro">
-            <div class="data">
-            </div>
-            
+            <div class="data"></div>
             <div class="Carpina">
                 <i class="fa-solid fa-location-dot"></i>
             </div>
         </section>
+        
+
         <section id="check">
             <div class="coluna">
                 <h1>Regar:</h1>
                 <input type="checkbox" id="Abacate" value="Abacate">
-                <label>Abacate</label><br>
+                <label for="Abacate">Abacate</label><br>
+                
                 <input type="checkbox" id="Banana" value="Banana">
-                <label>Banana</label><br>
+                <label for="Banana">Banana</label><br>
+                
                 <input type="checkbox" id="Brocolis" value="Brocolis">
-                <label>Brocolis</label><br>
+                <label for="Brocolis">Brocolis</label><br>
+                
                 <input type="checkbox" id="Cenoura" value="Cenoura">
-                <label>Cenoura</label><br>
+                <label for="Cenoura">Cenoura</label><br>
+                
                 <input type="checkbox" id="Couve" value="Couve">
-                <label>Couve</label><br>
+                <label for="Couve">Couve</label><br>
+                
                 <input type="checkbox" id="Macaxeira" value="Macaxeira">
-                <label>Macaxeira</label><br>
+                <label for="Macaxeira">Macaxeira</label><br>
+                
                 <input type="checkbox" id="Rucula" value="Rucula">
-                <label>Rucula</label><br>
+                <label for="Rucula">Rucula</label><br>
+                
                 <input type="checkbox" id="Tomate" value="Tomate">
-                <label>Tomate</label><br>
+                <label for="Tomate">Tomate</label><br>
             </div>
 
             <div class="coluna">
                 <h1>Colheita:</h1>
-                <input type="checkbox" id="Abacate" value="Abacate">
-                <label>Abacate</label><br>
-                <input type="checkbox" id="Banana" value="Banana">
-                <label>Banana</label><br>
-                <input type="checkbox" id="Brocolis" value="Brocolis">
-                <label>Brocolis</label><br>
-                <input type="checkbox" id="Cenoura" value="Cenoura">
-                <label>Cenoura</label><br>
-                <input type="checkbox" id="Couve" value="Couve">
-                <label>Couve</label><br>
-                <input type="checkbox" id="Macaxeira" value="Macaxeira">
-                <label>Macaxeira</label><br>
-                <input type="checkbox" id="Rucula" value="Rucula">
-                <label>Rucula</label><br>
-                <input type="checkbox" id="Tomate" value="Tomate">
-                <label>Tomate</label><br>
+                <input type="checkbox" id="Abacate_colheita" value="Abacate">
+                <label for="Abacate_colheita">Abacate</label><br>
+                
+                <input type="checkbox" id="Banana_colheita" value="Banana">
+                <label for="Banana_colheita">Banana</label><br>
+                
+                <input type="checkbox" id="Brocolis_colheita" value="Brocolis">
+                <label for="Brocolis_colheita">Brocolis</label><br>
+                
+                <input type="checkbox" id="Cenoura_colheita" value="Cenoura">
+                <label for="Cenoura_colheita">Cenoura</label><br>
+                
+                <input type="checkbox" id="Couve_colheita" value="Couve">
+                <label for="Couve_colheita">Couve</label><br>
+                
+                <input type="checkbox" id="Macaxeira_colheita" value="Macaxeira">
+                <label for="Macaxeira_colheita">Macaxeira</label><br>
+                
+                <input type="checkbox" id="Rucula_colheita" value="Rucula">
+                <label for="Rucula_colheita">Rucula</label><br>
+                
+                <input type="checkbox" id="Tomate_colheita" value="Tomate">
+                <label for="Tomate_colheita">Tomate</label><br>
             </div>
-            
+
             <div class="coluna">
                 <h1>Adubar:</h1>
-                <input type="checkbox" id="Abacate" value="Abacate">
-                <label>Abacate</label><br>
-                <input type="checkbox" id="Banana" value="Banana">
-                <label>Banana</label><br>
-                <input type="checkbox" id="Brocolis" value="Brocolis">
-                <label>Brocolis</label><br>
-                <input type="checkbox" id="Cenoura" value="Cenoura">
-                <label>Cenoura</label><br>
-                <input type="checkbox" id="Couve" value="Couve">
-                <label>Couve</label><br>
-                <input type="checkbox" id="Macaxeira" value="Macaxeira">
-                <label>Macaxeira</label><br>
-                <input type="checkbox" id="Rucula" value="Rucula">
-                <label>Rucula</label><br>
-                <input type="checkbox" id="Tomate" value="Tomate">
-                <label>Tomate</label><br>
+                <input type="checkbox" id="Abacate_adubar" value="Abacate">
+                <label for="Abacate_adubar">Abacate</label><br>
+                
+                <input type="checkbox" id="Banana_adubar" value="Banana">
+                <label for="Banana_adubar">Banana</label><br>
+                
+                <input type="checkbox" id="Brocolis_adubar" value="Brocolis">
+                <label for="Brocolis_adubar">Brocolis</label><br>
+                
+                <input type="checkbox" id="Cenoura_adubar" value="Cenoura">
+                <label for="Cenoura_adubar">Cenoura</label><br>
+                
+                <input type="checkbox" id="Couve_adubar" value="Couve">
+                <label for="Couve_adubar">Couve</label><br>
+                
+                <input type="checkbox" id="Macaxeira_adubar" value="Macaxeira">
+                <label for="Macaxeira_adubar">Macaxeira</label><br>
+                
+                <input type="checkbox" id="Rucula_adubar" value="Rucula">
+                <label for="Rucula_adubar">Rucula</label><br>
+                
+                <input type="checkbox" id="Tomate_adubar" value="Tomate">
+                <label for="Tomate_adubar">Tomate</label><br>
             </div>
         </section>
     </main>
+    
     <footer>
-        <h3>Precisa de ajuda. Entre em contato : (81) 99194-9825</h3>
+        <h3>Precisa de ajuda. Entre em contato : (12) 3456-7890</h3>
     </footer>
+
+
+    <script>
+        document.addEventListener('DOMContentLoaded', (event) => {
+
+            document.querySelectorAll('input[type="checkbox"]').forEach(checkbox => {
+
+                if (localStorage.getItem(checkbox.id) === 'true') {
+                    checkbox.checked = true;
+                }
+
+                checkbox.addEventListener('change', function() {
+                    localStorage.setItem(checkbox.id, this.checked);
+                });
+            });
+        });
+    </script>
 </body>
 </html>

@@ -13,10 +13,11 @@
     <div class="header-content">
         <h1>Nome</h1>
         <ul class="navigation">
-            <li>Cuidados Diários</li>
-            <li>Calendário</li>
-            <li>Info Culturas</li>
+            <a href="{% url 'tarefas' %}" class="btn-tarefas">Cuidados Diários</a>
+                <button class="btn-tarefas">Calendário</button>
+                <button class="btn-tarefas active">Info Culturas</button>
         </ul>
+        
     </div>
     <input type="search" placeholder="Pesquisar...">
   </header>
