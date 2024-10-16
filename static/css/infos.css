@@ -70,19 +70,19 @@ input[type="search"] {
 }
 
 .more-info {
-    background-color: #FFA500;  /* Cor de fundo laranja */
-    border: none;               /* Remova as bordas */
-    color: white;               /* Cor do texto branca */
-    font-size: 1em;             /* Tamanho do texto */
-    padding: 10px 20px;         /* Espaçamento interno */
-    border-radius: 10px;        /* Borda arredondada */
-    cursor: pointer;            /* Cursor de ponteiro para indicar clique */
-    display: inline-block;      /* Para comportar como um botão */
-    font-weight: bold;          /* Texto em negrito */
-    text-align: center;         /* Centraliza o texto no botão */
+    background-color: #FFA500;  
+    border: none;               
+    color: white;              
+    font-size: 1em;             
+    padding: 10px 20px;
+    border-radius: 10px;        
+    cursor: pointer;            
+    display: inline-block;      
+    font-weight: bold;          
+    text-align: center;         
 }
 
 .more-info:hover {
-    background-color: #FF8C00;  /* Cor laranja mais escura ao passar o mouse */
-    text-decoration: none;      /* Remova sublinhado ao passar o mouse */
+    background-color: #FF8C00;  
+    text-decoration: none;     
 }
