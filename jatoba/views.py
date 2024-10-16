@@ -92,3 +92,6 @@ def buscar_cultura(request):
         resultados = Cultura.objects.filter(nome__icontains=query)
     return render(request, 'infos.html', {'resultados': resultados})
 
+def banana_infos(request):
+    return render(request, 'culturas/banana.html')
+

@@ -24,6 +24,8 @@ urlpatterns = [
     path('protegida/', views.pagina_protegida, name='protegida'),
 
     path('infoculturas/', views.buscar_cultura, name='infoculturas'),
+    
+    path('banana/', views.banana_infos, name='banana_infos'),
 
 ]
 

@@ -1,40 +1,68 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Info-Culturas</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lista de Itens</title>
+<link rel="stylesheet" href="{% static 'css/infos.css' %}">
 </head>
 <body>
+<div class="wrapper">
+  <header>
+    <div class="header-content">
+        <h1>Nome</h1>
+        <ul class="navigation">
+            <li>Cuidados Diários</li>
+            <li>Calendário</li>
+            <li>Info Culturas</li>
+        </ul>
+    </div>
+    <input type="search" placeholder="Pesquisar...">
+  </header>
+
+  <section class="list">
+    <div class="list-item">
+        <span>BANANA</span>
+        <a href="{% url 'banana_infos' %}" class="more-info">Mais informações ></a>
+    </div>
+
+    <div class="list-item">
+        <span>ABACATE</span>
+        <span class="more-info">Mais informações ></span>
+    </div>
+
+    <div class="list-item">
+        <span>BRÓCOLIS</span>
+        <span class="more-info">Mais informações ></span>
+    </div>
+
+    <div class="list-item">
+        <span>RÚCULA</span>
+        <span class="more-info">Mais informações ></span>
+    </div>
+
+    <div class="list-item">
+        <span>COUVE</span>
+        <span class="more-info">Mais informações ></span>
+    </div>
+
+    <div class="list-item">
+        <span>TOMATE</span>
+        <span class="more-info">Mais informações ></span>
+    </div>
+
+    <div class="list-item">
+        <span>CENOURA</span>
+        <span class="more-info">Mais informações ></span>
+    </div>
     
-<form method="GET" action="">
-    <input type="text" name="q" placeholder="Buscar cultura...">
-    <button type="submit">Pesquisar</button>
-</form>
-
-{% if resultados %}
-    <h2>Resultados da pesquisa:</h2>
-    <table>
-        <tr>
-            <th>Nome</th>
-            <th>Temperatura Ideal</th>
-            <th>Solo</th>
-            <th>Rotação de Cultivo</th>
-            <th>Umidade Ideal</th>
-        </tr>
-        {% for cultura in resultados %}
-        <tr>
-            <td>{{ cultura.nome }}</td>
-            <td>{{ cultura.temperatura_ideal }}</td>
-            <td>{{ cultura.tipo_solo }}</td>
-            <td>{{ cultura.rotacao_cultivo }}</td>
-            <td>{{ cultura.umidade_ideal }}</td>
-        </tr>
-        {% endfor %}
-    </table>
-{% else %}
-    <p>Nenhuma cultura encontrada.</p>
-{% endif %}
-
+    <div class="list-item">
+        <span>MACAXEIRA</span>
+        <span class="more-info">Mais informações ></span>
+    </div>
+    
+  </section>
+</div>
 </body>
 </html>

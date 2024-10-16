@@ -1,0 +1,76 @@
+body, html {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+}
+
+.wrapper {
+  background: #F0EAD6;
+  height: 100vh;
+}
+
+header {
+  background: #83BCA9;
+  padding: 20px;
+  color: white;
+}
+
+.header-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.navigation {
+  list-style: none;
+  display: flex;
+}
+
+.navigation li {
+  padding: 0 20px;
+}
+
+input[type="search"] {
+  width: 100%;
+  padding: 10px;
+  margin-top: 10px;
+  border: none;
+  border-radius: 4px;
+}
+
+.list {
+  padding: 20px;
+}
+
+.list-item {
+  background: #FFA500;
+  border-radius: 10px;
+  padding: 20px;
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+}
+
+.list-item span {
+  color: white;
+  font-weight: bold;
+}
+
+.more-info {
+  display: flex;
+  align-items: center;
+  font-size: 0.9em;
+}
+
+.more-info::before {
+  content: '';
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  background: white;
+  mask: url('arrow.svg') no-repeat center;
+  mask-size: contain;
+  margin-right: 10px;
+}
