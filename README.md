@@ -68,14 +68,14 @@ Transformar a maneira como a agricultura é gerida, oferecendo soluções que fa
 
 ## 👥 Equipe de Desenvolvimento
 
-- **Arthur Leal - alp@cesar.school**
-- **Davi Arruda - dab@cesar.school**
-- **João Vitor Moraes - jvmb@cesar.school**
-- **Júlio Vilas Boas - maha@cesar.school**
-- **Maria Fernanda Oliveira - mfomd@cesar.school**
-- **Miguel Arcanjo - jcavb@cesar.school**
-- **Sofia Gomes - sgt@cesar.school**
-- **Thiago Vinnicius - tvvb@cesar.school**
+- **Arthur Leal**
+- **Davi Arruda**
+- **João Vitor Moraes**
+- **Júlio Vilas Boas**
+- **Maria Fernanda Oliveira**
+- **Miguel Arcanjo**
+- **Sofia Gomes**
+- **Thiago Vinnicius**
 
 ---
 
