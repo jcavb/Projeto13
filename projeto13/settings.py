@@ -26,8 +26,8 @@ if NOT_PROD:
     # SECURITY WARNING: don't run with debug turned on in production!
     DEBUG = True
     # SECURITY WARNING: keep the secret key used in production secret!
-    SECRET_KEY = 'django-insecure-ol3vf(g5f9nokwlz^cdi^=2+#3_b5_3on(%kj(h(4d3*5d)23g'
-    ALLOWED_HOSTS = ['djangodeploy2-asb8e9a3aye4accj.brazilsouth-01.azurewebsites.net']
+    SECRET_KEY = 'sua-chave-secreta'
+    ALLOWED_HOSTS = ['seu-dominio']
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.sqlite3',
@@ -35,13 +35,13 @@ if NOT_PROD:
         }
     }
 else:
-    SECRET_KEY = os.getenv('django-insecure-ol3vf(g5f9nokwlz^cdi^=2+#3_b5_3on(%kj(h(4d3*5d)23g')
+    # Configurações para produção
+    SECRET_KEY = os.getenv('SECRET_KEY')
     DEBUG = os.getenv('DEBUG', '0').lower() in ['true', 't', '1']
     ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS').split(' ')
     CSRF_TRUSTED_ORIGINS = os.getenv('CSRF_TRUSTED_ORIGINS').split(' ')
 
-    SECURE_SSL_REDIRECT = \
-        os.getenv('SECURE_SSL_REDIRECT', '0').lower() in ['true', 't', '1']
+    SECURE_SSL_REDIRECT = os.getenv('SECURE_SSL_REDIRECT', '0').lower() in ['true', 't', '1']
 
     if SECURE_SSL_REDIRECT:
         SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
