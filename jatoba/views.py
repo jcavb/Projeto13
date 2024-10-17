@@ -44,27 +44,32 @@ def lista_tarefas(request):
 
 def signup_view(request):
     if request.method == 'POST':
-        username = request.POST['username']
-        email = request.POST['email']
-        password = request.POST['password']
-        confirm_password = request.POST['confirm-password']  # Aqui deve ser igual ao name do campo HTML
+        username = request.POST.get('username')
+        email = request.POST.get('email')
+        password1 = request.POST.get('password1')  # Corrigido para usar o campo 'password1'
+        password2 = request.POST.get('password2')  # Corrigido para usar o campo 'password2'
 
-        if password == confirm_password:
+        if password1 and password2:
+            if password1 != password2:
+                return render(request, 'signup.html', {'error': 'As senhas não coincidem.'})
+
             if User.objects.filter(username=username).exists():
-                messages.error(request, 'Nome de usuário já existe.')
-            elif User.objects.filter(email=email).exists():
-                messages.error(request, 'Email já cadastrado.')
-            else:
-                user = User.objects.create_user(username=username, email=email, password=password)
-                user.save()
+                return render(request, 'signup.html', {'error': 'Nome de usuário já existe.'})
 
-                # Especificando o backend explicitamente ao logar o usuário
-                login(request, user, backend='jatoba.backends.EmailBackend')
+            if User.objects.filter(email=email).exists():
+                return render(request, 'signup.html', {'error': 'Email já cadastrado.'})
 
-                return redirect('protegida')
+            # Criar usuário
+            user = User.objects.create_user(username=username, email=email, password=password1)
+            user.save()
+
+            # Autenticar e logar o usuário
+            login(request, user)
+
+            return redirect('home')
         else:
-            messages.error(request, 'As senhas não coincidem.')
-    
+            return render(request, 'signup.html', {'error': 'Por favor, preencha todos os campos.'})
+
     return render(request, 'signup.html')
 
 def login_view(request):
