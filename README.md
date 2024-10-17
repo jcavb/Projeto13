@@ -14,7 +14,7 @@ O Jatobá é um aliado na jornada de pequenos agricultores que desejam cultivar 
 ![Marca](https://github.com/user-attachments/assets/172c0959-5256-432d-9da5-8b9aacd33b3d)
 
 
-[[Link do Jira]([https://cesar-ecotrack.atlassian.net/jira/software/projects/G13/boards/34])
+[[Link do Jira]([https://cesar-ecotrack.atlassian.net/jira/software/projects/G13/boards/34])]
 
 [Apresentação conceitual](https://docs.google.com/document/d/1YcFWUKt5CzpJgBr-Ovjdaf_afpZoh-Ol2bMEGYuE8Uc/edit)
 
