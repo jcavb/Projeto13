@@ -47,7 +47,7 @@ def signup_view(request):
         username = request.POST['username']
         email = request.POST['email']
         password = request.POST['password']
-        confirm_password = request.POST['confirm-password']
+        confirm_password = request.POST['confirm-password']  # Aqui deve ser igual ao name do campo HTML
 
         if password == confirm_password:
             if User.objects.filter(username=username).exists():
