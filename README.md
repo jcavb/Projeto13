@@ -15,7 +15,7 @@ Confira abaixo a logo oficial do Jatobá:
 ## ✨ Principais Funcionalidades
 
 ### 1. **Cuidados Diários**
-  - Acesse checklists diários de atividades essenciais para manter a saúde das plantações.
+  - Acesse checklists diários de atividades essenciais para manter o funcionamento das tarefas em dia.
   - **Objetivo**: Facilitar a organização e acompanhamento das tarefas de manejo agrícola.
 
 ### 2. **Calendário de Culturas**
