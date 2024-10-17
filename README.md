@@ -1,37 +1,93 @@
-# Jatobá 
+# Jatobá 🌱
 
-## Nosso produto:
-O Jatobá é um aliado na jornada de pequenos agricultores que desejam cultivar com responsabilidade e respeito à natureza. Com ferramentas que ajudam a organizar, educar e potencializar a produção, a nossa missão é transformar a forma como a agricultura é gerida.
+**Jatobá** é uma plataforma voltada para pequenos agricultores que desejam gerenciar suas plantações de forma eficiente, sustentável e colaborativa. Nosso objetivo é fornecer ferramentas que organizam, educam e maximizam a produção, respeitando o meio ambiente e impulsionando a agricultura responsável.
 
-## Histórias:
--**Cuidados diários;** Como membro da equipe, eu gostaria de acessar um checklist das atividades diárias de cuidado.<br>
--**Calendário de culturas;** Como membro da equipe, quero visualizar o melhor período de plantio de cada cultura ao longo do ano para planejar a produção de forma eficiente.<br>
--**Info-culturas;** Como membro da equipe, quero acessar informações detalhadas sobre cada cultura, para garantir um manejo adequado das plantações.<br>
--**Comunidade;** Como membro da equipe, quero acessar uma área de comunidade, onde posso deixar informar as atividades que realizei ou não, para que todos os membros possam colaborar de maneiras mais eficiente.<br>
--**Lembretes;** Como membro da equipe, quero receber notificações e lembretes automáticos sobre atividades essenciais.<br>
+---
 
-## Marca
-![Marca](https://github.com/user-attachments/assets/172c0959-5256-432d-9da5-8b9aacd33b3d)
+## ✨ Principais Funcionalidades
+
+### 1. **Cuidados Diários**
+  - Acesse checklists diários de atividades essenciais para manter a saúde das plantações.
+  - **Objetivo**: Facilitar a organização e acompanhamento das tarefas de manejo agrícola.
+
+### 2. **Calendário de Culturas**
+  - Visualize o melhor período de plantio para cada cultura ao longo do ano.
+  - **Objetivo**: Planejar a produção agrícola de maneira otimizada com base nas melhores práticas sazonais.
+
+### 3. **Info-Culturas**
+  - Acesse informações detalhadas sobre cada tipo de cultura.
+  - **Objetivo**: Garantir o manejo adequado de cada plantação, desde o plantio até a colheita.
+
+### 4. **Comunidade**
+  - Colabore em tempo real com outros membros da equipe, informando sobre atividades concluídas e pendentes.
+  - **Objetivo**: Criar um ambiente colaborativo para que todos os envolvidos estejam atualizados sobre o progresso e as necessidades do cultivo.
+
+### 5. **Lembretes Automáticos**
+  - Receba notificações e lembretes automáticos para garantir que atividades essenciais sejam realizadas no tempo certo.
+  - **Objetivo**: Evitar esquecimentos e garantir a saúde contínua das culturas.
+
+---
+
+## 🎯 Nossa Missão
+
+Transformar a maneira como a agricultura é gerida, oferecendo soluções que facilitam o dia a dia do agricultor, promovendo práticas agrícolas sustentáveis e gerando impacto positivo no meio ambiente.
+
+---
+
+## 💡 Links Importantes
+
+- [Jira - Gestão de Tarefas](https://cesar-grupo13.atlassian.net/jira/software/projects/KAN/boards/1)
+- [Apresentação Conceitual](https://docs.google.com/document/d/1YcFWUKt5CzpJgBr-Ovjdaf_afpZoh-Ol2bMEGYuE8Uc/edit)
+- [Protótipo de Baixa Fidelidade](https://whimsical.com/projetos-2-RQ9MwTocTEx5vwWRUrH7Qc)
+
+---
+
+## 🔄 Diagrama de Atividades do Sistema
 
 
-[[Link do Jira](https://cesar-grupo13.atlassian.net/jira/software/projects/KAN/boards/1)
 
-[Apresentação conceitual](https://docs.google.com/document/d/1YcFWUKt5CzpJgBr-Ovjdaf_afpZoh-Ol2bMEGYuE8Uc/edit)
+---
 
-[Protótipo de Baixa Fidelidade](https://whimsical.com/projetos-2-RQ9MwTocTEx5vwWRUrH7Qc)
+## 🛠 Tecnologias Utilizadas
 
-Diagrama de atividades do sistema
+- **Jira**: Para gestão de tarefas e acompanhamento do projeto.
+- **Azure**: Infraestrutura e hospedagem do sistema.
+- **Figma/Whimsical**: Para design de protótipos e fluxos.
+- **GitHub**: Versionamento de código e colaboração.
 
-Issue/bug tracker
+---
 
-![{6B8746AE-3F19-406B-9449-2D70AE2334A2}](https://github.com/user-attachments/assets/76acda77-f2c0-430a-bda8-27b856a49906)
+## 👥 Equipe de Desenvolvimento
 
+- **Maria Fernanda Oliveira** e **Sofia Gomes**
+- **Arthur Leal** e **Davi Arruda**
+- **João Vitor Moraes** e **Thiago Vinnicius**
+- **Miguel Arcanjo** e **Júlio Vilas Boas**
 
-Azure
+---
 
-## Programação em par
+## 🎨 Equipe de Design
 
-Maria Fernanda Oliveira e Sofia Gomes<br>
-Arthur Leal e Davi Arruda<br>
-João Vitor Moraes e Thiago Vinnicius<br>
-Miguel Arcanjo e Júlio Vilas Boas<br>
+- **Gabriel Correia**
+- **Marco Antônio Soares**
+- **Maria Fernanda Calazans**
+- **Yasmim Camille**
+- **Nicole Cianflone**
+
+---
+
+## 📦 Issue Tracker / Bug Report
+
+![Diagrama de Atividades](https://github.com/user-attachments/assets/76acda77-f2c0-430a-bda8-27b856a49906)
+
+---
+
+## 📄 Licença
+
+Este projeto está licenciado sob a licença **MIT** - veja o arquivo [LICENSE](LICENSE) para mais detalhes.
+
+---
+
+## 📧 Contato
+
+Se tiver dúvidas ou quiser colaborar, entre em contato com a equipe de desenvolvimento em **alp@cesar.school**.
