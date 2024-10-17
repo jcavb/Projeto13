@@ -22,6 +22,11 @@ O Jatobá é um aliado na jornada de pequenos agricultores que desejam cultivar 
 
 Diagrama de atividades do sistema
 
+Issue/bug tracker
+
+![{6B8746AE-3F19-406B-9449-2D70AE2334A2}](https://github.com/user-attachments/assets/76acda77-f2c0-430a-bda8-27b856a49906)
+
+
 Azure
 
 ## Programação em par
