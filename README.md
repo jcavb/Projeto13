@@ -81,13 +81,3 @@ Transformar a maneira como a agricultura é gerida, oferecendo soluções que fa
 ![Diagrama de Atividades](https://github.com/user-attachments/assets/76acda77-f2c0-430a-bda8-27b856a49906)
 
 ---
-
-## 📄 Licença
-
-Este projeto está licenciado sob a licença **MIT** - veja o arquivo [LICENSE](LICENSE) para mais detalhes.
-
----
-
-## 📧 Contato
-
-Se tiver dúvidas ou quiser colaborar, entre em contato com a equipe de desenvolvimento em **alp@cesar.school**.
