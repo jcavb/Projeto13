@@ -8,6 +8,8 @@ from django.contrib import messages
 from django.contrib.auth.models import User
 from .models import Cultura
 from django.utils.timezone import now 
+from django.contrib.auth.backends import ModelBackend
+from django.contrib.auth import get_user_model, login
 
 def home(request):
     return render(request, 'home.html')
@@ -46,25 +48,26 @@ def signup_view(request):
     if request.method == 'POST':
         username = request.POST.get('username')
         email = request.POST.get('email')
-        password1 = request.POST.get('password1')  # Corrigido para usar o campo 'password1'
-        password2 = request.POST.get('password2')  # Corrigido para usar o campo 'password2'
+        password1 = request.POST.get('password1')
+        password2 = request.POST.get('password2')
 
         if password1 and password2:
             if password1 != password2:
                 return render(request, 'signup.html', {'error': 'As senhas não coincidem.'})
 
-            if User.objects.filter(username=username).exists():
+            if get_user_model().objects.filter(username=username).exists():
                 return render(request, 'signup.html', {'error': 'Nome de usuário já existe.'})
 
-            if User.objects.filter(email=email).exists():
+            if get_user_model().objects.filter(email=email).exists():
                 return render(request, 'signup.html', {'error': 'Email já cadastrado.'})
 
             # Criar usuário
-            user = User.objects.create_user(username=username, email=email, password=password1)
+            user = get_user_model().objects.create_user(username=username, email=email, password=password1)
             user.save()
 
-            # Autenticar e logar o usuário
-            login(request, user)
+            # Autenticar e logar o usuário, especificando o EmailBackend
+            backend = 'jatoba.backends.EmailBackend'  # Atualize com o caminho correto do seu EmailBackend
+            login(request, user, backend=backend)
 
             return redirect('home')
         else:
