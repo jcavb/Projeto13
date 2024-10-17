@@ -32,19 +32,14 @@ jobs:
 
       - name: Cleaning testing files
         run: |
-             cd /
-             rm db.sqlite3
-             rm .env
-             cd .
+            rm db.sqlite3 || true
+            rm .env || true
         
       # Optional: Add step to run tests here (PyTest, Django test suites, etc.)
 
       - name: Zip artifact for deployment
         run: |
-          cd /
           zip release.zip ./* -r
-          cd ..
-          mv /release.zip .
 
       - name: Upload artifact for deployment jobs
         uses: actions/upload-artifact@v4
