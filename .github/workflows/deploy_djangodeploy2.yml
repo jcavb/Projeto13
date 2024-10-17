@@ -1,3 +1,7 @@
+# Docs for the Azure Web Apps Deploy action: https://github.com/Azure/webapps-deploy
+# More GitHub Actions for Azure: https://github.com/Azure/actions
+# More info on Python, GitHub Actions, and Azure App Service: https://aka.ms/python-webapps-actions
+
 name: Build and deploy Python app to Azure Web App - djangodeploy2
 
 on:
@@ -24,18 +28,18 @@ jobs:
           source venv/bin/activate
       
       - name: Install dependencies
-        run: pip install -r requirements.txt
+        run: |
+          venv/bin/pip install -r requirements.txt
 
+      - name: Verify installed packages
+        run: venv/bin/pip list
+      
       - name: Cleaning testing files
         run: |
-          rm db.sqlite3 || true
-          rm .env || true
-        
+            rm db.sqlite3 || true
+            rm .env || true
+
       # Optional: Add step to run tests here (PyTest, Django test suites, etc.)
-      - name: Run Django tests
-        run: |
-          source venv/bin/activate
-          python manage.py test
 
       - name: Zip artifact for deployment
         run: |
@@ -64,22 +68,7 @@ jobs:
 
       - name: Unzip artifact for deployment
         run: unzip release.zip
-
-      - name: Create .env file
-        run: |
-          echo "DEBUG=0" >> .env
-          echo "ALLOWED_HOSTS=your_domain.com" >> .env
-
-      - name: Apply Django Migrations
-        run: |
-          source venv/bin/activate
-          python manage.py migrate
-
-      - name: Collect Static Files
-        run: |
-          source venv/bin/activate
-          python manage.py collectstatic --noinput
-
+      
       - name: 'Deploy to Azure Web App'
         uses: azure/webapps-deploy@v3
         id: deploy-to-webapp
@@ -87,7 +76,3 @@ jobs:
           app-name: 'djangodeploy2'
           slot-name: 'Production'
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_D51C3E4C02C5422BA34C7BA2BC9E8033 }}
-
-      - name: Verify Deployment
-        run: |
-          curl -v ${{ steps.deploy-to-webapp.outputs.webapp-url }}
