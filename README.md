@@ -8,7 +8,7 @@
 
 Confira abaixo a logo oficial do Jatobá:
 
-![Logo do Jatobá]([link_para_logo_aqui]![image](https://github.com/user-attachments/assets/c488c0ef-c97b-418f-93da-bdf1b0882fcc)
+![Logo do Jatobá][image](https://github.com/user-attachments/assets/c488c0ef-c97b-418f-93da-bdf1b0882fcc)
 
 
 ---
