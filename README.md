@@ -53,7 +53,7 @@ Transformar a maneira como a agricultura é gerida, oferecendo soluções que fa
 
 - **Jira**: Para gestão de tarefas e acompanhamento do projeto.
 - **Azure**: Infraestrutura e hospedagem do sistema.
-- **Figma/Whimsical**: Para design de protótipos e fluxos.
+- **Whimsical**: Para design de protótipos e fluxos.
 - **GitHub**: Versionamento de código e colaboração.
 
 ---
