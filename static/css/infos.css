@@ -5,12 +5,12 @@ body, html {
 }
 
 .wrapper {
-  background: #F0EAD6;
+  background: #FFF7F8;
   height: 100vh;
 }
 
 header {
-  background: #83BCA9;
+  background: #06A678;
   padding: 20px;
   color: white;
 }
