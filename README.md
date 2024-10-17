@@ -8,7 +8,8 @@
 
 Confira abaixo a logo oficial do Jatobá:
 
-![Logo do Jatobá]([link_para_logo_aqui](https://github-production-user-asset-6210df.s3.amazonaws.com/124153233/377164702-172c0959-5256-432d-9da5-8b9aacd33b3d.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAVCODYLSA53PQK4ZA%2F20241017%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20241017T222504Z&X-Amz-Expires=300&X-Amz-Signature=b6b3dff443501587b4095ef60db0ef8657818663ab1f9601e9d0cca0daa3f101&X-Amz-SignedHeaders=host))
+![Logo do Jatobá]([link_para_logo_aqui]![image](https://github.com/user-attachments/assets/c488c0ef-c97b-418f-93da-bdf1b0882fcc)
+
 
 ---
 
