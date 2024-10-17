@@ -81,8 +81,6 @@ Transformar a maneira como a agricultura é gerida, oferecendo soluções que fa
 
 ## 👥 Programação em Par
 
-Aqui estão as duplas de programação em ordem alfabética:
-
 - **Arthur Leal** e **Davi Arruda**
 - **João Vitor Moraes** e **Thiago Vinnicius**
 - **Júlio Vilas Boas** e **Miguel Arcanjo**
