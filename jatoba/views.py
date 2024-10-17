@@ -73,7 +73,7 @@ def signup_view(request):
         else:
             return render(request, 'signup.html', {'error': 'Por favor, preencha todos os campos.'})
 
-    return render(request, 'protegida.html')
+    return render(request, 'signup.html')
 
 def login_view(request):
     if request.method == 'POST':
