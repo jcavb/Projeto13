@@ -69,7 +69,7 @@ def signup_view(request):
             backend = 'jatoba.backends.EmailBackend'  # Atualize com o caminho correto do seu EmailBackend
             login(request, user, backend=backend)
 
-            return redirect('home')
+            return redirect('protegida')
         else:
             return render(request, 'signup.html', {'error': 'Por favor, preencha todos os campos.'})
 
