@@ -82,8 +82,8 @@ Transformar a maneira como a agricultura é gerida, oferecendo soluções que fa
 ## 👥 Programação em Par
 
 - **Arthur Leal** e **Davi Arruda**
-- **João Vitor Moraes** e **Thiago Vinnicius**
-- **Júlio Vilas Boas** e **Miguel Arcanjo**
+- **João Vitor Moraes** e **Miguel Arcanjo**
+- **Júlio Vilas Boas** e **Thiago Vinnicius**
 - **Maria Fernanda Oliveira** e **Sofia Gomes**
 
 ---
