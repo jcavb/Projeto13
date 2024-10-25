@@ -8,6 +8,8 @@ from django.contrib import messages
 from django.contrib.auth.models import User
 from .models import Cultura
 from django.utils.timezone import now 
+from django.contrib.auth.backends import ModelBackend
+from django.contrib.auth import get_user_model, login
 
 def home(request):
     return render(request, 'home.html')
@@ -44,27 +46,33 @@ def lista_tarefas(request):
 
 def signup_view(request):
     if request.method == 'POST':
-        username = request.POST['username']
-        email = request.POST['email']
-        password = request.POST['password']
-        confirm_password = request.POST['confirm-password']
+        username = request.POST.get('username')
+        email = request.POST.get('email')
+        password1 = request.POST.get('password1')
+        password2 = request.POST.get('password2')
 
-        if password == confirm_password:
-            if User.objects.filter(username=username).exists():
-                messages.error(request, 'Nome de usuário já existe.')
-            elif User.objects.filter(email=email).exists():
-                messages.error(request, 'Email já cadastrado.')
-            else:
-                user = User.objects.create_user(username=username, email=email, password=password)
-                user.save()
+        if password1 and password2:
+            if password1 != password2:
+                return render(request, 'signup.html', {'error': 'As senhas não coincidem.'})
 
-                # Especificando o backend explicitamente ao logar o usuário
-                login(request, user, backend='jatoba.backends.EmailBackend')
+            if get_user_model().objects.filter(username=username).exists():
+                return render(request, 'signup.html', {'error': 'Nome de usuário já existe.'})
 
-                return redirect('protegida')
+            if get_user_model().objects.filter(email=email).exists():
+                return render(request, 'signup.html', {'error': 'Email já cadastrado.'})
+
+            # Criar usuário
+            user = get_user_model().objects.create_user(username=username, email=email, password=password1)
+            user.save()
+
+            # Autenticar e logar o usuário, especificando o EmailBackend
+            backend = 'jatoba.backends.EmailBackend'  # Atualize com o caminho correto do seu EmailBackend
+            login(request, user, backend=backend)
+
+            return redirect('home')
         else:
-            messages.error(request, 'As senhas não coincidem.')
-    
+            return render(request, 'signup.html', {'error': 'Por favor, preencha todos os campos.'})
+
     return render(request, 'signup.html')
 
 def login_view(request):

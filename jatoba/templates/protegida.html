@@ -3,18 +3,105 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Página Protegida</title>
+    <title>Bem-vindo!</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Arial', sans-serif;
+            background-color: #f0f0f0; /* Fundo neutro */
+        }
+
+        a {
+            text-decoration: none;
+            color: #333333; /* Cor mais escura para os links */
+        }
+
+        a:hover {
+            color: #32cd32; /* Verde claro no hover */
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            gap: 20px;
+        }
+
+        /* Cabeçalho */
+        .main-header {
+            background-color: #008000; /* Verde semelhante à página de tarefas */
+            padding: 20px;
+            display: flex;
+            justify-content: space-between; /* Espaçamento entre os elementos da navbar */
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: white;
+        }
+
+        .nav-menu ul {
+            list-style: none;
+            display: flex;
+            gap: 20px;
+            margin: 0;
+        }
+
+        .nav-menu ul li a {
+            font-weight: bold;
+            color: white; /* Branco nos links da navbar */
+            padding: 10px 15px;
+            border-radius: 5px;
+        }
+
+        .nav-menu ul li a:hover {
+            background-color: #fdd835; /* Amarelo no hover, como na página tarefas */
+            color: #333;
+        }
+
+        /* Conteúdo principal */
+        .main-content {
+            margin-top: 100px; /* Evitar sobreposição com o cabeçalho fixo */
+            padding: 20px;
+            text-align: center;
+        }
+
+        .main-content ul {
+            display: inline-block;
+            text-align: left;
+        }
+
+        .main-content ul li {
+            font-size: 18px;
+            margin-bottom: 15px;
+        }
+    </style>
 </head>
 <body>
-    <nav>
+    <!-- Cabeçalho -->
+    <header class="main-header">
+        <div class="logo">
+            Bem-vindo!
+        </div>
+        <nav class="nav-menu">
+            <ul>
+                <li><a href="/">Logout</a></li>
+                <li><a href="/tarefas/">Tarefas</a></li>
+                <li><a href="/infoculturas/">Info-Culturas</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Conteúdo principal -->
+    <div class="main-content">
+        <h1>Bem vindo!</h1>
         <ul>
-            <li><a href="/">Página Inicial</a></li>
+            <li><a href="/">Logout</a></li>
             <li><a href="/tarefas/">Tarefas</a></li>
-            <li><a href="/perfil/">Perfil</a></li>
-            <li><a href="/logout/">Logout</a></li>
             <li><a href="/infoculturas/">Info-Culturas</a></li>
         </ul>
-    </nav>
-    
+    </div>
 </body>
 </html>
