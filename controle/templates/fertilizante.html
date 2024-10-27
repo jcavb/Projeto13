@@ -1,0 +1,25 @@
+{% csrf_token %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adição de fertilizante</title>
+</head>
+<body>
+    <form action="{% url 'controle:fertilizante' %}" method="POST">
+        {% csrf_token %}
+        <div class="fertilizante">
+            <label for="nome">Nome do fertilizante:</label>
+            <input type="text" name="nome" id="nome" placeholder="Digite o nome" required>
+        </div>
+        <div class="inputdiv">
+            <label for="imagem">URL da Imagem*:</label>
+            <input type="url" name="imagem" id="imagem" placeholder="Digite a URL da imagem" required>
+        </div>
+        <div>
+            <button type="submit">ADICIONAR</button>
+        </div>
+    </form>
+</body>
+</html>
