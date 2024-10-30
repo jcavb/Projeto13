@@ -19,8 +19,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 load_dotenv(BASE_DIR / '.env')
 
-TARGET_ENV= os.getenv('TARGET_ENV')
-NOT_PROD= not TARGET_ENV.lower().startswith('prod')
+TARGET_ENV = os.getenv('TARGET_ENV', 'development')  # Default to 'development' if not set
+NOT_PROD = not TARGET_ENV.lower().startswith('prod')
 
 if NOT_PROD:
     # SECURITY WARNING: don't run with debug turned on in production!
