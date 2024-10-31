@@ -1,0 +1,127 @@
+body, html {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+}
+
+.wrapper {
+  background: #FFF7F8;
+  height: 100vh;
+}
+
+header {
+  background: #06A678;
+  padding: 20px;
+  color: white;
+}
+
+.header-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.navigation {
+  list-style: none;
+  display: flex;
+}
+
+.navigation li {
+  padding: 0 20px;
+}
+
+
+input[type="search"] {
+  width: 100%;
+  padding: 10px;
+  margin-top: 10px;
+  border: none;
+  border-radius: 4px;
+}
+
+.list {
+  padding: 20px;
+}
+
+.list-item {
+  background: #FFA500;
+  border-radius: 10px;
+  padding: 20px;
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+}
+
+.list-item span {
+  color: white;
+  font-weight: bold;
+}
+
+.more-info::before {
+  content: '';
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  background: white;
+  mask: url('arrow.svg') no-repeat center;
+  mask-size: contain;
+  margin-right: 10px;
+}
+
+.more-info {
+  background-color: #FFA500;
+  border: none;
+  color: white;
+  font-size: 1em;
+  padding: 10px 20px;
+  border-radius: 10px;
+  cursor: pointer;
+  display: inline-block;
+  font-weight: bold;
+  text-align: center;
+}
+
+.more-info:hover {
+  background-color: #FF8C00;
+  text-decoration: none;
+}
+
+.btn-tarefas {
+  background: none;
+  border: none;
+  color: white;  
+  font-size: 1em;
+  cursor: pointer;
+  padding: 0;
+  text-decoration: underline; 
+}
+
+.btn-tarefas:hover {
+  text-decoration: none;
+  color: #FFA500;  
+}
+
+/* CSS atualizado para remover o fundo laranja */
+.btn-tarefas {
+  background: none;            /* Remove o fundo laranja */
+  border: none;                /* Remove a borda */
+  color: #222222;              /* Define a cor do texto (ajuste conforme desejado) */
+  font-size: 1em;
+  padding: 10px 20px;
+  border-radius: 0;            /* Remove o arredondamento */
+  cursor: pointer;
+  text-decoration: none;
+  font-weight: bold;
+  margin: 0 10px;              /* Espaçamento entre os botões */
+}
+
+.btn-tarefas:hover {
+  color: #FF8C00;              /* Cor do texto ao passar o mouse */
+}
+
+.btn-tarefas.active {
+  color: greenyellow;          /* Cor do botão ativo */
+  font-weight: bold;
+}

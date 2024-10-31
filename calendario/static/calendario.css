@@ -1,0 +1,108 @@
+/* Estilos gerais */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f9f9f9;
+    color: #333;
+}
+
+header {
+    background-color: #4CAF50;
+    color: white;
+    padding: 20px;
+    text-align: center;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 2em;
+}
+
+header p {
+    margin: 5px 0 0;
+    font-size: 1.1em;
+}
+
+/* Estilos para a seção de filtro */
+.filtro {
+    background-color: #f0f0f0;
+    padding: 20px;
+    border-bottom: 1px solid #ddd;
+    text-align: center;
+}
+
+.filtro h2 {
+    margin-bottom: 10px;
+    font-size: 1.5em;
+}
+
+.filtro div {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+.filtro label {
+    font-size: 1em;
+    cursor: pointer;
+}
+
+.filtro input[type="checkbox"] {
+    margin-right: 5px;
+}
+
+/* Estilos para a seção do calendário */
+.calendario {
+    padding: 20px;
+}
+
+.calendario h2 {
+    text-align: center;
+    font-size: 1.8em;
+    margin-bottom: 20px;
+    color: #4CAF50;
+}
+
+/* Estilos para cada cultura */
+.cultura {
+    background-color: white;
+    margin: 10px auto;
+    padding: 15px;
+    border-radius: 5px;
+    max-width: 600px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+.cultura h3 {
+    margin: 0;
+    font-size: 1.5em;
+    color: #333;
+}
+
+.cultura p {
+    margin-top: 5px;
+    font-size: 1em;
+    color: #666;
+}
+
+/* Efeito hover para destacar cada cultura */
+.cultura:hover {
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Responsividade para dispositivos menores */
+@media (max-width: 600px) {
+    .filtro div {
+        flex-direction: column;
+    }
+
+    .filtro label {
+        font-size: 1.2em;
+    }
+
+    .cultura {
+        width: 90%;
+    }
+}

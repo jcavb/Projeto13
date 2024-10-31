@@ -1,0 +1,74 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f9f9f9;
+}
+
+.container {
+    max-width: 600px;
+    margin: 0 auto;
+    background-color: #ffffff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+}
+
+header h1 {
+    font-size: 24px;
+    color: #3c3c3c;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.info p {
+    font-size: 16px;
+    line-height: 1.5;
+    color: #666666;
+    padding: 5px 0;
+}
+
+.timeline h2 {
+    font-size: 18px;
+    color: #3c3c3c;
+    margin-bottom: 10px;
+}
+
+.timeline-bar {
+    position: relative;
+    margin: 20px 0;
+}
+
+.progress-bar {
+    position: relative;
+    height: 4px;
+    background-color: #FFD580;
+    margin: 10px 0;
+}
+
+.progress {
+    width: 100%;
+    height: 100%;
+    background-color: #FFAB40;
+}
+
+.progress-point {
+    position: absolute;
+    top: -5px;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background-color: #FFAB40;
+}
+
+.progress-point:first-child {
+    left: 0;
+}
+
+.progress-point:nth-child(2) {
+    left: 25%;
+}
+
+.progress-point:nth-child(3){
+    left:0;
+}
+

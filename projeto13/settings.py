@@ -19,15 +19,16 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 load_dotenv(BASE_DIR / '.env')
 
-TARGET_ENV= os.getenv('TARGET_ENV')
-NOT_PROD= not TARGET_ENV.lower().startswith('prod')
+# Define 'development' as the default if TARGET_ENV is not set
+TARGET_ENV = os.getenv('TARGET_ENV', 'development')
+NOT_PROD = not TARGET_ENV.lower().startswith('prod')
 
 if NOT_PROD:
     # SECURITY WARNING: don't run with debug turned on in production!
     DEBUG = True
     # SECURITY WARNING: keep the secret key used in production secret!
     SECRET_KEY = 'sua-chave-secreta'
-    ALLOWED_HOSTS = ['seu-dominio']
+    ALLOWED_HOSTS = ['127.0.0.1', 'localhost']  # Hosts permitidos em desenvolvimento
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.sqlite3',
@@ -64,8 +65,6 @@ else:
 
 # SECURITY WARNING: don't run with debug turned on in production!
 
-
-
 AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',  # Backend padrão
     'jatoba.backends.EmailBackend',  # Seu backend de email
@@ -80,6 +79,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'person_perfil',
+    'calendario',
     'jatoba',
     "whitenoise.runserver_nostatic",
 ]
@@ -118,8 +119,6 @@ WSGI_APPLICATION = 'projeto13.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
-
-
 
 
 # Password validation
@@ -173,11 +172,4 @@ LOGIN_REDIRECT_URL = '/protegida/'
 LOGIN_URL = '/login/'
 LOGOUT_REDIRECT_URL = '/'
 
-
 STATIC_URL = '/static/'
-
-
-
-
-
-
