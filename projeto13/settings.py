@@ -19,15 +19,16 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 load_dotenv(BASE_DIR / '.env')
 
-TARGET_ENV= os.getenv('TARGET_ENV')
-NOT_PROD= not TARGET_ENV.lower().startswith('prod')
+TARGET_ENV = os.getenv('TARGET_ENV', 'development')
+NOT_PROD = not TARGET_ENV.lower().startswith('prod')
 
 if NOT_PROD:
     # SECURITY WARNING: don't run with debug turned on in production!
     DEBUG = True
     # SECURITY WARNING: keep the secret key used in production secret!
     SECRET_KEY = 'sua-chave-secreta'
-    ALLOWED_HOSTS = ['seu-dominio']
+    ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
+
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.sqlite3',
