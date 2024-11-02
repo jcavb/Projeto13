@@ -115,6 +115,19 @@
                 <input type="checkbox" id="Tomate_adubar" value="Tomate">
                 <label for="Tomate_adubar">Tomate</label><br>
             </div>
+            {% if user.is_authenticated %}
+            <div class="coluna" style="margin-top: 20px;">
+                <a href="{% url 'gerar_relatorio_pdf' %}" 
+                class="btn-tarefas" 
+                target="_blank" 
+                style="display: inline-block; padding: 10px 20px; background-color: #4CAF50; color: white; font-weight: bold; font-size: 16px; text-align: center; border-radius: 8px; text-decoration: none; transition: background-color 0.3s;">
+                Baixar Relatório em PDF
+                </a>
+            </div>
+        {% else %}
+            <p>Faça login para baixar o relatório de atividades.</p>
+        {% endif %}
+    </section>
         </section>
     </main>
     

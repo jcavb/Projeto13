@@ -114,4 +114,7 @@ h3{
     color: greenyellow;          
     font-weight: bold;
   }
+  .btn-tarefas:hover {
+    background-color: #45a049; /* Cor um pouco mais escura para o efeito hover */
+}
     

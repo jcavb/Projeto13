@@ -10,6 +10,43 @@ from .models import Cultura
 from django.utils.timezone import now 
 from django.contrib.auth.backends import ModelBackend
 from django.contrib.auth import get_user_model, login
+from django.http import HttpResponse
+from reportlab.pdfgen import canvas
+from .models import Atividade 
+
+@login_required
+def gerar_relatorio_pdf(request):
+    # Criação do response para PDF
+    response = HttpResponse(content_type='application/pdf')
+    response['Content-Disposition'] = 'attachment; filename="relatorio_atividades.pdf"'
+
+    # Criação do PDF
+    p = canvas.Canvas(response)
+    p.setTitle("Relatório de Atividades CAIS")
+
+    # Título do documento
+    p.drawString(100, 800, "Relatório de Atividades Realizadas no CAIS")
+
+    # Buscando atividades realizadas no banco de dados
+    atividades = Atividade.objects.filter(realizada=True)  # Filtre conforme sua lógica de negócio
+    
+    # Listando as atividades no PDF
+    y = 750
+    for atividade in atividades:
+        p.drawString(100, y, f"Atividade: {atividade.tipo} - Descrição: {atividade.descricao} - Data: {atividade.data_realizacao}")
+        y -= 20
+        if y < 100:
+            p.showPage()
+            y = 750
+
+    # Finalizando o PDF
+    p.showPage()
+    p.save()
+    return response
+
+
+
+
 
 def home(request):
     return render(request, 'home.html')
