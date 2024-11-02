@@ -26,8 +26,8 @@ if NOT_PROD:
     # SECURITY WARNING: don't run with debug turned on in production!
     DEBUG = True
     # SECURITY WARNING: keep the secret key used in production secret!
-    SECRET_KEY = 'sua-chave-secreta'
-    ALLOWED_HOSTS = ['seu-dominio']
+    SECRET_KEY = 'django-insecure-ol3vf(g5f9nokwlz^cdi^=2+#3_b5_3on(%kj(h(4d3*5d)23g'
+    ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.sqlite3',
@@ -36,7 +36,7 @@ if NOT_PROD:
     }
 else:
     # Configurações para produção
-    SECRET_KEY = os.getenv('SECRET_KEY')
+    SECRET_KEY = os.getenv('django-insecure-ol3vf(g5f9nokwlz^cdi^=2+#3_b5_3on(%kj(h(4d3*5d)23g')
     DEBUG = os.getenv('DEBUG', '0').lower() in ['true', 't', '1']
     ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS').split(' ')
     CSRF_TRUSTED_ORIGINS = os.getenv('CSRF_TRUSTED_ORIGINS').split(' ')
