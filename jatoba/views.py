@@ -124,3 +124,5 @@ def rucula_infos(request):
 def tomate_infos(request):
     return render(request, 'culturas/tomate.html')
 
+def notificacoes(request):
+    return render(request, 'notificacoes.html')

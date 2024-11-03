@@ -1,0 +1,35 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notificações</title>
+</head>
+<body>
+    <header>
+        <section id="cabeca">
+            <h3>Notificações</h3>
+            <div class="direita">
+                <button class="btn-tarefas" onclick="window.location.href='{% url 'tarefas' %}'">Cuidados Diários</button>
+                <button class="btn-tarefas">Calendário</button>
+                <a href="{% url 'infoculturas' %}" class="btn-tarefas">Info Culturas</a>
+            </div>
+        </section>
+    </header>
+    
+    <main>
+        <h2>Suas Notificações</h2>
+        <ul>
+            <li>Notificação 1</li>
+            <li>Notificação 2</li>
+            <li>Notificação 3</li>
+            <!-- Adicione mais notificações conforme necessário -->
+        </ul>
+    </main>
+
+    <footer>
+        <h3>Precisa de ajuda. Entre em contato : (12) 3456-7890</h3>
+    </footer>
+</body>
+</html>

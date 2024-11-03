@@ -40,5 +40,7 @@ urlpatterns = [
     path('rucula/', views.rucula_infos, name='rucula_infos'),    
     
     path('tomate/', views.tomate_infos, name='tomate_infos'),
+
+    path('notificacoes/', views.notificacoes, name='notificacoes'),
 ]
 
