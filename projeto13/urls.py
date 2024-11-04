@@ -42,5 +42,9 @@ urlpatterns = [
     path('tomate/', views.tomate_infos, name='tomate_infos'),
 
     path('relatorio/pdf/', views.gerar_relatorio_pdf, name='gerar_relatorio_pdf'),
+
+    path('caracteristicas-cidade/', views.city_characteristics, name='city_characteristics'),
+
+    path('caracteristicas-cidade/', views.city_characteristics, name='city_characteristics'),
 ]
 

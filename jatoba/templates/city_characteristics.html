@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página Protegida</title>
+    <style>
+        /* CSS Reset Básico */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+        }
+
+        header {
+            background-color: #4CAF50;
+            color: white;
+            padding: 20px;
+            width: 100%;
+            text-align: center;
+        }
+
+        main {
+            width: 90%;
+            max-width: 600px;
+            margin-top: 20px;
+            background-color: #ffffff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            padding: 20px;
+            text-align: center;
+        }
+
+        h1 {
+            color: #4CAF50;
+            margin-bottom: 20px;
+        }
+
+        p {
+            font-size: 1.1em;
+            margin-bottom: 30px;
+        }
+
+        .back-button {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .back-button a {
+            text-decoration: none;
+            color: #4CAF50;
+            font-weight: bold;
+            border: 1px solid #4CAF50;
+            padding: 10px 20px;
+            border-radius: 4px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .back-button a:hover {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        footer {
+            margin-top: 20px;
+            padding: 10px;
+            width: 100%;
+            text-align: center;
+            background-color: #4CAF50;
+            color: white;
+            font-size: 0.9em;
+            border-top: 2px solid #3e8e41;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Bem-vindo à Página Protegida</h1>
+    </header>
+    
+    <main>
+        <p>Esta é uma página exclusiva para usuários autenticados. Aqui você tem acesso a informações reservadas e recursos adicionais.</p>
+        
+        <div class="back-button">
+            <a href="{% url 'home' %}">Voltar para a Página Inicial</a>
+        </div>
+    </main>
+
+    <footer>
+        <p>CAIS - Centro de Apoio à Inclusão Social</p>
+    </footer>
+</body>
+</html>

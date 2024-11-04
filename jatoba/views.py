@@ -13,6 +13,10 @@ from django.contrib.auth import get_user_model, login
 from django.http import HttpResponse
 from reportlab.pdfgen import canvas
 from .models import Atividade 
+from django.conf import settings
+import requests
+import datetime
+
 
 @login_required
 def gerar_relatorio_pdf(request):
@@ -44,6 +48,44 @@ def gerar_relatorio_pdf(request):
     p.save()
     return response
 
+
+
+@login_required
+def city_characteristics(request):
+    api_key = settings.OPENWEATHERMAP_API_KEY
+    city = 'Carpina'
+    
+    # Recebe a data selecionada pelo usuário, ou usa a data atual se não houver seleção
+    selected_date = request.GET.get('date', datetime.date.today().isoformat())
+
+    # Realiza a chamada para a API do OpenWeatherMap
+    url = f'http://api.openweathermap.org/data/2.5/forecast?q={city}&appid={api_key}&units=metric'
+    response = requests.get(url)
+    data = response.json()
+
+    # Inicializa a lista para armazenar os dados de previsão do dia selecionado
+    weather_data = []
+    if response.status_code == 200:
+        for forecast in data['list']:
+            forecast_date = datetime.datetime.fromtimestamp(forecast['dt']).strftime('%Y-%m-%d')
+            
+            # Verifica se a data da previsão corresponde à data selecionada
+            if forecast_date == selected_date:
+                weather_data.append({
+                    'date': forecast_date,
+                    'temperature': forecast['main']['temp'],
+                    'humidity': forecast['main']['humidity'],
+                    'description': forecast['weather'][0]['description'],
+                })
+        
+        if not weather_data:
+            error_message = f'Não há dados de previsão para a data selecionada: {selected_date}.'
+            weather_data = [{'date': 'Erro', 'description': error_message}]
+    else:
+        error_message = data.get('message', 'Erro ao obter dados de previsão.')
+        weather_data = [{'date': 'Erro', 'description': error_message}]
+
+    return render(request, 'city_characteristics.html', {'weather_data': weather_data, 'city': city, 'selected_date': selected_date})
 
 
 
