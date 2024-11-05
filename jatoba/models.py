@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.hashers import make_password
+from django.utils import timezone
 
 class Usuario(models.Model):
     id_usuario = models.AutoField(primary_key=True)
@@ -19,8 +20,9 @@ class Tarefa(models.Model):
 
     nome = models.CharField(max_length=100)
     categoria = models.CharField(max_length=10, choices=CATEGORIA_CHOICES)
-    data_ultima_acao = models.DateField()
+    data_ultima_acao = models.DateTimeField(default=timezone.now)  # Define a data atual como padrão
     concluida = models.BooleanField(default=False)
+    frequencia_rega = models.IntegerField(default=1)
 
     def __str__(self):
         return self.nome

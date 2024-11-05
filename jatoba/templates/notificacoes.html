@@ -21,10 +21,13 @@
     <main>
         <h2>Suas Notificações</h2>
         <ul>
-            <li>Notificação 1</li>
-            <li>Notificação 2</li>
-            <li>Notificação 3</li>
-            <!-- Adicione mais notificações conforme necessário -->
+            {% if notificacoes %}
+                {% for notificacao in notificacoes %}
+                    <li>{{ notificacao }}</li>
+                {% endfor %}
+            {% else %}
+                <li>Não há notificações no momento.</li>
+            {% endif %}
         </ul>
     </main>
 

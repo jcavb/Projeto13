@@ -8,8 +8,10 @@ from django.contrib import messages
 from django.contrib.auth.models import User
 from .models import Cultura
 from django.utils.timezone import now 
-from django.contrib.auth.backends import ModelBackend
+#from django.contrib.auth.backends import ModelBackend
 from django.contrib.auth import get_user_model, login
+from django.utils import timezone
+from datetime import timedelta
 
 def home(request):
     return render(request, 'home.html')
@@ -125,4 +127,28 @@ def tomate_infos(request):
     return render(request, 'culturas/tomate.html')
 
 def notificacoes(request):
-    return render(request, 'notificacoes.html')
+    # Obtenha as tarefas que precisam ser feitas
+    tarefas_a_fazer = Tarefa.objects.filter(concluida=False)
+    notificacoes = []
+
+    today = timezone.now().date()
+
+    for tarefa in tarefas_a_fazer:
+        # Calcule a data da próxima rega
+        proxima_rega = tarefa.data_ultima_acao + timedelta(days=tarefa.frequencia_rega)
+
+        if tarefa.categoria == 'REGA' and today >= proxima_rega:
+            notificacoes.append(f"É dia de regar: {tarefa.nome}")
+
+        elif tarefa.categoria == 'COLHEITA':
+            # Adicione a lógica para colheita, se necessário
+            pass
+
+        elif tarefa.categoria == 'ADUBAR':
+            # Adicione a lógica para adubar, se necessário
+            pass
+
+    return render(request, 'notificacoes.html', {'notificacoes': notificacoes})
+
+def dashboard(request):
+    return render(request, 'dashboard.html')
