@@ -150,5 +150,20 @@ def notificacoes(request):
 
     return render(request, 'notificacoes.html', {'notificacoes': notificacoes})
 
+@login_required
 def dashboard(request):
-    return render(request, 'dashboard.html')
+    # Obtenha as tarefas
+    tarefas = Tarefa.objects.all()
+    
+    # Contagem de tarefas por categoria
+    total_regadas = tarefas.filter(categoria='REGA', concluida=True).count()
+    total_colhidas = tarefas.filter(categoria='COLHEITA', concluida=True).count()
+    total_adubadas = tarefas.filter(categoria='ADUBAR', concluida=True).count()
+
+    # Passando dados para o template
+    context = {
+        'total_regadas': total_regadas,
+        'total_colhidas': total_colhidas,
+        'total_adubadas': total_adubadas,
+    }
+    return render(request, 'dashboard.html', context)
