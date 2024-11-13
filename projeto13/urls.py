@@ -41,8 +41,5 @@ urlpatterns = [
     
     path('tomate/', views.tomate_infos, name='tomate_infos'),
 
-    path('notificacoes/', views.notificacoes, name='notificacoes'),
-
-    path('dashboard/', views.dashboard, name='dashboard'),
 ]
 
