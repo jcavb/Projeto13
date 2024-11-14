@@ -126,27 +126,5 @@ def rucula_infos(request):
 def tomate_infos(request):
     return render(request, 'culturas/tomate.html')
 
-def notificacoes(request):
-    # Obtenha as tarefas que precisam ser feitas
-    tarefas_a_fazer = Tarefa.objects.filter(concluida=False)
-    notificacoes = []
-
-    today = timezone.now().date()
-
-    for tarefa in tarefas_a_fazer:
-        # Calcule a data da próxima rega
-        proxima_rega = tarefa.data_ultima_acao + timedelta(days=tarefa.frequencia_rega)
-
-        if tarefa.categoria == 'REGA' and today >= proxima_rega:
-            notificacoes.append(f"É dia de regar: {tarefa.nome}")
-
-        elif tarefa.categoria == 'COLHEITA':
-            # Adicione a lógica para colheita, se necessário
-            pass
-
-        elif tarefa.categoria == 'ADUBAR':
-            # Adicione a lógica para adubar, se necessário
-            pass
-
-    return render(request, 'notificacoes.html', {'notificacoes': notificacoes})
-
+def lembretes_view(request):
+    return render(request, 'lembretes.html')

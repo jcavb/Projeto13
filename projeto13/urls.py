@@ -41,5 +41,7 @@ urlpatterns = [
     
     path('tomate/', views.tomate_infos, name='tomate_infos'),
 
+    path('lembretes/', views.lembretes_view, name='lembretes'),
+
 ]
 
