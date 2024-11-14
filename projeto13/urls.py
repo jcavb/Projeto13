@@ -43,5 +43,8 @@ urlpatterns = [
 
     path('lembretes/', views.lembretes_view, name='lembretes'),
 
+    path('remover_lembrete/<int:lembrete_id>/', views.remover_lembrete, name='remover_lembrete'),
+
+
 ]
 

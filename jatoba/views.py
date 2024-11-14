@@ -7,9 +7,11 @@ from django.http import JsonResponse
 from django.contrib import messages
 from django.contrib.auth.models import User
 from .models import Cultura
+from django.shortcuts import redirect, get_object_or_404
 from django.utils.timezone import now 
 #from django.contrib.auth.backends import ModelBackend
 from django.contrib.auth import get_user_model, login
+from .models import Lembrete
 from django.utils import timezone
 from datetime import timedelta
 
@@ -126,5 +128,30 @@ def rucula_infos(request):
 def tomate_infos(request):
     return render(request, 'culturas/tomate.html')
 
+
+@login_required
 def lembretes_view(request):
-    return render(request, 'lembretes.html')
+    if request.method == 'POST':
+        atividade = request.POST.get('atividade')
+        dias = int(request.POST.get('dias'))
+
+        # Calcula a data de quando o lembrete deve aparecer
+        data_lembrete = timezone.now().date() + timedelta(days=dias)
+
+        # Salva o lembrete
+        Lembrete.objects.create(
+            usuario=request.user,
+            atividade=atividade,
+            data_lembrete=data_lembrete
+        )
+        return redirect('lembretes')
+
+    lembretes = Lembrete.objects.filter(usuario=request.user).order_by('-criado_em')
+    return render(request, 'lembretes.html', {'lembretes': lembretes})
+
+
+def remover_lembrete(request, lembrete_id):
+    if request.method == 'POST':
+        lembrete = get_object_or_404(Lembrete, id=lembrete_id)
+        lembrete.delete()
+        return redirect('lembretes')

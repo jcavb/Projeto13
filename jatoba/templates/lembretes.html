@@ -7,6 +7,61 @@
     <title>Lembretes</title>
 </head>
 <body>
-    <h1>teste</h1>
+    <header>
+        <section id="cabeca">
+            <div id="perfil">
+                <img src="{% static 'images/perfil.avif' %}" alt="Perfil" width="75" height="75">
+            </div>
+            <h3>Nome</h3>
+            <div class="direita">
+                <button class="btn-tarefas active" onclick="window.location.href='{% url 'tarefas' %}'">Cuidados Diários</button>
+                <button class="btn-tarefas">Calendário</button>
+                <a href="{% url 'infoculturas' %}" class="btn-tarefas">Info Culturas</a>
+                <a href="{% url 'lembretes' %}" class="btn-tarefas">Lembretes</a>
+            </div>
+        </section>
+    </header>
+
+    <h1>Lembretes</h1>
+    <form method="post" id="formLembrete">
+        {% csrf_token %}
+        <label for="atividade">Insira uma atividade que deseja ser lembrado mais tarde:</label><br>
+        <input type="text" id="atividade" name="atividade" required><br><br>
+        
+        <label for="dias">Daqui a quantos dias quer ser lembrado?</label><br>
+        <input type="number" id="dias" name="dias" min="1" required><br><br>
+
+        <button type="submit">Salvar Lembrete</button>
+    </form>
+
+    <h2>Atividades Salvas:</h2>
+    <ul>
+        {% for lembrete in lembretes %}
+            <li>
+                {{ lembrete.atividade }} - Lembrar em: {{ lembrete.data_lembrete }}
+                <form method="post" action="{% url 'remover_lembrete' lembrete.id %}" style="display:inline;">
+                    {% csrf_token %}
+                    <button type="submit">Limpar Lembrete</button>
+                </form>
+            </li>
+        {% empty %}
+            <p>Você ainda não tem lembretes salvos.</p>
+        {% endfor %}
+    </ul>
+
+    <script>
+        if (Notification.permission !== "granted") {
+            Notification.requestPermission();
+        }
+
+        document.getElementById('formLembrete').onsubmit = function() {
+            if (Notification.permission === "granted") {
+                new Notification("Lembrete salvo com sucesso!", {
+                    body: "A atividade será lembrada na data escolhida.",
+                    icon: "{% static 'images/lembrete_icon.png' %}" // opcional
+                });
+            }
+        };
+    </script>
 </body>
 </html>
