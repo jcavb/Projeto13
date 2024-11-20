@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Fertilizantes</title>
+</head>
+<body>
+    <h1>Fertilizantes</h1>
+    <a href="{% url 'controle:fertilizante' %}">Adicionar Novo Fertilizante</a>
+    <ul>
+        {% for ferti in fertilizantes %}
+            <li>
+                <strong>{{ ferti.fertilizante }}</strong>
+                <img src="{{ ferti.imagem }}" alt="Imagem de {{ ferti.fertilizante }}" style="width:100px;">
+                <form action="{% url 'controle:delete_fert' ferti.id %}" method="POST" style="display:inline;">
+                    {% csrf_token %}
+                    <button type="submit">Excluir</button>
+                </form>
+            </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
+

@@ -5,7 +5,10 @@ app_name = 'controle'
 
 urlpatterns = [
     path('', views.Home.as_view(), name='home'),
-    path('semente/', views.AddSemente.as_view(), name='semente'),
     path('fertilizante/', views.AddFertilizante.as_view(), name='fertilizante'),
-    path('sucesso/', views.Sucesso.as_view(), name='sucesso'),
+    path('fertilizantes/', views.VerFertilizante.as_view(), name='visualizar_fert'),
+    path('fertilizante/<int:id>/delete/', views.delete_fertilizante_view, name='delete_fert'),
+    path('semente/', views.AddSemente.as_view(), name='semente'),
+    path('visualizarSemente/', views.VerSemente.as_view(), name='vizualisar_sem'),
+    path('semente/delete/<int:id>/', views.delete_semente_view, name='delete_sem'),
 ]

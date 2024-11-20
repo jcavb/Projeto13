@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Sementes</title>
+</head>
+<body>
+    <h1>Sementes</h1>
+    <a href="{% url 'controle:semente' %}">Adicionar Novo Fertilizante</a>
+    <ul>
+        {% for seme in nome %}
+            <li>
+                {{ seme.semente }}  {{ seme.imagem }}
+                <a href="{% url 'controle:delete_sem' ferti.id %}">Excluir</a>
+            </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

@@ -1,4 +1,3 @@
-{% csrf_token %}
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -14,12 +13,13 @@
             <input type="text" name="nome" id="nome" placeholder="Digite o nome" required>
         </div>
         <div class="inputdiv">
-            <label for="imagem">URL da Imagem*:</label>
+            <label for="imagem">Imagem:</label>
             <input type="url" name="imagem" id="imagem" placeholder="Digite a URL da imagem" required>
         </div>
         <div>
             <button type="submit">ADICIONAR</button>
         </div>
+        <a href="{% url 'controle:visualisar_fert' %}">Voltar</a>
     </form>
 </body>
 </html>
