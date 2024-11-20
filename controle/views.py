@@ -36,7 +36,7 @@ def delete_fertilizante_view(request, id):
         messages.success(request, 'Fetilizante excluído com sucesso!')
         return redirect('controle:visualizar_fert')  
 
-    return render(request, 'confirmar_exclusao.html', {'fertilizante': ferti})
+    return render(request, 'delete_fertilizante.html', {'fertilizante': ferti})
     
 class AddSemente(View):
     def get (self, request):
@@ -68,4 +68,4 @@ def delete_semente_view(request, id):
         messages.success(request, 'Sentente excluída com sucesso!')
         return redirect('controle:semente')  
 
-    return render(request, 'confirmar_exclusao.html', {'semente': sement})
+    return render(request, 'delete_semente.html', {'semente': sement})
