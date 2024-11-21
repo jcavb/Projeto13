@@ -1,17 +1,34 @@
 <!DOCTYPE html>
-<html>
+<html lang="pt-br">
 <head>
-    <title>Sementes</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Semente</title>
 </head>
 <body>
-    <h1>Sementes</h1>
-    <a href="{% url 'controle:semente' %}">Adicionar Novo Fertilizante</a>
+    {% if messages %}
+        <ul>
+            {% for message in messages %}
+                <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+    <h1>Lista de Sementes</h1>
+    <a href="{% url 'controle:semente' %}">Adicionar Nova Semente</a>
     <ul>
-        {% for seme in nome %}
+        {% for seme in sementes %}
             <li>
-                {{ seme.semente }}  {{ seme.imagem }}
-                <a href="{% url 'controle:delete_sem' ferti.id %}">Excluir</a>
+                <strong>{{ seme.sementes }}</strong>
+                <div>
+                    <img src="{{ seme.imagem }}" alt="Imagem de {{ seme.semente }}" style="width:100px; height:auto;">
+                </div>
+                <form action="{% url 'controle:delete_sem' seme.id %}" method="POST" style="display:inline;">
+                    {% csrf_token %}
+                    <button type="submit">Excluir</button>
+                </form>
             </li>
+        {% empty %}
+            <li>Nenhuma semente cadastrada.</li>
         {% endfor %}
     </ul>
 </body>

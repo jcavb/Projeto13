@@ -1,23 +1,35 @@
 <!DOCTYPE html>
-<html>
+<html lang="pt-br">
 <head>
-    <title>Fertilizantes</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Fertilizantes</title>
 </head>
 <body>
-    <h1>Fertilizantes</h1>
+    {% if messages %}
+        <ul>
+            {% for message in messages %}
+                <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+    <h1>Lista de Fertilizantes</h1>
     <a href="{% url 'controle:fertilizante' %}">Adicionar Novo Fertilizante</a>
     <ul>
         {% for ferti in fertilizantes %}
             <li>
                 <strong>{{ ferti.fertilizante }}</strong>
-                <img src="{{ ferti.imagem }}" alt="Imagem de {{ ferti.fertilizante }}" style="width:100px;">
+                <div>
+                    <img src="{{ ferti.imagem }}" alt="Imagem de {{ ferti.fertilizante }}" style="width:100px; height:auto;">
+                </div>
                 <form action="{% url 'controle:delete_fert' ferti.id %}" method="POST" style="display:inline;">
                     {% csrf_token %}
                     <button type="submit">Excluir</button>
                 </form>
             </li>
+        {% empty %}
+            <li>Nenhum fertilizante cadastrado.</li>
         {% endfor %}
     </ul>
 </body>
 </html>
-

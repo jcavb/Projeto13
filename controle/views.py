@@ -26,7 +26,7 @@ class AddFertilizante(View):
 class VerFertilizante(View):
     def get (self, request):
         fertilizantes = Fertilizante.objects.all()
-        return render(request, 'visualizar_fert.html', {'fertilizante': fertilizantes})
+        return render(request, 'visualizar_fert.html', {'fertilizantes': fertilizantes})
 
 def delete_fertilizante_view(request, id):
     ferti = get_object_or_404(Fertilizante, id=id)
@@ -43,29 +43,27 @@ class AddSemente(View):
         return render(request, 'semente.html')
     
     def post(self, request):
-        sementes = request.POST.get("sementes")
+        nome_sementes = request.POST.get("nome")
         urlImagem = request.POST.get("imagem")
 
-        controle = Semente(
-            semente = sementes,
+        Semente.objects.create(
+            semente = nome_sementes,
             imagem = urlImagem
         )
 
-        controle.save()
-
-        return redirect('controle:vizualisar_sem')
+        return redirect('controle:visualizar_sem')
 
 class VerSemente(View):
     def get (self, request):
-        nome = Semente.objects.all()
-        return render(request, 'visualizar_sem.html', {'semente': nome})
+        sementes = Semente.objects.all()
+        return render(request, 'visualizar_sem.html', {'sementes': sementes})
 
 def delete_semente_view(request, id):
-    sement = get_object_or_404(Semente, id=id)
+    seme = get_object_or_404(Semente, id=id)
 
     if request.method == 'POST':
-        sement.delete()  
-        messages.success(request, 'Sentente excluída com sucesso!')
-        return redirect('controle:semente')  
+        seme.delete()  
+        messages.success(request, 'Semente excluída com sucesso!')
+        return redirect('controle:visualizar_sem')  
 
-    return render(request, 'delete_semente.html', {'semente': sement})
+    return render(request, 'delete_semente.html', {'semente': seme})

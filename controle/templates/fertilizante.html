@@ -3,23 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Adição de fertilizante</title>
+    <title>Adição de Fertilizante</title>
 </head>
 <body>
+    <h1>Adicionar Novo Fertilizante</h1>
     <form action="{% url 'controle:fertilizante' %}" method="POST">
         {% csrf_token %}
-        <div class="fertilizante">
-            <label for="nome">Nome do fertilizante:</label>
+        <div>
+            <label for="nome">Nome do Fertilizante:</label>
             <input type="text" name="nome" id="nome" placeholder="Digite o nome" required>
         </div>
-        <div class="inputdiv">
-            <label for="imagem">Imagem:</label>
+        <div>
+            <label for="imagem">URL da Imagem:</label>
             <input type="url" name="imagem" id="imagem" placeholder="Digite a URL da imagem" required>
         </div>
-        <div>
-            <button type="submit">ADICIONAR</button>
-        </div>
-        <a href="{% url 'controle:visualizar_fert' %}">Voltar</a>
+        <button type="submit">Adicionar</button>
     </form>
+    <a href="{% url 'controle:visualizar_fert' %}">Voltar</a>
 </body>
 </html>
