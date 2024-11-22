@@ -57,8 +57,7 @@
         document.getElementById('formLembrete').onsubmit = function() {
             if (Notification.permission === "granted") {
                 new Notification("Lembrete salvo com sucesso!", {
-                    body: "A atividade será lembrada na data escolhida.",
-                    icon: "{% static 'images/lembrete_icon.png' %}" // opcional
+                    body: "A atividade será lembrada na data escolhida."
                 });
             }
         };
