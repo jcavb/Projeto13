@@ -1,3 +1,5 @@
 from django.contrib import admin
+from .models import Culturas, Rotacoes
 
-# Register your models here.
+admin.site.register(Culturas)
+admin.site.register(Rotacoes)

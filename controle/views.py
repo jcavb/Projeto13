@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.shortcuts import get_object_or_404
 from django.contrib import messages
 from django.views import View
-from .models import Fertilizante, Semente
+from .models import Fertilizante, Semente, Rotacoes, Culturas
 
 class Home(View):
     def get(self, request):
@@ -67,3 +67,31 @@ def delete_semente_view(request, id):
         return redirect('controle:visualizar_sem')  
 
     return render(request, 'delete_semente.html', {'semente': seme})
+
+class Rotacao(View):
+    def get(self, request):
+        cultura_rotacoes = Culturas.objects.all()
+
+        # Converte o ID da cultura selecionada para inteiro, caso exista
+        rotacao_cultura_id = request.GET.get('cultura')
+        rotacao_cultura_id = int(rotacao_cultura_id) if rotacao_cultura_id else None
+
+        rotacao = None
+        if rotacao_cultura_id:
+            rotacao = Rotacoes.objects.filter(cultura_id=rotacao_cultura_id)
+
+        context = {
+            'cultura_rotacoes': cultura_rotacoes,
+            'rotacao': rotacao,
+            'rotacao_cultura_id': rotacao_cultura_id,
+        }
+
+        return render(request, 'rotacao.html', context)
+
+
+    def post(self, request):
+        rotacao_cultura_id = request.POST.get('cultura')
+        rotacao_id = request.POST.get('rotacao')
+
+        # Redireciona para outra página ou implementa lógica adicional
+        return redirect('controle:home')
