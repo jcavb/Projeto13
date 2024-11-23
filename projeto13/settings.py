@@ -14,7 +14,7 @@ from pathlib import Path
 from dotenv import load_dotenv
 import os
 
-OPENWEATHERMAP_API_KEY = os.getenv('OPENWEATHERMAP_API_KEY', 'ead489a8dad848f982e110501240411')
+OPENWEATHERMAP_API_KEY = os.getenv('OPENWEATHERMAP_API_KEY', '914d64b83a40e29250139720a0674cf5')
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
