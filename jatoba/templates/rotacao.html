@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Rotação de Culturas</title>
+    {% load static %}
+</head>
+
+<body>
+    <div>
+        <div>
+            <div>
+                <h1>Rotação de Culturas</h1>
+            </div>
+            <div>
+                <form method="GET">
+                    <label for="cultura-select">Escolha um cultura:</label>
+                    <select name="cultura" id="cultura-select">
+                        <option value="">Selecione uma cultura</option>
+                        {% for cultura in cultura_rotacoes %}
+                            <option value="{{ cultura.id }}" {% if cultura.id == rotacao_cultura_id %}selected{% endif %}>
+                                {{ cultura.nome }}
+                            </option>
+                        {% endfor %}
+                    </select>
+                
+                    <div>
+                        <button type="submit">
+                            Rotações da cultura
+                        </button>
+                    </div>
+                </form>                           
+
+                <div id="informacoes">
+                    {% if rotacao %}
+                    <h2>Culturas para rotação</h2>
+                    {% for rotacoes in rotacao %}
+                        <div>
+                            <h3>{{ rotacoes.nome }}</h3>
+                        </div>
+                    {% endfor %}
+                    {% else %}
+                    <p>Nenhuma cultura encontrada</p>
+                    {% endif %}
+                </div>
+            </div>
+            <a href="{% url 'protegida' %}">Voltar</a>
+        </div>
+    </div>
+</body>
+</html>
