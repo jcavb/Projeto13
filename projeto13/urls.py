@@ -1,8 +1,8 @@
 from django.contrib import admin
-from django.urls import path
+from django.urls import path # type: ignore
 from django.contrib.auth import views as auth_views
 from . import views
-from django.urls import path
+from django.urls import path # type: ignore
 from jatoba import views
 
 

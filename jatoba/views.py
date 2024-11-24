@@ -2,12 +2,12 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login, authenticate
 from django.shortcuts import render, redirect
 from .models import Tarefa
-from django.core.exceptions import ObjectDoesNotExist
-from django.http import JsonResponse
+from django.core.exceptions import ObjectDoesNotExist # type: ignore
+from django.http import JsonResponse # type: ignore
 from django.contrib import messages
 from django.contrib.auth.models import User
 from .models import Cultura
-from django.utils.timezone import now 
+from django.utils.timezone import now # type: ignore
 from django.contrib.auth.backends import ModelBackend
 from django.contrib.auth import get_user_model, login
 

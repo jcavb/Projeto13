@@ -1,4 +1,4 @@
-from django.db import models
+from django.db import models # type: ignore
 from django.contrib.auth.hashers import make_password
 
 class Usuario(models.Model):
