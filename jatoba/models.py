@@ -48,7 +48,7 @@ class ChecklistItem(models.Model):
 class Lembrete(models.Model):
     usuario = models.ForeignKey(User, on_delete=models.CASCADE)
     atividade = models.CharField(max_length=255)
-    data_lembrete = models.DateField()
+    data_lembrete = models.DateTimeField()  # Alterado para DateTimeField
     criado_em = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):

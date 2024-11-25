@@ -8,11 +8,12 @@ from django.contrib import messages
 from django.contrib.auth.models import User
 from .models import Cultura
 from django.shortcuts import redirect, get_object_or_404
-from django.utils.timezone import now 
+from django.utils.timezone import now
 #from django.contrib.auth.backends import ModelBackend
 from django.contrib.auth import get_user_model, login
 from .models import Lembrete
 from django.utils import timezone
+from datetime import datetime
 from datetime import timedelta
 
 def home(request):
@@ -133,16 +134,17 @@ def tomate_infos(request):
 def lembretes_view(request):
     if request.method == 'POST':
         atividade = request.POST.get('atividade')
-        dias = int(request.POST.get('dias'))
+        data_lembrete = request.POST.get('data_lembrete')
+        hora_lembrete = request.POST.get('hora_lembrete')
 
-        # Calcula a data de quando o lembrete deve aparecer
-        data_lembrete = timezone.now().date() + timedelta(days=dias)
-
+        # Combina a data e a hora em um objeto datetime
+        data_hora_lembrete = datetime.strptime(f"{data_lembrete} {hora_lembrete}", "%Y-%m-%d %H:%M")
+        
         # Salva o lembrete
         Lembrete.objects.create(
             usuario=request.user,
             atividade=atividade,
-            data_lembrete=data_lembrete
+            data_lembrete=data_hora_lembrete
         )
         return redirect('lembretes')
 
