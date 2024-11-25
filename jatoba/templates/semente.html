@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adição de Semente</title>
+</head>
+<body>
+    <h1>Adicionar Nova Semente</h1>
+    <form action="{% url 'semente' %}" method="POST">
+        {% csrf_token %}
+        <div>
+            <label for="nome">Nome da Semente:</label>
+            <input type="text" name="nome" id="nome" placeholder="Digite o nome" required>
+        </div>
+        <div>
+            <label for="imagem">URL da Imagem:</label>
+            <input type="url" name="imagem" id="imagem" placeholder="Digite a URL da imagem" required>
+        </div>
+        <button type="submit">Adicionar</button>
+    </form>
+    <a href="{% url 'visualizar_sem' %}">Voltar</a>
+</body>
+</html>
