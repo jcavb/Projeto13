@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/lembretes.css' %}">
     <title>Lembretes</title>
 </head>
 <body>
@@ -14,43 +15,51 @@
             </div>
             <h3>Nome</h3>
             <div class="direita">
-                <button class="btn-tarefas active" onclick="window.location.href='{% url 'tarefas' %}'">Cuidados Diários</button>
+                <button class="btn-tarefas" onclick="window.location.href='{% url 'tarefas' %}'">Cuidados Diários</button>
                 <button class="btn-tarefas">Calendário</button>
                 <a href="{% url 'infoculturas' %}" class="btn-tarefas">Info Culturas</a>
-                <a href="{% url 'lembretes' %}" class="btn-tarefas">Lembretes</a>
+                <a href="{% url 'lembretes' %}" class="btn-tarefas active">Lembretes</a>
             </div>
         </section>
     </header>
 
-    <h1>Lembretes</h1>
-    <form method="post" id="formLembrete">
-        {% csrf_token %}
-        <label for="atividade">Insira uma atividade que deseja ser lembrado mais tarde:</label><br>
-        <input type="text" id="atividade" name="atividade" required><br><br>
-        
-        <label for="data_lembrete">Insira a data para ser lembrado:</label><br>
-        <input type="date" id="data_lembrete" name="data_lembrete" required><br><br>
-    
-        <label for="hora_lembrete">Insira a hora para ser lembrado:</label><br>
-        <input type="time" id="hora_lembrete" name="hora_lembrete" required><br><br>
-    
-        <button type="submit">Salvar Lembrete</button>
-    </form>
+    <main>
+        <section id="centro">
+            <h1>Lembretes</h1>
+            <form method="post" id="formLembrete">
+                {% csrf_token %}
+                <label for="atividade">Insira uma atividade que deseja ser lembrado mais tarde:</label>
+                <input type="text" id="atividade" name="atividade" required>
+                
+                <label for="data_lembrete">Insira a data para ser lembrado:</label>
+                <input type="date" id="data_lembrete" name="data_lembrete" required>
+                
+                <label for="hora_lembrete">Insira a hora para ser lembrado:</label>
+                <input type="time" id="hora_lembrete" name="hora_lembrete" required>
+                
+                <button type="submit">Salvar Lembrete</button>
+            </form>
 
-    <h2>Atividades Salvas:</h2>
-    <ul>
-        {% for lembrete in lembretes %}
-            <li>
-                {{ lembrete.atividade }} - Lembrar em: {{ lembrete.data_lembrete }}
-                <form method="post" action="{% url 'remover_lembrete' lembrete.id %}" style="display:inline;">
-                    {% csrf_token %}
-                    <button type="submit">Limpar Lembrete</button>
-                </form>
-            </li>
-        {% empty %}
-            <p>Você ainda não tem lembretes salvos.</p>
-        {% endfor %}
-    </ul>
+            <h2>Atividades Salvas:</h2>
+            <ul>
+                {% for lembrete in lembretes %}
+                    <li>
+                        {{ lembrete.atividade }} - Lembrar em: {{ lembrete.data_lembrete }}
+                        <form method="post" action="{% url 'remover_lembrete' lembrete.id %}" style="display:inline;">
+                            {% csrf_token %}
+                            <button type="submit">Limpar Lembrete</button>
+                        </form>
+                    </li>
+                {% empty %}
+                    <p>Você ainda não tem lembretes salvos.</p>
+                {% endfor %}
+            </ul>
+        </section>
+    </main>
+
+    <footer>
+        <h3>Precisa de ajuda? Entre em contato: (12) 3456-7890</h3>
+    </footer>
 
     <script>
         if (Notification.permission !== "granted") {
