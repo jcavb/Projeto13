@@ -210,48 +210,94 @@
         document.addEventListener("DOMContentLoaded", function () {
             const addTaskButtons = document.querySelectorAll(".add-task");
             const clearTasksButton = document.getElementById("clear-tasks");
-
-            // Função para adicionar tarefas
-            addTaskButtons.forEach((button) => {
-                button.addEventListener("click", function () {
-                    const dayElement = this.closest(".day");
+    
+            // Função para salvar tarefas no localStorage
+            function saveTasks() {
+                const tasksData = {};
+                document.querySelectorAll(".day").forEach((dayElement) => {
                     const day = dayElement.dataset.day;
-
-                    const task = prompt(`Adicione uma tarefa para o dia ${day}:`);
-                    if (task) {
+                    const tasks = [];
+                    dayElement.querySelectorAll(".task-item span").forEach((taskElement) => {
+                        tasks.push(taskElement.textContent);
+                    });
+                    tasksData[day] = tasks;
+                });
+                localStorage.setItem("tasks", JSON.stringify(tasksData));
+            }
+    
+            // Função para carregar tarefas do localStorage
+            function loadTasks() {
+                const tasksData = JSON.parse(localStorage.getItem("tasks")) || {};
+                document.querySelectorAll(".day").forEach((dayElement) => {
+                    const day = dayElement.dataset.day;
+                    const tasks = tasksData[day] || [];
+                    tasks.forEach((task) => {
                         const taskElement = document.createElement("div");
                         taskElement.classList.add("task-item");
-
-                        // Adiciona texto da tarefa
+    
                         const taskText = document.createElement("span");
                         taskText.textContent = task;
-
-                        // Adiciona botão "Excluir"
+    
                         const deleteButton = document.createElement("button");
                         deleteButton.textContent = "🗑️";
                         deleteButton.classList.add("delete-task");
                         deleteButton.addEventListener("click", function () {
-                            taskElement.remove(); // Remove a tarefa do DOM
+                            taskElement.remove();
+                            saveTasks(); // Atualiza o armazenamento ao excluir
                         });
-
-                        // Adiciona tarefa e botão ao contêiner
+    
                         taskElement.appendChild(taskText);
                         taskElement.appendChild(deleteButton);
                         dayElement.querySelector(".tasks").appendChild(taskElement);
+                    });
+                });
+            }
+    
+            // Adiciona tarefas ao clicar no botão "+"
+            addTaskButtons.forEach((button) => {
+                button.addEventListener("click", function () {
+                    const dayElement = this.closest(".day");
+                    const day = dayElement.dataset.day;
+    
+                    const task = prompt(`Adicione uma tarefa para o dia ${day}:`);
+                    if (task) {
+                        const taskElement = document.createElement("div");
+                        taskElement.classList.add("task-item");
+    
+                        const taskText = document.createElement("span");
+                        taskText.textContent = task;
+    
+                        const deleteButton = document.createElement("button");
+                        deleteButton.textContent = "🗑️";
+                        deleteButton.classList.add("delete-task");
+                        deleteButton.addEventListener("click", function () {
+                            taskElement.remove();
+                            saveTasks(); // Atualiza o armazenamento ao excluir
+                        });
+    
+                        taskElement.appendChild(taskText);
+                        taskElement.appendChild(deleteButton);
+                        dayElement.querySelector(".tasks").appendChild(taskElement);
+                        saveTasks(); // Salva as tarefas ao adicionar
                     }
                 });
             });
-
-            // Função para limpar todas as tarefas
+    
+            // Limpa todas as tarefas
             clearTasksButton.addEventListener("click", function () {
                 if (confirm("Tem certeza que deseja apagar todas as tarefas?")) {
                     const allTasks = document.querySelectorAll(".tasks");
                     allTasks.forEach((tasksContainer) => {
                         tasksContainer.innerHTML = ""; // Remove todas as tarefas
                     });
+                    localStorage.removeItem("tasks"); // Limpa o armazenamento
                 }
             });
+    
+            // Carrega tarefas salvas ao inicializar
+            loadTasks();
         });
     </script>
+    
 </body>
 </html>
