@@ -14,8 +14,11 @@ from django.contrib.auth import get_user_model, login
 from django.shortcuts import get_object_or_404
 from django.views import View  # type: ignore
 
+
 def calendario(request):
-    return render(request, 'calendario.html')  # Renderiza o HTML do calendário
+    dias = list(range(1, 31))  # Dias do mês
+    tarefas = Tarefa.objects.all()  # Busca todas as tarefas do banco de dados
+    return render(request, 'calendario.html', {'dias': dias, 'tarefas': tarefas})
 
 def login_view(request):
     if request.method == 'POST':

@@ -5,82 +5,251 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calendário de Irrigação</title>
-    <link rel="stylesheet" href="{% static 'calendario.css' %}">
+    <style>
+        /* Geral */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            color: #333;
+            margin: 0;
+        }
 
+        header {
+            background-color: #008000;
+            color: white;
+            padding: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        header .profile {
+            display: flex;
+            align-items: center;
+        }
+
+        header .profile img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+
+        header nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            gap: 15px;
+        }
+
+        header nav ul li {
+            display: inline;
+        }
+
+        header nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        h1 {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        #clear-tasks {
+            display: block;
+            margin: 20px auto;
+            background-color: #ff0000;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        #clear-tasks:hover {
+            background-color: #cc0000;
+        }
+
+        .calendar {
+            max-width: 900px;
+            margin: 20px auto;
+            background: white;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .week {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            background-color: #008000;
+            color: white;
+            padding: 10px 0;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        .days {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 1px;
+        }
+
+        .day {
+            background: white;
+            padding: 10px;
+            min-height: 100px;
+            border: 1px solid #ddd;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .date {
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .task-item {
+            background-color: #f0f0f0;
+            color: #333;
+            padding: 5px;
+            margin: 5px 0;
+            border-radius: 4px;
+            font-size: 14px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .add-task {
+            background-color: #008000;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 25px;
+            height: 25px;
+            font-size: 18px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        .add-task:hover {
+            background-color: #005500;
+        }
+
+        .delete-task {
+            background-color: #ff0000;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            padding: 2px 8px;
+            font-size: 12px;
+            margin-left: 10px;
+            cursor: pointer;
+        }
+
+        .delete-task:hover {
+            background-color: #cc0000;
+        }
+    </style>
 </head>
 <body>
     <header>
-        <h1>Calendário de Irrigação</h1>
-        <p>Selecione as culturas para ver o calendário de irrigação apenas para aquelas escolhidas.</p>
+        <div class="profile">
+            <img src="https://via.placeholder.com/40" alt="Foto de Perfil">
+            <span>Nome</span>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#">Cuidados diários</a></li>
+                <li><a href="{% url 'calendario' %}">Calendário</a></li>
+                <li><a href="#">Info-Culturas</a></li>
+                <li><a href="#">Dashboard</a></li>
+                <li><a href="#">Estoque</a></li>
+                <li><a href="#">Relatório</a></li>
+            </ul>
+        </nav>
     </header>
 
-    <section class="filtro">
-        <h2>Filtro de Culturas</h2>
-        <div>
-            <label><input type="checkbox" class="filtro-cultura" value="frutas"> Frutas</label>
-            <label><input type="checkbox" class="filtro-cultura" value="hortalicas"> Hortaliças</label>
-        </div>
-    </section>
+    <main>
+        <h1>Calendário de Irrigação</h1>
+        <button id="clear-tasks">Limpar Todas as Tarefas</button>
+        <div class="calendar">
+            <!-- Dias da Semana -->
+            <div class="week">
+                <div>Segunda</div>
+                <div>Terça</div>
+                <div>Quarta</div>
+                <div>Quinta</div>
+                <div>Sexta</div>
+                <div>Sábado</div>
+                <div>Domingo</div>
+            </div>
 
-    <section class="calendario">
-        <h2>Período de Plantio</h2>
-        
-        <!-- Exemplo de culturas, você pode adaptar para o que tiver no seu sistema -->
-        <div class="cultura hortalicas" data-cultura="frutas">
-            <h3>Abacate (Fruta)</h3>
-            <p>Período de Plantio: Setembro - Dezembro</p>
+            <!-- Dias do mês -->
+            <div class="days">
+                {% for day in dias %}
+                <div class="day" data-day="{{ day }}">
+                    <span class="date">{{ day }}</span>
+                    <div class="tasks"></div>
+                    <button class="add-task">+</button>
+                </div>
+                {% endfor %}
+            </div>
         </div>
-        <div class="cultura frutas" data-cultura="frutas">
-            <h3>Banana (Fruta)</h3>
-            <p>Período de Plantio: Durante o ano todo</p>
-        </div>
-        <div class="cultura frutas" data-cultura="hortalicas">
-            <h3>Brócolis (Hortaliça)</h3>
-            <p>Período de Plantio: Março - Junho</p>
-        </div>
-        <div class="cultura frutas" data-cultura="hortalicas">
-            <h3>Cenoura (Hortaliça)</h3>
-            <p>Período de Plantio: Durante o ano todo</p>
-        </div>
-        <div class="cultura cereais" data-cultura="hortalicas">
-            <h3>Couve (Hortaliça)</h3>
-            <p>Período de Plantio: Setembro - Dezembro</p>
-        </div>
-        <div class="cultura cereais" data-cultura="hortalicas">
-            <h3>Macaxeira (Hortaliça)</h3>
-            <p>Período de Plantio: Maio - Junho</p>
-        </div>
-        <div class="cultura leguminosas" data-cultura="leguminosas">
-            <h3>Tomate (Fruta)</h3>
-            <p>Período de Plantio: Setembro - Dezembro</p>
-        </div>
-        <div class="cultura hortalicas" data-cultura="hortalicas">
-            <h3>Rúcula (Hortaliça)</h3>
-            <p>Período de Plantio: Março - Setembro</p>
-        </div>
-    </section>
+    </main>
 
     <script>
-        // JavaScript para filtrar as culturas com base nas seleções do usuário
-        document.addEventListener('DOMContentLoaded', () => {
-            const checkboxes = document.querySelectorAll('.filtro-cultura');
-            const culturas = document.querySelectorAll('.cultura');
+        document.addEventListener("DOMContentLoaded", function () {
+            const addTaskButtons = document.querySelectorAll(".add-task");
+            const clearTasksButton = document.getElementById("clear-tasks");
 
-            checkboxes.forEach(checkbox => {
-                checkbox.addEventListener('change', () => {
-                    const selectedCulturas = Array.from(checkboxes)
-                        .filter(checkbox => checkbox.checked)
-                        .map(checkbox => checkbox.value);
+            // Função para adicionar tarefas
+            addTaskButtons.forEach((button) => {
+                button.addEventListener("click", function () {
+                    const dayElement = this.closest(".day");
+                    const day = dayElement.dataset.day;
 
-                    culturas.forEach(cultura => {
-                        const culturaType = cultura.dataset.cultura;
-                        if (selectedCulturas.length === 0 || selectedCulturas.includes(culturaType)) {
-                            cultura.style.display = 'block';
-                        } else {
-                            cultura.style.display = 'none';
-                        }
-                    });
+                    const task = prompt(`Adicione uma tarefa para o dia ${day}:`);
+                    if (task) {
+                        const taskElement = document.createElement("div");
+                        taskElement.classList.add("task-item");
+
+                        // Adiciona texto da tarefa
+                        const taskText = document.createElement("span");
+                        taskText.textContent = task;
+
+                        // Adiciona botão "Excluir"
+                        const deleteButton = document.createElement("button");
+                        deleteButton.textContent = "🗑️";
+                        deleteButton.classList.add("delete-task");
+                        deleteButton.addEventListener("click", function () {
+                            taskElement.remove(); // Remove a tarefa do DOM
+                        });
+
+                        // Adiciona tarefa e botão ao contêiner
+                        taskElement.appendChild(taskText);
+                        taskElement.appendChild(deleteButton);
+                        dayElement.querySelector(".tasks").appendChild(taskElement);
+                    }
                 });
+            });
+
+            // Função para limpar todas as tarefas
+            clearTasksButton.addEventListener("click", function () {
+                if (confirm("Tem certeza que deseja apagar todas as tarefas?")) {
+                    const allTasks = document.querySelectorAll(".tasks");
+                    allTasks.forEach((tasksContainer) => {
+                        tasksContainer.innerHTML = ""; // Remove todas as tarefas
+                    });
+                }
             });
         });
     </script>
