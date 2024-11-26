@@ -1,53 +1,126 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Rotação de Culturas</title>
-    {% load static %}
+    <title>Consórcio de Culturas</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f8f8;
+        }
+        .container {
+            width: 90%;
+            margin: 20px auto;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            border: 2px solid rgb(23, 133, 50);
+
+        }
+        table th, table td {
+            border: 1px solid #ccc;
+            padding: 10px;
+            text-align: left;
+        }
+        table th {
+            background-color: #e6e6e6;
+        }
+        .description {
+            text-align: justify;
+            margin-bottom: 20px;
+        }
+
+        footer {
+            background-color: #008000;
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+
+        footer a {
+            color: white;
+            text-decoration: underline;
+        }
+    </style>
 </head>
-
 <body>
-    <div>
-        <div>
-            <div>
-                <h1>Rotação de Culturas</h1>
-            </div>
-            <div>
-                <form method="GET">
-                    <label for="cultura-select">Escolha um cultura:</label>
-                    <select name="cultura" id="cultura-select">
-                        <option value="">Selecione uma cultura</option>
-                        {% for cultura in cultura_rotacoes %}
-                            <option value="{{ cultura.id }}" {% if cultura.id == rotacao_cultura_id %}selected{% endif %}>
-                                {{ cultura.nome }}
-                            </option>
-                        {% endfor %}
-                    </select>
-                
-                    <div>
-                        <button type="submit">
-                            Rotações da cultura
-                        </button>
-                    </div>
-                </form>                           
-
-                <div id="informacoes">
-                    {% if rotacao %}
-                    <h2>Culturas para rotação</h2>
-                    {% for rotacoes in rotacao %}
-                        <div>
-                            <h3>{{ rotacoes.nome }}</h3>
-                        </div>
-                    {% endfor %}
-                    {% else %}
-                    <p>Nenhuma cultura encontrada</p>
-                    {% endif %}
-                </div>
-            </div>
-            <a href="{% url 'protegida' %}">Voltar</a>
-        </div>
+    <div class="container">
+        <h1>Consórcio de Culturas</h1>
+        <p class="description">
+            O Consórcio de Culturas nas plantações visa <strong>aumentar a biodiversidade</strong>, 
+            <strong>otimizar o uso do solo e dos recursos hídricos</strong>, <strong>reduzir pragas e doenças</strong>, 
+            e <strong>melhorar a produtividade geral</strong>, promovendo um sistema agrícola mais sustentável e equilibrado.
+        </p>
+        <table>
+            <thead>
+                <tr>
+                    <th>Cultura</th>
+                    <th>Consorciação de culturas favoráveis</th>
+                    <th>Consorciação de culturas desfavoráveis</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Abacate</td>
+                    <td>Feijão, Milho, Tomate</td>
+                    <td>Batata, Cebola</td>
+                </tr>
+                <tr>
+                    <td>Banana</td>
+                    <td>Feijão, Alface, Rúcula</td>
+                    <td>Cenoura, Batata</td>
+                </tr>
+                <tr>
+                    <td>Brócolis</td>
+                    <td>Alho, Cebola, Rúcula</td>
+                    <td>Tomate, Morango</td>
+                </tr>
+                <tr>
+                    <td>Cenoura</td>
+                    <td>Alho, Alface, Ervilha, Tomate</td>
+                    <td>Funcho, Beterraba</td>
+                </tr>
+                <tr>
+                    <td>Couve</td>
+                    <td>Rúcula, Alface, Cenoura</td>
+                    <td>Tomate, Morango</td>
+                </tr>
+                <tr>
+                    <td>Macaxeira</td>
+                    <td>Feijão, Milho</td>
+                    <td>Abóbora, Batata</td>
+                </tr>
+                <tr>
+                    <td>Rúcula</td>
+                    <td>Tomate, Alface, Cenoura</td>
+                    <td>Brócolis, Couve</td>
+                </tr>
+                <tr>
+                    <td>Tomate</td>
+                    <td>Cenoura, Alface, Cebolinha</td>
+                    <td>Batata, Ervilha</td>
+                </tr>
+            </tbody>
+        </table>
     </div>
+    <!-- Rodapé -->
+    <footer>
+        Precisa de ajuda? <a href="#">Entre em contato!</a>
+    </footer>
 </body>
 </html>
