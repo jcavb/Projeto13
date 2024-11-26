@@ -112,14 +112,10 @@
 
     <!-- Botões -->
     <div class="buttons">
-        <a href="#">Relatório</a>
-        <a href="#">Dashboard</a>
-        <a href="#">Estoque</a>
-        <a href="#">Cuidados diários</a>
-        <a href="#">Personalização de perfil</a>
-        <a href="#">Terreno</a>
+        <a href="{% url 'gerar_relatorio_pdf' %}" class="btn btn-primary">Baixar Relatório</a>
+        <a href="#">Visualizar Sementes</a>
+        <a href="{% url 'tarefas' %}">Cuidados diários</a>
         <a href="/infoculturas/">Info-Culturas</a>
-        <a href="#">Relatório</a>
         <a href="{% url 'rotacao' %}">Consórcio de Culturas</a>
         <a href="{% url 'calendario' %}">Calendário</a>
     </div>

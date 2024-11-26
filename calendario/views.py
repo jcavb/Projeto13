@@ -13,6 +13,48 @@ from django.contrib.auth.backends import ModelBackend
 from django.contrib.auth import get_user_model, login
 from django.shortcuts import get_object_or_404
 from django.views import View  # type: ignore
+from django.http import HttpResponse
+from reportlab.pdfgen import canvas
+from .models import Atividade
+from django.contrib.auth.decorators import login_required
+
+
+@login_required
+def gerar_relatorio_pdf(request):
+    # Configura o response para criar o arquivo PDF
+    response = HttpResponse(content_type='application/pdf')
+    response['Content-Disposition'] = 'attachment; filename="relatorio_atividades.pdf"'
+
+    # Inicia o canvas para o PDF
+    p = canvas.Canvas(response)
+    p.setTitle("Relatório de Atividades - Usuário")
+
+    # Título do documento
+    p.drawString(100, 800, f"Relatório de Atividades - Usuário: {request.user.username}")
+
+    # Busca as atividades do usuário logado
+    atividades = Atividade.objects.filter(usuario=request.user)
+
+    # Listando as atividades no PDF
+    y = 750
+    if atividades.exists():
+        for atividade in atividades:
+            p.drawString(
+                100, y,
+                f"Atividade: {atividade.tipo} | Descrição: {atividade.descricao} | Data: {atividade.data_realizacao}"
+            )
+            y -= 20
+            if y < 100:  # Se ultrapassar a margem inferior
+                p.showPage()
+                y = 750
+    else:
+        p.drawString(100, y, "Nenhuma atividade registrada.")
+
+    # Finaliza o PDF
+    p.showPage()
+    p.save()
+
+    return response
 
 
 def calendario(request):
