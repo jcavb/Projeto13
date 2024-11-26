@@ -1,5 +1,7 @@
 from django.db import models # type: ignore
 from django.contrib.auth.hashers import make_password
+from django.utils.timezone import now
+
 
 class Usuario(models.Model):
     id_usuario = models.AutoField(primary_key=True)
@@ -71,3 +73,12 @@ class Rotacoes(models.Model):
 
     def __str__(self):
         return self.nome
+    
+class Tarefa(models.Model):
+    dia = models.IntegerField(default=1)  # Define um valor padrão para o dia
+    descricao = models.TextField(default="Nova Tarefa")  # Define um valor padrão para a descrição
+    concluida = models.BooleanField(default=False)  # Define que tarefas são criadas como não concluídas
+    data_criacao = models.DateTimeField(default=now)  # Define a data de criação como a data/hora atual
+
+    def __str__(self):
+        return f"Tarefa do dia {self.dia}: {self.descricao}"

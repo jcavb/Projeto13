@@ -2,45 +2,53 @@
 <!DOCTYPE html>
 <html lang="pt">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Detalhes da Planta</title>
-<link rel="stylesheet" href="{% static 'css/culturas.css' %}">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalhes da Couve</title>
+    <link rel="stylesheet" href="{% static 'css/culturas.css' %}">
 </head>
 <body>
+    <button class="back-button" onclick="history.back()">Voltar</button>
 <div class="container">
     <header>
         <h1>COUVE</h1>
     </header>
     <section>
         <div class="info">
-            <p>Clima: ---Temperaturas  entre 15°C e 20°C. </p>
-            <p>Solo: --- Fertilizado,  solo franco </p>
+            <p><strong>Clima:</strong> Temperaturas entre 15°C e 20°C</p>
+            <p><strong>Solo:</strong> Fertilizado, solo franco</p>
+            <p><strong>pH do Solo:</strong> Neutro</p>
         </div>
         <div class="timeline">
-            <h2>Linha do tempo de crescimento</h2>
-            <div class="timeline-bar">
-                <span class="tag">Dia 1</span>
-
-                <span class="tag">Dia 7 - 10</span>
-
-                <span class="tag">Dia 15</span>
-                
-                <span class="tag">Dia 40 - 60</span>
-               
-                <div class="progress-bar">
-                    <div class="progress"></div>
-                    <span class="progress-point"></span>
-                    <span class="progress-point"></span>
-                    <span class="progress-point"></span>
-                    <span class="progress-point progress-point-last"></span>
+            <h2>Linha do Tempo de Crescimento</h2>
+            <div class="timeline-steps">
+                <div class="step">
+                    <span class="step-title">Dia 1</span>
+                    <p>Plantio inicial com sementes ou mudas.</p>
+                </div>
+                <div class="step">
+                    <span class="step-title">Dia 7 - 10</span>
+                    <p>Primeiras folhas começam a surgir.</p>
+                </div>
+                <div class="step">
+                    <span class="step-title">Dia 15</span>
+                    <p>Desenvolvimento do caule e fortalecimento.</p>
+                </div>
+                <div class="step">
+                    <span class="step-title">Dia 40 - 60</span>
+                    <p>Planta pronta para colheita.</p>
                 </div>
             </div>
         </div>
         <div class="info">
-            <p>PH do solo ---  Neutro</p>
+            <h2>Benefícios Nutricionais</h2>
+            <p>Rica em cálcio, vitamina K e ferro, a couve auxilia na saúde óssea e na prevenção da anemia.</p>
+        </div>
+        <div class="info">
+            <h2>Curiosidades</h2>
+            <p>A couve é um dos vegetais mais consumidos no Brasil, sendo ingrediente principal de pratos típicos como a feijoada.</p>
         </div>
     </section>
-    
 </div>
 </body>
+</html>
