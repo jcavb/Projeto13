@@ -2,47 +2,62 @@
 <!DOCTYPE html>
 <html lang="pt">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Detalhes da Planta</title>
-<link rel="stylesheet" href="{% static 'css/culturas.css' %}">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalhes da Planta</title>
+    <link rel="stylesheet" href="{% static 'css/culturas.css' %}">
 </head>
 <body>
+    <button class="back-button" onclick="history.back()">Voltar</button>
 <div class="container">
+    <!-- Cabeçalho -->
     <header>
         <h1>BANANA</h1>
     </header>
+
+    <!-- Informações principais -->
     <section>
         <div class="info">
-            <p>Clima: --- Quentes,temperaturas entre 20°C e 30°C</p>
-            <p>Solo: --- Fertilizado,areno-argiloso,bem drenado</p>
+            <p><strong>Clima:</strong> Quentes, temperaturas entre 20°C e 30°C</p>
+            <p><strong>Solo:</strong> Fertilizado, areno-argiloso, bem drenado</p>
+            <p><strong>pH do Solo:</strong> Ácido, Neutro, Alcalino</p>
         </div>
+
+        <!-- Linha do Tempo -->
         <div class="timeline">
-            <h2>Linha do tempo de crescimento</h2>
-            <div class="timeline-bar">
-                <span class="tag">Dia 1</span>
-
-                <span class="tag">Dia 7 - 10</span>
-
-                <span class="tag">Dia 15</span>
-
-                <span class="tag">Dia 40 - 60</span>
-               
-                <div class="progress-bar">
-                    <div class="progress"></div>
-                    <span class="progress-point"></span>
-                    <span class="progress-point"></span>
-                    <span class="progress-point"></span>
-                    <span class="progress-point progress-point-last"></span>
+            <h2>Linha do Tempo de Crescimento</h2>
+            <div class="timeline-steps">
+                <div class="step">
+                    <span class="step-title">Dia 1</span>
+                    <p>Plantio da bananeira. Preparar o solo com fertilização adequada.</p>
+                </div>
+                <div class="step">
+                    <span class="step-title">Dia 7 - 10</span>
+                    <p>Primeiras brotações aparecem. Manter a rega regular.</p>
+                </div>
+                <div class="step">
+                    <span class="step-title">Dia 15</span>
+                    <p>Desenvolvimento inicial da planta. Verificar a saúde das folhas.</p>
+                </div>
+                <div class="step">
+                    <span class="step-title">Dia 40 - 60</span>
+                    <p>Planta estabelecida. Inspecionar para pragas e doenças.</p>
                 </div>
             </div>
         </div>
+
+        <!-- Benefícios -->
         <div class="info">
-            <p>PH do solo --- Ácido, Neutro, Alcalino</p>
+            <h2>Benefícios Nutricionais</h2>
+            <p>Rica em potássio e fibras. Melhora a digestão e regula o sistema intestinal.</p>
+        </div>
+
+        <!-- Curiosidades -->
+        <div class="info">
+            <h2>Curiosidades</h2>
+            <p>A banana é a fruta mais consumida no mundo e uma das plantas mais antigas cultivadas pelo homem.</p>
         </div>
     </section>
-    
 </div>
 </body>
 </html>
- 
