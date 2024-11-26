@@ -53,9 +53,64 @@
             color: white;
             text-decoration: underline;
         }
+        header {
+            background-color: #008000;
+            color: white;
+            padding: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        header .profile {
+            display: flex;
+            align-items: center;
+        }
+
+        header .profile img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+
+        header nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            gap: 15px;
+        }
+
+        header nav ul li {
+            display: inline;
+        }
+
+        header nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+        }
     </style>
 </head>
 <body>
+    <header>
+        <div class="profile">
+            <img src="https://via.placeholder.com/40" alt="Foto de Perfil">
+            <span>Nome</span>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="{% url 'gerar_relatorio_pdf' %}" class="btn btn-primary">Baixar Relatório</a></li>
+                <li><a href="#">Visualizar Sementes</a></li>
+                <li><a href="{% url 'tarefas' %}">Cuidados diários</a></li>
+                <li><a href="/infoculturas/">Info-Culturas</a></li>
+                <li><a href="{% url 'rotacao' %}">Consórcio de Culturas</a></li>
+                <li><a href="{% url 'calendario' %}">Calendário</a></li>
+            </ul>
+        </nav>
+    </header>
+    
     <div class="container">
         <h1>Consórcio de Culturas</h1>
         <p class="description">
