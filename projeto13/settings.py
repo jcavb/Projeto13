@@ -82,6 +82,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'jatoba',
     "whitenoise.runserver_nostatic",
+    "calendario",
 ]
 
 MIDDLEWARE = [

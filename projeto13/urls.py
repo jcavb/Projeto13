@@ -1,9 +1,10 @@
 from django.contrib import admin
-from django.urls import path # type: ignore
+from django.urls import path, include
 from django.contrib.auth import views as auth_views
 from . import views
-from django.urls import path # type: ignore
 from jatoba import views
+from calendario import views
+
 
 
 urlpatterns = [
@@ -48,5 +49,7 @@ urlpatterns = [
     path('sementes/', views.VerSemente.as_view(), name='visualizar_sem'),
     path('semente/<int:id>/delete/', views.delete_semente_view, name='delete_sem'),
     path('rotacao/', views.Rotacao.as_view(), name='rotacao'),
+    path('calendario/', include('calendario.urls')),
+    
 ]
 

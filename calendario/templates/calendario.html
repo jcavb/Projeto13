@@ -1,0 +1,88 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calendário de Irrigação</title>
+    <link rel="stylesheet" href="{% static 'calendario.css' %}">
+
+</head>
+<body>
+    <header>
+        <h1>Calendário de Irrigação</h1>
+        <p>Selecione as culturas para ver o calendário de irrigação apenas para aquelas escolhidas.</p>
+    </header>
+
+    <section class="filtro">
+        <h2>Filtro de Culturas</h2>
+        <div>
+            <label><input type="checkbox" class="filtro-cultura" value="frutas"> Frutas</label>
+            <label><input type="checkbox" class="filtro-cultura" value="hortalicas"> Hortaliças</label>
+        </div>
+    </section>
+
+    <section class="calendario">
+        <h2>Período de Plantio</h2>
+        
+        <!-- Exemplo de culturas, você pode adaptar para o que tiver no seu sistema -->
+        <div class="cultura hortalicas" data-cultura="frutas">
+            <h3>Abacate (Fruta)</h3>
+            <p>Período de Plantio: Setembro - Dezembro</p>
+        </div>
+        <div class="cultura frutas" data-cultura="frutas">
+            <h3>Banana (Fruta)</h3>
+            <p>Período de Plantio: Durante o ano todo</p>
+        </div>
+        <div class="cultura frutas" data-cultura="hortalicas">
+            <h3>Brócolis (Hortaliça)</h3>
+            <p>Período de Plantio: Março - Junho</p>
+        </div>
+        <div class="cultura frutas" data-cultura="hortalicas">
+            <h3>Cenoura (Hortaliça)</h3>
+            <p>Período de Plantio: Durante o ano todo</p>
+        </div>
+        <div class="cultura cereais" data-cultura="hortalicas">
+            <h3>Couve (Hortaliça)</h3>
+            <p>Período de Plantio: Setembro - Dezembro</p>
+        </div>
+        <div class="cultura cereais" data-cultura="hortalicas">
+            <h3>Macaxeira (Hortaliça)</h3>
+            <p>Período de Plantio: Maio - Junho</p>
+        </div>
+        <div class="cultura leguminosas" data-cultura="leguminosas">
+            <h3>Tomate (Fruta)</h3>
+            <p>Período de Plantio: Setembro - Dezembro</p>
+        </div>
+        <div class="cultura hortalicas" data-cultura="hortalicas">
+            <h3>Rúcula (Hortaliça)</h3>
+            <p>Período de Plantio: Março - Setembro</p>
+        </div>
+    </section>
+
+    <script>
+        // JavaScript para filtrar as culturas com base nas seleções do usuário
+        document.addEventListener('DOMContentLoaded', () => {
+            const checkboxes = document.querySelectorAll('.filtro-cultura');
+            const culturas = document.querySelectorAll('.cultura');
+
+            checkboxes.forEach(checkbox => {
+                checkbox.addEventListener('change', () => {
+                    const selectedCulturas = Array.from(checkboxes)
+                        .filter(checkbox => checkbox.checked)
+                        .map(checkbox => checkbox.value);
+
+                    culturas.forEach(cultura => {
+                        const culturaType = cultura.dataset.cultura;
+                        if (selectedCulturas.length === 0 || selectedCulturas.includes(culturaType)) {
+                            cultura.style.display = 'block';
+                        } else {
+                            cultura.style.display = 'none';
+                        }
+                    });
+                });
+            });
+        });
+    </script>
+</body>
+</html>
