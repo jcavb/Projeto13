@@ -1,119 +1,168 @@
-body{
-    background-color: #FFF7F8;
-    color: #222222;
+/* Definições gerais */
+body {
+    font-family: 'Oswald', 'Montserrat', sans-serif;
     margin: 0;
     padding: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    font-family: 'Oswald', 'Montserrat', sans-serif;
+    background-color: #f4f4f4;
 }
 
-header{
-    background-color: #06A678;
-    display: flex;
-    padding: 20px;
-    width: 100%;
-    position: relative;
+header {
+    background-color: #0B6E4F;
+    padding: 10px;
+    color: white;
 }
 
-.perfil{
-    height: 5px;
-    width: 5px;
-    margin: 20px;
-    padding: 20px;
-}
-
-#cabeca{
+#cabeca {
     display: flex;
     justify-content: space-between;
-    padding: 20px;
-}
-
-.direita{
-    display: flex;
-    justify-content: space-around; 
     align-items: center;
-    position: absolute; 
-    top: 20px; 
-    right: 20px;
 }
 
-#cabeca a{
+#perfil img {
+    border-radius: 50%;
+}
+
+.direita button {
+    background-color: #0B6E4F;
+    color: white;
+    border: none;
     padding: 10px;
-    margin: 20px;
-
-}
-
-#logo{
-    display: flex;
-    margin: 20px 0;
-    align-items: center;
-    height: auto;
-}
-
-.data{
-    display: flex;
-    justify-content: flex-start; 
-    align-items: center;
-    position: absolute; 
-    top: 500px; 
-    left: 20px;
-}
-
-.Carpina{
-    display: flex;
-    justify-content: flex-end; 
-    align-items: center;
-    position: absolute; 
-    top: 500px; 
-    right: 20px;
-}
-
-#check{
-    justify-content: space-around;
-}
-
-.coluna{
-    float: left;
-    width: 33.33%;
-    padding: 0px;
-    justify-content: space-around;
-    margin-bottom: 100px;
-}
-
-footer{
-    background-color: #06A678;
-    color: #222222;
-    justify-content: flex-start;
-    width: 100%;
-}
-
-h3{
-    margin: 20px;
-}
-
-
-.btn-tarefas {
-    background: none;            
-    border: none;                
-    color: white;              
-    font-size: 1em;
-    padding: 10px 20px;
-    border-radius: 0;            
+    margin: 5px;
     cursor: pointer;
-    text-decoration: none;
-    font-weight: bold;
-    margin: 0 10px;              
-  }
-  
-  .btn-tarefas:hover {
-    color: #FF8C00;              
-  }
-  
-  .btn-tarefas.active {
-    color: greenyellow;          
-    font-weight: bold;
-  }
-    
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Oswald:wght@200..700&display=swap');
+}
+
+.direita button.active {
+    background-color: #06603F;
+}
+
+.direita button:hover {
+    background-color: #06603F;
+}
+
+/* Estilos para a seção central (clima e logo) */
+#logo img {
+    width: 100%;
+    max-width: 400px;
+    height: auto;
+    margin: 20px 0;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#centro {
+    text-align: center;
+}
+
+.Carpina {
+    font-size: 1.5rem;
+    color: #0B6E4F;
+}
+
+.data {
+    margin: 20px 0;
+}
+
+/* Estilos para os checkboxes personalizados */
+.container input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+.container {
+    display: block;
+    position: relative;
+    cursor: pointer;
+    font-size: 1rem;
+    user-select: none;
+    padding-left: 2rem;
+    margin-bottom: 10px;
+}
+
+.checkmark {
+    --clr: #0B6E4F;
+    position: absolute;
+    left: 0;
+    height: 1.3em;
+    width: 1.3em;
+    background-color: #ccc;
+    border-radius: 50%;
+    transition: 300ms;
+}
+
+.container input:checked ~ .checkmark {
+    background-color: var(--clr);
+    border-radius: .5rem;
+    animation: pulse 500ms ease-in-out;
+}
+
+.checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+.container input:checked ~ .checkmark:after {
+    display: block;
+}
+
+.container .checkmark:after {
+    left: 0.45em;
+    top: 0.25em;
+    width: 0.25em;
+    height: 0.5em;
+    border: solid #E0E0E2;
+    border-width: 0 0.15em 0.15em 0;
+    transform: rotate(45deg);
+}
+
+@keyframes pulse {
+    0% {
+        box-shadow: 0 0 0 #0B6E4F90;
+        rotate: 20deg;
+    }
+
+    50% {
+        rotate: -20deg;
+    }
+
+    75% {
+        box-shadow: 0 0 0 10px #0B6E4F60;
+    }
+
+    100% {
+        box-shadow: 0 0 0 13px #0B6E4F30;
+        rotate: 0;
+    }
+}
+
+/* Estilo das colunas de tarefas */
+#check {
+    display: flex;
+    justify-content: center;
+    gap: 5px; /* Pequeno espaço entre as colunas */
+    flex-wrap: wrap;
+}
+
+.coluna {
+    width: 10%; /* Aumentando um pouco a largura das colunas para mais espaço */
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+h1 {
+    font-size: 1.2rem;
+    color: #0B6E4F;
+}
+
+footer {
+    background-color: #0B6E4F;
+    color: white;
+    text-align: center;
+    padding: 10px;
+    margin-top: 20px;
+}
