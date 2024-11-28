@@ -4,7 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Adicionar Semente</title>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Oswald:wght@200..700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Oswald:wght@400;700&display=swap" rel="stylesheet">
     <style>
         body {
             font-family: 'Oswald', 'Montserrat', sans-serif;
@@ -17,36 +19,66 @@
         header {
             background-color: #008000;
             color: white;
-            padding: 10px;
+            padding: 20px;
         }
 
-        h1 {
-            margin-top: 20px;
-            color: #008000;
+        header h1 {
+            margin: 0;
+            font-size: 28px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .messages {
+            padding: 10px;
+            margin: 20px auto;
+            width: 90%;
+            max-width: 400px;
+            color: white;
+            border-radius: 5px;
+        }
+
+        .messages.success {
+            background-color: #008000;
+        }
+
+        .messages.error {
+            background-color: red;
         }
 
         form {
-            margin: 20px auto;
+            margin: 40px auto;
             padding: 20px;
             background-color: #fff;
             border-radius: 10px;
-            width: 300px;
+            width: 90%;
+            max-width: 400px;
             box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
         }
 
         form label {
             display: block;
-            margin: 10px 0 5px;
+            margin-bottom: 8px;
             font-weight: bold;
+            text-align: left;
+            color: #555;
         }
 
         form input {
             width: 100%;
             padding: 10px;
-            margin-bottom: 15px;
+            margin-bottom: 20px;
             border: 1px solid #ccc;
             border-radius: 5px;
             box-sizing: border-box;
+            font-size: 14px;
+        }
+
+        form input:focus {
+            outline: none;
+            border: 2px solid #008000;
+            background-color: #f9f9f9;
         }
 
         form button {
@@ -54,41 +86,63 @@
             padding: 10px;
             background-color: #008000;
             color: white;
+            font-family: 'Oswald', 'Montserrat', sans-serif; /* Fonte explicitamente definida */
             font-weight: bold;
             border: none;
             border-radius: 5px;
             cursor: pointer;
-            transition: background-color 0.3s ease;
+            font-size: 16px;
+            transition: transform 0.2s, background-color 0.3s ease;
         }
 
         form button:hover {
             background-color: #006400;
-        }
-
-        .messages {
-            margin: 10px auto;
-            width: 300px;
-            color: red;
-            text-align: center;
+            transform: scale(1.05);
         }
 
         a {
-            display: inline-block;
-            margin-top: 20px;
+            display: block;
+            margin: 30px auto;
+            width: 150px;
+            padding: 10px;
+            background-color: #008000;
+            color: white;
+            text-align: center;
+            border-radius: 5px;
             text-decoration: none;
-            color: #008000;
             font-weight: bold;
-            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+
+        a:hover {
+            background-color: #006400;
+        }
+
+        @media (max-width: 768px) {
+            form {
+                width: 90%;
+            }
+
+            header h1 {
+                font-size: 24px;
+            }
+
+            a {
+                font-size: 14px;
+                width: 120px;
+            }
         }
     </style>
 </head>
 <body>
     <header>
-        <h1>Adicionar Semente</h1>
+        <h1>
+            Adicionar Semente
+        </h1>
     </header>
 
     {% if messages %}
-    <div class="messages">
+    <div class="messages {% if messages.0.tags %}{{ messages.0.tags }}{% endif %}">
         {% for message in messages %}
             <p>{{ message }}</p>
         {% endfor %}
@@ -99,8 +153,10 @@
         {% csrf_token %}
         <label for="nome">Nome da Semente:</label>
         <input type="text" name="nome" id="nome" placeholder="Digite o nome" required>
+        
         <label for="imagem">URL da Imagem:</label>
         <input type="url" name="imagem" id="imagem" placeholder="Digite a URL da imagem" required>
+        
         <button type="submit">Adicionar</button>
     </form>
 

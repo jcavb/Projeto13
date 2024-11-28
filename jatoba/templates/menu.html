@@ -1,3 +1,7 @@
+<form id="csrf-form">
+    {% csrf_token %}
+</form>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -78,6 +82,21 @@
             margin-bottom: 10px;
         }
 
+        .delete-button {
+            background-color: red;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+        }
+
+        .delete-button:hover {
+            background-color: darkred;
+        }
+
         .buttons {
             margin-top: 20px;
         }
@@ -137,14 +156,13 @@
     <!-- Conteúdo Principal -->
     <h1>Controle de Estoque</h1>
 
-
-{% if messages %}
-<ul>
-    {% for message in messages %}
-        <li>{{ message }}</li>
-    {% endfor %}
-</ul>
-{% endif %}
+    {% if messages %}
+    <ul>
+        {% for message in messages %}
+            <li>{{ message }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
 
     <!-- Seção de Fertilizantes -->
     <div class="section">
@@ -154,10 +172,9 @@
                 <div class="list-item">
                     <img src="{{ ferti.imagem }}" alt="Imagem de {{ ferti.fertilizante }}">
                     <p><strong>{{ ferti.fertilizante }}</strong></p>
-                    <form action="{% url 'delete_fert' ferti.id %}" method="POST">
-                        {% csrf_token %}
-                        <button type="submit" style="background-color: red; color: white; border: none; padding: 5px 10px; border-radius: 5px;">Excluir</button>
-                    </form>
+                    <button type="button" class="delete-button" data-id="{{ ferti.id }}" data-type="fertilizante">
+                        Excluir
+                    </button>
                 </div>
             {% empty %}
                 <p>Nenhum fertilizante cadastrado.</p>
@@ -173,10 +190,9 @@
                 <div class="list-item">
                     <img src="{{ seme.imagem }}" alt="Imagem de {{ seme.semente }}">
                     <p><strong>{{ seme.semente }}</strong></p>
-                    <form action="{% url 'delete_sem' seme.id %}" method="POST">
-                        {% csrf_token %}
-                        <button type="submit" style="background-color: red; color: white; border: none; padding: 5px 10px; border-radius: 5px;">Excluir</button>
-                    </form>
+                    <button type="button" class="delete-button" data-id="{{ seme.id }}" data-type="semente">
+                        Excluir
+                    </button>
                 </div>
             {% empty %}
                 <p>Nenhuma semente cadastrada.</p>
@@ -189,5 +205,46 @@
         <a href="{% url 'fertilizante' %}">Adicionar Fertilizante</a>
         <a href="{% url 'semente' %}">Adicionar Semente</a>
     </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const deleteButtons = document.querySelectorAll('.delete-button');
+
+            deleteButtons.forEach(button => {
+                button.addEventListener('click', async function () {
+                    const id = this.getAttribute('data-id');
+                    const type = this.getAttribute('data-type');
+                    const name = this.closest('.list-item').querySelector('strong').textContent; // Obtém o nome
+                    const url = type === 'fertilizante' 
+                        ? `{% url 'delete_fert' 0 %}`.replace('0', id)
+                        : `{% url 'delete_sem' 0 %}`.replace('0', id);
+
+                    // Confirmação do usuário
+                    const confirmed = confirm(`Você está excluindo "${name}". Tem certeza?`);
+                    if (!confirmed) return; // Se não confirmado, interrompe a exclusão
+
+                    try {
+                        const response = await fetch(url, {
+                            method: 'POST',
+                            headers: {
+                                'X-CSRFToken': document.querySelector('#csrf-form input[name="csrfmiddlewaretoken"]').value,
+                                'Content-Type': 'application/json',
+                            },
+                        });
+
+                        if (response.ok) {
+                            this.closest('.list-item').remove();
+                            alert(`${type.charAt(0).toUpperCase() + type.slice(1)} "${name}" excluído com sucesso!`);
+                        } else {
+                            alert('Erro ao excluir o item.');
+                        }
+                    } catch (error) {
+                        console.error('Erro na solicitação:', error);
+                        alert('Erro ao processar a solicitação.');
+                    }
+                });
+            });
+        });
+    </script>
 </body>
 </html>

@@ -216,15 +216,18 @@ class VerFertilizante(View):
         fertilizantes = Fertilizante.objects.all()
         return render(request, 'visualizar_fert.html', {'fertilizantes': fertilizantes})
 
+from django.http import JsonResponse
+from django.shortcuts import get_object_or_404
+from django.contrib import messages
+
 def delete_fertilizante_view(request, id):
     ferti = get_object_or_404(Fertilizante, id=id)
 
     if request.method == 'POST':
-        ferti.delete()  
-        messages.success(request, 'Fetilizante excluído com sucesso!')
-        return redirect('visualizar_fert')  
+        ferti.delete()
+        return JsonResponse({'status': 'success', 'message': 'Fertilizante excluído com sucesso!'})
 
-    return render(request, 'delete_fertilizante.html', {'fertilizante': ferti})
+    return JsonResponse({'status': 'error', 'message': 'Requisição inválida'}, status=400)
     
 class AddSemente(View):
     def get(self, request):
@@ -250,15 +253,21 @@ class VerSemente(View):
         sementes = Semente.objects.all()
         return render(request, 'visualizar_sem.html', {'sementes': sementes})
 
+from django.http import JsonResponse
+from django.shortcuts import get_object_or_404
+
 def delete_semente_view(request, id):
-    seme = get_object_or_404(Semente, id=id)
+    if request.method == 'POST':  # Verifica se a requisição é POST
+        try:
+            seme = get_object_or_404(Semente, id=id)  # Verifica se a semente existe
+            seme.delete()  # Exclui a semente
+            return JsonResponse({'status': 'success', 'message': 'Semente excluída com sucesso!'})
+        except Exception as e:
+            # Retorna erro em caso de falha inesperada
+            return JsonResponse({'status': 'error', 'message': 'Erro ao excluir a semente.', 'details': str(e)}, status=500)
 
-    if request.method == 'POST':
-        seme.delete()  
-        messages.success(request, 'Semente excluída com sucesso!')
-        return redirect('visualizar_sem')  
-
-    return render(request, 'delete_semente.html', {'semente': seme})
+    # Resposta para métodos diferentes de POST
+    return JsonResponse({'status': 'error', 'message': 'Método inválido. Apenas POST é permitido.'}, status=400)
 
 class Rotacao(View):
     def get(self, request):
