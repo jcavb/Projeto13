@@ -128,19 +128,23 @@ def tomate_infos(request):
     return render(request, 'culturas/tomate.html')
     
 class AddFertilizante(View):
-    def get (self, request):
+    def get(self, request):
         return render(request, 'fertilizante.html')
-    
+
     def post(self, request):
         nome_fertilizantes = request.POST.get("nome")
         urlImagem = request.POST.get("imagem")
 
-        Fertilizante.objects.create(
-            fertilizante = nome_fertilizantes,
-            imagem = urlImagem
-        )
+        if not nome_fertilizantes or not urlImagem:
+            messages.error(request, "Todos os campos são obrigatórios!")
+            return render(request, 'fertilizante.html')
 
-        return redirect('visualizar_fert')
+        Fertilizante.objects.create(
+            fertilizante=nome_fertilizantes,
+            imagem=urlImagem
+        )
+        messages.success(request, "Fertilizante adicionado com sucesso!")
+        return redirect('jatoba:menu')
 
 class VerFertilizante(View):
     def get (self, request):
@@ -158,19 +162,23 @@ def delete_fertilizante_view(request, id):
     return render(request, 'delete_fertilizante.html', {'fertilizante': ferti})
     
 class AddSemente(View):
-    def get (self, request):
+    def get(self, request):
         return render(request, 'semente.html')
-    
+
     def post(self, request):
         nome_sementes = request.POST.get("nome")
         urlImagem = request.POST.get("imagem")
 
-        Semente.objects.create(
-            semente = nome_sementes,
-            imagem = urlImagem
-        )
+        if not nome_sementes or not urlImagem:
+            messages.error(request, "Todos os campos são obrigatórios!")
+            return render(request, 'semente.html')
 
-        return redirect('visualizar_sem')
+        Semente.objects.create(
+            semente=nome_sementes,
+            imagem=urlImagem
+        )
+        messages.success(request, "Semente adicionada com sucesso!")
+        return redirect('jatoba:menu')
 
 class VerSemente(View):
     def get (self, request):
@@ -219,4 +227,11 @@ from django.contrib.auth.decorators import login_required
 
 @login_required
 def menu_view(request):
-    return render(request, 'menu.html')
+    fertilizantes = Fertilizante.objects.all()
+    sementes = Semente.objects.all()
+
+    context = {
+        'fertilizantes': fertilizantes,
+        'sementes': sementes,
+    }
+    return render(request, 'menu.html', context)
