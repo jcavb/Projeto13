@@ -161,9 +161,29 @@
         .delete-task:hover {
             background-color: #cc0000;
         }
+        .back-button {
+            position: fixed;
+            top: 70px; 
+            left: 10px; 
+            background-color: #008000; 
+            color: #fff; 
+            border: none;
+            padding: 10px 20px;
+            font-size: 14px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
+            z-index: 10000; 
+                    }
+                
+                .back-button:hover {
+                    background-color: #006400; 
+                }
     </style>
 </head>
 <body>
+    <button class="back-button" onclick="history.back()">Voltar</button>
     <header>
         <div class="profile">
             <img src="https://via.placeholder.com/40" alt="Foto de Perfil">
@@ -171,10 +191,10 @@
         </div>
         <nav>
             <ul>
-                <li><a href="#">Cuidados diários</a></li>
+                <li><a href="{% url 'tarefas' %}">Cuidados diários</a></li>
                 <li><a href="{% url 'calendario' %}">Calendário</a></li>
-                <li><a href="#">Info-Culturas</a></li>
-                <li><a href="#">Dashboard</a></li>
+                <li><a href="{% url 'infoculturas' %}">Info-Culturas</a></li>
+                <li><a href="{% url 'rotacao' %}">Consórcio de Culturas</a></li>
                 <li><a href="#">Estoque</a></li>
                 <li><a href="#">Relatório</a></li>
             </ul>
