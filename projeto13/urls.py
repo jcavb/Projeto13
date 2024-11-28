@@ -9,11 +9,9 @@ from calendario import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-     path('logout/', views.logout_view, name='logout'),
+    path('logout/', views.logout_view, name='logout'),
     path('login/', views.login_view, name='login'),
-    
-    path('logout/', auth_views.LogoutView.as_view(), name='logout'),
-    
+
     path('home/', views.home, name='home'),
     
     path('signup/', views.signup_view, name='signup'),
@@ -48,8 +46,8 @@ urlpatterns = [
     path('sementes/', views.VerSemente.as_view(), name='visualizar_sem'),
     path('semente/<int:id>/delete/', views.delete_semente_view, name='delete_sem'),
     path('rotacao/', views.Rotacao.as_view(), name='rotacao'),
-    path('calendario/', include('calendario.urls')),  # Inclui as URLs do app `calendario`
     path('', include('jatoba.urls')),  # Inclui as URLs do app `jatoba`
+    path('', include('calendario.urls')),  # Inclui as URLs do app `jatoba`
     
 ]
 

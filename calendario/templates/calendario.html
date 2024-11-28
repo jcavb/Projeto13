@@ -12,13 +12,13 @@
         /* Geral */
         body {
             font-family: 'Oswald', 'Montserrat', sans-serif;
-            background-color: #f9f9f9;
-            color: #333;
+            background-color: #fcf4fc;
+            color: #333;    
             margin: 0;
         }
 
         header {
-            background-color: #008000;
+            background-color: #04a47c;
             color: white;
             padding: 10px;
             display: flex;
@@ -59,6 +59,7 @@
         h1 {
             text-align: center;
             margin-top: 20px;
+            color: #04a47c;
         }
 
         #clear-tasks {
@@ -90,7 +91,7 @@
         .week {
             display: grid;
             grid-template-columns: repeat(7, 1fr);
-            background-color: #008000;
+            background-color: #04a47c;
             color: white;
             padding: 10px 0;
             text-align: center;
@@ -132,7 +133,7 @@
         }
 
         .add-task {
-            background-color: #008000;
+            background-color: #04a47c;
             color: white;
             border: none;
             border-radius: 50%;
@@ -144,7 +145,7 @@
         }
 
         .add-task:hover {
-            background-color: #005500;
+            background-color: #04a47c;
         }
 
         .delete-task {
@@ -163,23 +164,25 @@
         }
         .back-button {
             position: fixed;
-            top: 70px; 
-            left: 10px; 
-            background-color: #008000; 
-            color: #fff; 
+            top: 70px;
+            left: 10px;
+            background-color: #04a47c;
+            color: #fff;
             border: none;
             padding: 10px 20px;
-            font-size: 14px;
+            font-family: 'Oswald', 'Montserrat', sans-serif; /* Igual ao restante da aplicação */
+            font-weight: bold; /* Ajuste de peso para combinar com outros botões */
+            font-size: 16px; /* Ajuste de tamanho para combinar */
             border-radius: 5px;
             cursor: pointer;
             transition: background-color 0.3s ease;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
-            z-index: 10000; 
-                    }
-                
-                .back-button:hover {
-                    background-color: #006400; 
-                }
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            z-index: 10000; /* Aumentado para garantir prioridade */
+        }
+    
+        .back-button:hover {
+            background-color: #04a47c;
+        }
     </style>
 </head>
 <body>
@@ -189,11 +192,11 @@
             <ul>
                 <li><a href="{% url 'protegida' %}">Home</a></li>
                 <li><a href="{% url 'tarefas' %}">Cuidados Diários</a></li>
-                <li><a href="{% url 'calendario:calendario' %}" class="btn btn-primary">Calendário</a></li>
+                <li><a href="{% url 'calendario:calendario' %}">Calendário</a></li>
                 <li><a href="{% url 'infoculturas' %}">Info-Culturas</a></li>
                 <li><a href="{% url 'rotacao' %}">Consórcio de Culturas</a></li>
                 <li><a href="{% url 'jatoba:menu' %}">Estoque</a></li>
-                <li><a href="#">Relatório</a></li>
+                <li><a href="{% url 'calendario:adicionar_observacao' %}" class="btn btn-primary">Relatório</a></li>
             </ul>
         </nav>
     </header>

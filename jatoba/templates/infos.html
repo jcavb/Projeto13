@@ -13,13 +13,13 @@
     /* Geral */
     body {
         font-family: 'Oswald', 'Montserrat', sans-serif;
-        background-color: #f9f9f9;
+        background-color: #fcf4fc;
         color: #333;
         margin: 0;
     }
 
     header {
-        background-color: #008000;
+        background-color: #04a47c;
         color: white;
         padding: 10px;
         display: flex;
@@ -51,24 +51,26 @@
     }
 
     .back-button {
-        position: fixed;
-        top: 70px; 
-        left: 10px; 
-        background-color: #008000; 
-        color: #fff; 
-        border: none;
-        padding: 10px 20px;
-        font-size: 14px;
-        border-radius: 5px;
-        cursor: pointer;
-        transition: background-color 0.3s ease;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
-        z-index: 10000; 
-    }
-
-    .back-button:hover {
-        background-color: #006400; 
-    }
+            position: fixed;
+            top: 70px;
+            left: 10px;
+            background-color: #04a47c;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            font-family: 'Oswald', 'Montserrat', sans-serif; /* Igual ao restante da aplicação */
+            font-weight: bold; /* Ajuste de peso para combinar com outros botões */
+            font-size: 16px; /* Ajuste de tamanho para combinar */
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            z-index: 10000; /* Aumentado para garantir prioridade */
+        }
+    
+        .back-button:hover {
+            background-color: #04a47c;
+        }
 </style>
 </head>
 <body>

@@ -12,46 +12,47 @@
         /* Geral */
         body {
             font-family: 'Oswald', 'Montserrat', sans-serif;
-            line-height: 1.6;
+            background-color: #fcf4fc;
+            color: #333;
             margin: 0;
-            padding: 0;
-            background-color: #f8f8f8;
+            text-align: center;
         }
-
+    
         .container {
             width: 90%;
             margin: 20px auto;
         }
-
+    
         h1 {
             text-align: center;
-            color: #333;
+            color: #008000;
+            margin-top: 20px;
         }
-
+    
         table {
             width: 100%;
             border-collapse: collapse;
             margin-top: 20px;
             border: 2px solid rgb(23, 133, 50);
         }
-
+    
         table th, table td {
             border: 1px solid #ccc;
             padding: 10px;
             text-align: left;
         }
-
+    
         table th {
             background-color: #e6e6e6;
         }
-
+    
         .description {
             text-align: justify;
             margin-bottom: 20px;
         }
-
+    
         footer {
-            background-color: #008000;
+            background-color: #04a47c;
             color: white;
             text-align: center;
             padding: 10px 0;
@@ -59,22 +60,22 @@
             bottom: 0;
             width: 100%;
         }
-
+    
         footer a {
             color: white;
             text-decoration: underline;
         }
-
+    
         /* Header */
         header {
-            background-color: #008000;
+            background-color: #04a47c;
             color: white;
             padding: 10px;
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
-
+    
         header nav ul {
             list-style: none;
             margin: 0;
@@ -82,35 +83,97 @@
             display: flex;
             gap: 15px;
         }
-
+    
         header nav ul li {
             display: inline;
         }
-
+    
         header nav ul li a {
             color: white;
             text-decoration: none;
             font-weight: bold;
+            transition: color 0.3s ease;
         }
-
+    
+        header nav ul li a:hover {
+            color: #f0f0f0;
+        }
+    
+        h1 {
+            color: #04a47c;
+            margin-top: 20px;
+        }
+    
+        .buttons {
+            margin-top: 20px;
+        }
+    
+        .buttons a {
+            text-decoration: none;
+            color: #fff;
+            background-color: #04a47c;
+            padding: 10px 15px;
+            border-radius: 5px;
+            margin: 5px;
+            display: inline-block;
+            transition: background-color 0.3s ease;
+        }
+    
+        .buttons a:hover {
+            background-color: #04a47c;
+        }
+    
         .back-button {
             position: fixed;
-            top: 70px; 
-            left: 10px; 
-            background-color: #008000; 
-            color: #fff; 
+            top: 70px;
+            left: 10px;
+            background-color: #04a47c;
+            color: #fff;
             border: none;
             padding: 10px 20px;
-            font-size: 14px;
+            font-family: 'Oswald', 'Montserrat', sans-serif; /* Igual ao restante da aplicação */
+            font-weight: bold; /* Ajuste de peso para combinar com outros botões */
+            font-size: 16px; /* Ajuste de tamanho para combinar */
             border-radius: 5px;
             cursor: pointer;
             transition: background-color 0.3s ease;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
-            z-index: 1000; 
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            z-index: 10000; /* Aumentado para garantir prioridade */
         }
-
+    
         .back-button:hover {
-            background-color: #006400; 
+            background-color: #04a47c;
+        }
+    
+        /* Elementos Adicionais (unificados com o segundo código) */
+        .section {
+            margin: 20px;
+        }
+    
+        .section h2 {
+            margin-bottom: 10px;
+        }
+    
+        .list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+        }
+    
+        .list-item {
+            text-align: center;
+            border: 1px solid #ccc;
+            padding: 10px;
+            width: 200px;
+            border-radius: 5px;
+            background-color: #fff;
+        }
+    
+        .list-item img {
+            max-width: 100%;
+            height: auto;
+            margin-bottom: 10px;
         }
     </style>
 </head>
@@ -121,11 +184,11 @@
             <ul>
                 <li><a href="{% url 'protegida' %}">Home</a></li>
                 <li><a href="{% url 'tarefas' %}">Cuidados Diários</a></li>
-                <li><a href="{% url 'calendario:calendario' %}" class="btn btn-primary">Calendário</a></li>
+                <li><a href="{% url 'calendario:calendario' %}">Calendário</a></li>
                 <li><a href="{% url 'infoculturas' %}">Info-Culturas</a></li>
                 <li><a href="{% url 'rotacao' %}">Consórcio de Culturas</a></li>
                 <li><a href="{% url 'jatoba:menu' %}">Estoque</a></li>
-                <li><a href="#">Relatório</a></li>
+                <li><a href="{% url 'calendario:adicionar_observacao' %}" class="btn btn-primary">Relatório</a></li>
             </ul>
         </nav>
     </header>

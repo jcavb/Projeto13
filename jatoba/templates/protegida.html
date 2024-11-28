@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -11,12 +12,12 @@
         body {
             margin: 0;
             font-family: 'Oswald', 'Montserrat', sans-serif;
-            background-color: #ffffff;
+            background-color: #fcf4fc;
             color: #333;
         }
         header {
-            background-color: #008000;
-            color: white;
+            background-color: #04a47c;
+            color: #fcf4fc;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -74,7 +75,7 @@
         .logo h1 {
             font-family: Verdana, sans-serif;
             font-size: 50px;
-            color: #008000;
+            color: #04a47c;
         }
         .welcome-message {
             text-align: center;
@@ -108,7 +109,7 @@
             background-color: #ff7700;
         }
         footer {
-            background-color: #008000;
+            background-color: #04a47c;
             color: white;
             text-align: center;
             padding: 10px 0;
@@ -134,9 +135,9 @@
         
     </header>
 
-    <div class="logo">
-        <h1>Jatobá</h1>
-    </div>
+    <section id="logo" style="text-align: center; margin-top: 15px;">
+        <img src="{% static 'images/logo.jpg' %}" alt="Logo" width="300" height="300">
+    </section>
 
     <div class="welcome-message">
         Bem vindo, {{ user_name }}
@@ -148,7 +149,7 @@
     </div>
 
     <div class="buttons">
-        <a href="{% url 'calendario:gerar_pdf' %}" class="btn btn-primary">Gerar PDF</a>
+        <a href="{% url 'calendario:adicionar_observacao' %}" class="btn btn-primary">Relatório</a>
         <a href="{% url 'jatoba:menu' %}">Estoque</a>
         <a href="{% url 'jatoba:tarefas' %}">Cuidados Diários</a>
         <a href="/infoculturas/">Info-Culturas</a>

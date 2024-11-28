@@ -20,20 +20,26 @@ from reportlab.pdfgen import canvas
 from django.contrib.auth.decorators import login_required
 
 @login_required
-def gerar_pdf_com_observacao(request):
+def adicionar_observacao(request):
     if request.method == 'POST':
-        observacao = request.POST.get('observacao', 'Sem observação')  # Pega a observação ou usa um valor padrão
-        
+        # Obtém a observação ou define um valor padrão
+        observacao = request.POST.get('observacao', 'Nenhuma observação fornecida')
+
         # Configura o response para download do PDF
         response = HttpResponse(content_type='application/pdf')
         response['Content-Disposition'] = 'attachment; filename="observacao.pdf"'
 
         # Cria o canvas para o PDF
         p = canvas.Canvas(response)
-        p.setTitle("PDF com Observação")
+        p.setTitle("Relatório com Observação")
+
+        # Adiciona cabeçalho no PDF
         p.drawString(100, 800, f"Relatório do Usuário: {request.user.username}")
-        p.drawString(100, 750, "Observação Inserida:")
-        p.drawString(100, 730, observacao)  # Adiciona a observação
+        p.drawString(100, 780, "----------------------------------------")
+        
+        # Adiciona a observação
+        p.drawString(100, 750, "Observação:")
+        p.drawString(100, 730, observacao)
 
         # Finaliza o PDF
         p.showPage()
@@ -41,33 +47,8 @@ def gerar_pdf_com_observacao(request):
 
         return response
 
-    # Caso não seja POST, retorna ao formulário
+    # Caso GET, renderiza o formulário
     return render(request, 'adicionar_observacao.html')
-
-
-
-
-@login_required
-def gerar_pdf_simples(request):
-    # Configura o response para download do PDF
-    response = HttpResponse(content_type='application/pdf')
-    response['Content-Disposition'] = 'attachment; filename="relatorio.pdf"'
-
-    # Cria o canvas para o PDF
-    p = canvas.Canvas(response)
-    p.setTitle("Relatório Simples")
-    p.drawString(100, 800, f"Relatório Gerado para o Usuário: {request.user.username}")
-    p.drawString(100, 750, "Este é um exemplo de PDF gerado com o ReportLab.")
-
-    # Finaliza o PDF
-    p.showPage()
-    p.save()
-
-    return response
-
-
-
-
 
 def calendario(request):
     dias = list(range(1, 31))  # Dias do mês
