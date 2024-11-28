@@ -4,17 +4,122 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Controle de estoque</title>
+    <title>Controle de Estoque</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Oswald:wght@200..700&display=swap" rel="stylesheet">
+    <style>
+        /* Geral */
+        body {
+            font-family: 'Oswald', 'Montserrat', sans-serif;
+            background-color: #f9f9f9;
+            color: #333;
+            margin: 0;
+        }
+
+        header {
+            background-color: #008000;
+            color: white;
+            padding: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        header nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            gap: 15px;
+        }
+
+        header nav ul li {
+            display: inline;
+        }
+
+        header nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        h1 {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .back-button {
+            position: fixed;
+            top: 70px; 
+            left: 10px; 
+            background-color: #008000; 
+            color: #fff; 
+            border: none;
+            padding: 10px 20px;
+            font-size: 14px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
+            z-index: 10000; 
+        }
+
+        .back-button:hover {
+            background-color: #006400; 
+        }
+
+        .buttons {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 30px;
+        }
+
+        .buttons a {
+            text-decoration: none;
+            color: #fff;
+            background-color: #008000;
+            padding: 15px 20px;
+            margin: 10px 0;
+            border-radius: 5px;
+            font-size: 18px;
+            transition: background-color 0.3s ease;
+        }
+
+        .buttons a:hover {
+            background-color: #006400;
+        }
+    </style>
 </head>
 <body>
-    <a href="{% url 'jatoba:fertilizante' %}">
-        <h1>Adicionar Fertilizantes</h1>
-    </a>
-    <a href="{% url 'jatoba:semente' %}">
-        <h1>Adicionar Sementes</h1>
-    </a>
-    <a href="{% url 'jatoba:rotacao' %}">
-        <h1>Rotações</h1>
-    </a>    
+    <button class="back-button" onclick="history.back()">Voltar</button>
+    <!-- Barra de Navegação -->
+    <header>
+        <nav>
+            <ul>
+                <li><a href="{% url 'protegida' %}">Home</a></li>
+                <li><a href="{% url 'tarefas' %}">Cuidados Diários</a></li>
+                <li><a href="{% url 'calendario:calendario' %}">Calendário</a></li>
+                <li><a href="{% url 'infoculturas' %}">Info-Culturas</a></li>
+                <li><a href="{% url 'rotacao' %}">Consórcio de Culturas</a></li>
+                <li><a href="{% url 'jatoba:menu' %}">Estoque</a></li>
+                <li><a href="#">Relatório</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Conteúdo Principal -->
+    <div class="buttons">
+        <a href="{% url 'jatoba:fertilizante' %}">
+            <h1>Adicionar Fertilizantes</h1>
+        </a>
+        <a href="{% url 'jatoba:semente' %}">
+            <h1>Adicionar Sementes</h1>
+        </a>
+        <a href="{% url 'jatoba:rotacao' %}">
+            <h1>Rotações</h1>
+        </a>
+    </div>
 </body>
 </html>
