@@ -23,7 +23,7 @@ urlpatterns = [
     path('couve/', views.couve_infos, name='couve_infos'),
     
     path('macaxeira/', views.macaxeira_infos, name='macaxeira_infos'),
-
+    path('logout/', views.logout_view, name='logout'),
     path('rucula/', views.rucula_infos, name='rucula_infos'),    
     path('menu/', views.menu_view, name='menu'),  # Adiciona a rota para o menu
     path('tomate/', views.tomate_infos, name='tomate_infos'),

@@ -9,7 +9,7 @@ from calendario import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    
+     path('logout/', views.logout_view, name='logout'),
     path('login/', views.login_view, name='login'),
     
     path('logout/', auth_views.LogoutView.as_view(), name='logout'),

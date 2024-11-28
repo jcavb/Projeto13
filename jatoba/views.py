@@ -244,3 +244,10 @@ def menu_view(request):
         'sementes': sementes,
     }
     return render(request, 'menu.html', context)
+
+from django.contrib.auth import logout
+from django.shortcuts import redirect
+
+def logout_view(request):
+    logout(request)
+    return redirect('login')  # Substitua 'login' pela URL da página de login
