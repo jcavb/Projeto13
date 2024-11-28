@@ -13,64 +13,60 @@ from django.contrib.auth.backends import ModelBackend
 from django.contrib.auth import get_user_model, login
 from django.shortcuts import get_object_or_404
 from django.views import View  # type: ignore
-from django.http import HttpResponse
-from reportlab.pdfgen import canvas
-from .models import Atividade
 from django.contrib.auth.decorators import login_required
 
+from django.http import HttpResponse
+from reportlab.pdfgen import canvas
+from django.contrib.auth.decorators import login_required
+
+@login_required
+def gerar_pdf_com_observacao(request):
+    if request.method == 'POST':
+        observacao = request.POST.get('observacao', 'Sem observação')  # Pega a observação ou usa um valor padrão
+        
+        # Configura o response para download do PDF
+        response = HttpResponse(content_type='application/pdf')
+        response['Content-Disposition'] = 'attachment; filename="observacao.pdf"'
+
+        # Cria o canvas para o PDF
+        p = canvas.Canvas(response)
+        p.setTitle("PDF com Observação")
+        p.drawString(100, 800, f"Relatório do Usuário: {request.user.username}")
+        p.drawString(100, 750, "Observação Inserida:")
+        p.drawString(100, 730, observacao)  # Adiciona a observação
+
+        # Finaliza o PDF
+        p.showPage()
+        p.save()
+
+        return response
+
+    # Caso não seja POST, retorna ao formulário
+    return render(request, 'adicionar_observacao.html')
 
 
 
 
 @login_required
-def gerar_relatorio_pdf(request):
-    # Configura o response para criar o arquivo PDF
-    response = HttpResponse(content_type='application/pdf')
-    response['Content-Disposition'] = 'attachment; filename="relatorio_atividades.pdf"'
-    # Inicia o canvas para o PDF
-    p = canvas.Canvas(response)
-    p.setTitle("Relatório de Atividades - Usuário")
-    # Título do documento
-    p.drawString(100, 800, f"Relatório de Atividades - Usuário: {request.user.username}")
-    # Busca as atividades do usuário logado
-    atividades = Atividade.objects.filter(usuario=request.user)
-    # Listando as atividades no PDF
-    y = 750
-    if atividades.exists():
-        for atividade in atividades:
-            p.drawString(
-                100, y,
-                f"Atividade: {atividade.tipo} | Descrição: {atividade.descricao} | Data: {atividade.data_realizacao}"
-            )
-            y -= 20
-            if y < 100:  # Se ultrapassar a margem inferior
-                p.showPage()
-                y = 750
-
-    p.showPage()
-    p.save()
-    return response
-
-
-
-
-def adicionar_observacao(request):
-    if request.method == 'POST':
-        observacao = request.POST.get('observacao')
-        return gerar_pdf_com_observacao(request, observacao)
-    return render(request, 'adicionar_observacao.html')
-
-def gerar_pdf_com_observacao(request, observacao):
+def gerar_pdf_simples(request):
+    # Configura o response para download do PDF
     response = HttpResponse(content_type='application/pdf')
     response['Content-Disposition'] = 'attachment; filename="relatorio.pdf"'
 
+    # Cria o canvas para o PDF
     p = canvas.Canvas(response)
-    p.drawString(100, 800, f"Relatório de Atividades - Usuário: {request.user.username}")
-    p.drawString(100, 700, f"Observação: {observacao}")
+    p.setTitle("Relatório Simples")
+    p.drawString(100, 800, f"Relatório Gerado para o Usuário: {request.user.username}")
+    p.drawString(100, 750, "Este é um exemplo de PDF gerado com o ReportLab.")
+
+    # Finaliza o PDF
     p.showPage()
     p.save()
 
     return response
+
+
+
 
 
 def calendario(request):
