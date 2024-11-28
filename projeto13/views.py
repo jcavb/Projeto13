@@ -21,3 +21,6 @@ def signup(request):
         form = UserCreationForm()
     return render(request, 'signup.html', {'form': form})
 
+@login_required
+def menu_view(request):
+    return render(request, 'menu.html')

@@ -93,7 +93,8 @@ def login_view(request):
 
 @login_required
 def pagina_protegida(request):
-    return render(request, 'protegida.html')
+    user_name = request.user.first_name or request.user.username
+    return render(request, 'protegida.html', {'user_name': user_name})
 
 def buscar_cultura(request):
     query = request.GET.get('q')
@@ -213,3 +214,9 @@ class Rotacao(View):
 
         # Redireciona para outra página ou implementa lógica adicional
         return redirect('rotacao')
+
+from django.contrib.auth.decorators import login_required
+
+@login_required
+def menu_view(request):
+    return render(request, 'menu.html')

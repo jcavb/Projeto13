@@ -1,5 +1,4 @@
 {% load static %}
-
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -10,39 +9,47 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Oswald:wght@200..700&display=swap" rel="stylesheet">
     <style>
+        /* Geral */
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Oswald', 'Montserrat', sans-serif;
             line-height: 1.6;
             margin: 0;
             padding: 0;
             background-color: #f8f8f8;
         }
+
         .container {
             width: 90%;
             margin: 20px auto;
         }
+
         h1 {
             text-align: center;
             color: #333;
         }
+
         table {
             width: 100%;
             border-collapse: collapse;
             margin-top: 20px;
             border: 2px solid rgb(23, 133, 50);
         }
+
         table th, table td {
             border: 1px solid #ccc;
             padding: 10px;
             text-align: left;
         }
+
         table th {
             background-color: #e6e6e6;
         }
+
         .description {
             text-align: justify;
             margin-bottom: 20px;
         }
+
         footer {
             background-color: #008000;
             color: white;
@@ -52,10 +59,13 @@
             bottom: 0;
             width: 100%;
         }
+
         footer a {
             color: white;
             text-decoration: underline;
         }
+
+        /* Header */
         header {
             background-color: #008000;
             color: white;
@@ -63,18 +73,6 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-        }
-
-        header .profile {
-            display: flex;
-            align-items: center;
-        }
-
-        header .profile img {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            margin-right: 10px;
         }
 
         header nav ul {
@@ -94,10 +92,11 @@
             text-decoration: none;
             font-weight: bold;
         }
+
         .back-button {
             position: fixed;
             top: 70px; 
-            left: 20px; 
+            left: 10px; 
             background-color: #008000; 
             color: #fff; 
             border: none;
@@ -109,7 +108,7 @@
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
             z-index: 1000; 
         }
-        
+
         .back-button:hover {
             background-color: #006400; 
         }
@@ -118,18 +117,15 @@
 <body>
     <button class="back-button" onclick="history.back()">Voltar</button>
     <header>
-        <div class="profile">
-            <img src="https://via.placeholder.com/40" alt="Foto de Perfil">
-            <span>Nome</span>
-        </div>
         <nav>
             <ul>
-                <li><a href="{% url 'gerar_relatorio_pdf' %}" class="btn btn-primary">Baixar Relatório</a></li>
-                <li><a href="#">Visualizar Sementes</a></li>
-                <li><a href="{% url 'tarefas' %}">Cuidados diários</a></li>
-                <li><a href="/infoculturas/">Info-Culturas</a></li>
-                <li><a href="{% url 'rotacao' %}">Consórcio de Culturas</a></li>
+                <li><a href="{% url 'protegida' %}">Home</a></li>
+                <li><a href="{% url 'tarefas' %}">Cuidados Diários</a></li>
                 <li><a href="{% url 'calendario' %}">Calendário</a></li>
+                <li><a href="{% url 'infoculturas' %}">Info-Culturas</a></li>
+                <li><a href="{% url 'rotacao' %}">Consórcio de Culturas</a></li>
+                <li><a href="#">Estoque</a></li>
+                <li><a href="#">Relatório</a></li>
             </ul>
         </nav>
     </header>
@@ -145,8 +141,8 @@
             <thead>
                 <tr>
                     <th>Cultura</th>
-                    <th>Consorciação de culturas favoráveis</th>
-                    <th>Consorciação de culturas desfavoráveis</th>
+                    <th>Consorciação de Culturas Favoráveis</th>
+                    <th>Consorciação de Culturas Desfavoráveis</th>
                 </tr>
             </thead>
             <tbody>
@@ -193,7 +189,7 @@
             </tbody>
         </table>
     </div>
-    <!-- Rodapé -->
+    
     <footer>
         Precisa de ajuda? <a href="#">Entre em contato!</a>
     </footer>
