@@ -145,11 +145,11 @@
     <header>
         <nav>
             <ul>
-                <li><a href="{% url 'protegida' %}">Home</a></li>
-                <li><a href="{% url 'tarefas' %}">Cuidados Diários</a></li>
+                <li><a href="{% url 'jatoba:protegida' %}">Home</a></li>
+                <li><a href="{% url 'jatoba:tarefas' %}">Cuidados Diários</a></li>
                 <li><a href="{% url 'calendario:calendario' %}">Calendário</a></li>
-                <li><a href="{% url 'infoculturas' %}">Info-Culturas</a></li>
-                <li><a href="{% url 'rotacao' %}">Consórcio de Culturas</a></li>
+                <li><a href="{% url 'jatoba:infoculturas' %}">Info-Culturas</a></li>
+                <li><a href="{% url 'jatoba:rotacao' %}">Consórcio de Culturas</a></li>
                 <li><a href="{% url 'jatoba:menu' %}">Estoque</a></li>
                 <li><a href="{% url 'calendario:adicionar_observacao' %}" class="btn btn-primary">Relatório</a></li>
             </ul>
@@ -205,8 +205,8 @@
 
     <!-- Botões de Adição -->
     <div class="buttons">
-        <a href="{% url 'fertilizante' %}">Adicionar Fertilizante</a>
-        <a href="{% url 'semente' %}">Adicionar Semente</a>
+        <a href="{% url 'jatoba:fertilizante' %}">Adicionar Fertilizante</a>
+        <a href="{% url 'jatoba:semente' %}">Adicionar Semente</a>
     </div>
 
     <script>
@@ -219,8 +219,8 @@
                     const type = this.getAttribute('data-type');
                     const name = this.closest('.list-item').querySelector('strong').textContent; // Obtém o nome
                     const url = type === 'fertilizante' 
-                        ? `{% url 'delete_fert' 0 %}`.replace('0', id)
-                        : `{% url 'delete_sem' 0 %}`.replace('0', id);
+                        ? `{% url 'jatoba:delete_fert' 0 %}`.replace('0', id)
+                        : `{% url 'jatoba:delete_sem' 0 %}`.replace('0', id);
 
                     // Confirmação do usuário
                     const confirmed = confirm(`Você está excluindo "${name}". Tem certeza?`);

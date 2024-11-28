@@ -1,4 +1,5 @@
-# calendario/views.py
+import locale
+locale.setlocale(locale.LC_TIME, 'pt_BR.UTF-8')
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login, authenticate
 from django.shortcuts import render, redirect
@@ -14,10 +15,15 @@ from django.contrib.auth import get_user_model, login
 from django.shortcuts import get_object_or_404
 from django.views import View  # type: ignore
 from django.contrib.auth.decorators import login_required
-
+from datetime import datetime
 from django.http import HttpResponse
 from reportlab.pdfgen import canvas
 from django.contrib.auth.decorators import login_required
+import calendar
+from django.shortcuts import render
+from django.contrib.auth.decorators import login_required
+
+
 
 @login_required
 def adicionar_observacao(request):
@@ -50,10 +56,77 @@ def adicionar_observacao(request):
     # Caso GET, renderiza o formulário
     return render(request, 'adicionar_observacao.html')
 
+from datetime import datetime
+import calendar
+from django.shortcuts import render, redirect
+from .models import Tarefa
+from django.contrib.auth.decorators import login_required
+
+@login_required
 def calendario(request):
-    dias = list(range(1, 31))  # Dias do mês
-    tarefas = Tarefa.objects.all()  # Busca todas as tarefas do banco de dados
-    return render(request, 'calendario.html', {'dias': dias, 'tarefas': tarefas})
+    mes = int(request.GET.get('mes', datetime.now().month))
+    ano = int(request.GET.get('ano', datetime.now().year))
+
+    _, dias_no_mes = calendar.monthrange(ano, mes)
+    primeiro_dia_semana = calendar.monthrange(ano, mes)[0]  # Índice do primeiro dia da semana (0=Segunda)
+
+    # Consulta tarefas para o mês e ano atuais
+    tarefas = Tarefa.objects.filter(dia__year=ano, dia__month=mes)
+
+    # Gera os dias do mês com as tarefas associadas
+    dias = []
+    for dia_num in range(1, dias_no_mes + 1):
+        tarefas_do_dia = tarefas.filter(dia__day=dia_num)
+        dias.append({'dia': dia_num, 'tarefas': tarefas_do_dia})
+
+    # Prepara células vazias para o template (dias anteriores ao início do mês)
+    celulas_vazias = list(range(primeiro_dia_semana))
+
+    return render(request, 'calendario.html', {
+        'dias': dias,
+        'celulas_vazias': celulas_vazias,
+        'mes': mes,
+        'ano': ano,
+        'nome_mes': calendar.month_name[mes],
+        'anterior_mes': (mes - 1) if mes > 1 else 12,
+        'anterior_ano': (ano - 1) if mes == 1 else ano,
+        'proximo_mes': (mes + 1) if mes < 12 else 1,
+        'proximo_ano': (ano + 1) if mes == 12 else ano,
+    })
+
+@login_required
+def adicionar_tarefa(request):
+    if request.method == 'POST':
+        descricao = request.POST.get('descricao')
+        dia = request.POST.get('dia')
+        mes = request.POST.get('mes')
+        ano = request.POST.get('ano')
+        if descricao and dia and mes and ano:
+            try:
+                dia = int(dia)
+                mes = int(mes)
+                ano = int(ano)
+                data = datetime(ano, mes, dia).date()
+                tarefa = Tarefa.objects.create(dia=data, descricao=descricao)
+                return JsonResponse({'id': tarefa.id, 'descricao': tarefa.descricao})
+            except ValueError:
+                return JsonResponse({'error': 'Data inválida'}, status=400)
+        else:
+            return JsonResponse({'error': 'Dados inválidos'}, status=400)
+    else:
+        return JsonResponse({'error': 'Método inválido'}, status=400)
+
+
+@login_required
+def excluir_tarefa(request, tarefa_id):
+    if request.method == 'POST':
+        try:
+            tarefa = Tarefa.objects.get(id=tarefa_id)
+            tarefa.delete()
+            return JsonResponse({'success': True})
+        except Tarefa.DoesNotExist:
+            return JsonResponse({'error': 'Tarefa não encontrada'}, status=404)
+    return JsonResponse({'error': 'Método inválido'}, status=400)
 
 def login_view(request):
     if request.method == 'POST':

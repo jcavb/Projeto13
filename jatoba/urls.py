@@ -28,7 +28,6 @@ urlpatterns = [
     path('menu/', views.menu_view, name='menu'),  # Adiciona a rota para o menu
     path('tomate/', views.tomate_infos, name='tomate_infos'),
     path('fertilizante/', views.AddFertilizante.as_view(), name='fertilizante'),
-    path('fertilizantes/', views.VerFertilizante.as_view(), name='visualizar_fert'),
     path('fertilizante/<int:id>/delete/', views.delete_fertilizante_view, name='delete_fert'),
     path('semente/', views.AddSemente.as_view(), name='semente'),
     path('sementes/', views.VerSemente.as_view(), name='visualizar_sem'),

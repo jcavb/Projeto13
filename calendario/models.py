@@ -77,13 +77,13 @@ class Rotacoes(models.Model):
         return self.nome
     
 class Tarefa(models.Model):
-    dia = models.IntegerField(default=1)  # Define um valor padrão para o dia
-    descricao = models.TextField(default="Nova Tarefa")  # Define um valor padrão para a descrição
-    concluida = models.BooleanField(default=False)  # Define que tarefas são criadas como não concluídas
-    data_criacao = models.DateTimeField(default=now)  # Define a data de criação como a data/hora atual
+    descricao = models.CharField(max_length=255)
+    dia = models.DateField()
+    concluida = models.BooleanField(default=False)
+    data_criacao = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return f"Tarefa do dia {self.dia}: {self.descricao}"
+        return self.descricao
     
 
 class Atividade(models.Model):

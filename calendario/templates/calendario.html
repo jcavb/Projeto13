@@ -2,18 +2,18 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calendário</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Oswald:wght@200..700&display=swap" rel="stylesheet">
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Calendário de Irrigação</title>
     <style>
         /* Geral */
         body {
             font-family: 'Oswald', 'Montserrat', sans-serif;
             background-color: #fcf4fc;
-            color: #333;    
+            color: #333;
             margin: 0;
         }
 
@@ -26,16 +26,9 @@
             align-items: center;
         }
 
-        header .profile {
-            display: flex;
-            align-items: center;
-        }
-
-        header .profile img {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            margin-right: 10px;
+        header h1 {
+            font-size: 24px;
+            margin: 0;
         }
 
         header nav ul {
@@ -56,35 +49,43 @@
             font-weight: bold;
         }
 
-        h1 {
-            text-align: center;
-            margin-top: 20px;
+        .navigation {
+            margin-top: 10px;
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .nav-button {
+            background-color: white;
             color: #04a47c;
-        }
-
-        #clear-tasks {
-            display: block;
-            margin: 20px auto;
-            background-color: #ff0000;
-            color: white;
-            border: none;
-            border-radius: 5px;
+            border: 2px solid #04a47c;
             padding: 10px 20px;
+            border-radius: 5px;
             font-size: 16px;
+            font-weight: bold;
+            text-decoration: none;
             cursor: pointer;
+            transition: all 0.3s ease-in-out;
         }
 
-        #clear-tasks:hover {
-            background-color: #cc0000;
+        .nav-button:hover {
+            background-color: #027a5e;
+            color: white;
+        }
+
+        main {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 10px;
         }
 
         .calendar {
-            max-width: 900px;
-            margin: 20px auto;
+            display: grid;
+            grid-template-rows: auto;
             background: white;
             border: 1px solid #ccc;
             border-radius: 8px;
-            overflow: hidden;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
         }
 
@@ -107,7 +108,7 @@
         .day {
             background: white;
             padding: 10px;
-            min-height: 100px;
+            min-height: 120px;
             border: 1px solid #ddd;
             display: flex;
             flex-direction: column;
@@ -120,7 +121,11 @@
             font-weight: bold;
         }
 
-        .task-item {
+        .tasks {
+            width: 100%;
+        }
+
+        .task {
             background-color: #f0f0f0;
             color: #333;
             padding: 5px;
@@ -132,69 +137,58 @@
             align-items: center;
         }
 
-        .add-task {
-            background-color: #04a47c;
-            color: white;
-            border: none;
-            border-radius: 50%;
-            width: 25px;
-            height: 25px;
-            font-size: 18px;
-            cursor: pointer;
-            margin-top: 10px;
-        }
-
-        .add-task:hover {
-            background-color: #04a47c;
-        }
-
-        .delete-task {
+        .task .delete-task {
             background-color: #ff0000;
             color: white;
             border: none;
             border-radius: 4px;
             padding: 2px 8px;
             font-size: 12px;
-            margin-left: 10px;
             cursor: pointer;
+            transition: background-color 0.3s;
         }
 
-        .delete-task:hover {
+        .task .delete-task:hover {
             background-color: #cc0000;
         }
-        .back-button {
-            position: fixed;
-            top: 70px;
-            left: 10px;
+
+        .add-task {
             background-color: #04a47c;
-            color: #fff;
+            color: white;
             border: none;
-            padding: 10px 20px;
-            font-family: 'Oswald', 'Montserrat', sans-serif; /* Igual ao restante da aplicação */
-            font-weight: bold; /* Ajuste de peso para combinar com outros botões */
-            font-size: 16px; /* Ajuste de tamanho para combinar */
-            border-radius: 5px;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            font-size: 20px;
+            font-weight: bold;
             cursor: pointer;
-            transition: background-color 0.3s ease;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            z-index: 10000; /* Aumentado para garantir prioridade */
+            margin-top: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background-color 0.3s;
         }
-    
-        .back-button:hover {
-            background-color: #04a47c;
+
+        .add-task:hover {
+            background-color: #027a5e;
+        }
+
+        .empty-day {
+            background: transparent;
+            border: none;
         }
     </style>
 </head>
 <body>
-    <button class="back-button" onclick="history.back()">Voltar</button>
     <header>
+        <h1>Calendário de {{ nome_mes }} de {{ ano }}</h1>
         <nav>
             <ul>
-                <li><a href="{% url 'protegida' %}">Home</a></li>
-                <li><a href="{% url 'tarefas' %}">Cuidados Diários</a></li>
+                <li><a href="{% url 'jatoba:protegida' %}">Home</a></li>
+                <li><a href="{% url 'jatoba:tarefas' %}">Cuidados Diários</a></li>
                 <li><a href="{% url 'calendario:calendario' %}">Calendário</a></li>
-                <li><a href="{% url 'infoculturas' %}">Info-Culturas</a></li>
-                <li><a href="{% url 'rotacao' %}">Consórcio de Culturas</a></li>
+                <li><a href="{% url 'jatoba:infoculturas' %}">Info-Culturas</a></li>
+                <li><a href="{% url 'jatoba:rotacao' %}">Consórcio de Culturas</a></li>
                 <li><a href="{% url 'jatoba:menu' %}">Estoque</a></li>
                 <li><a href="{% url 'calendario:adicionar_observacao' %}" class="btn btn-primary">Relatório</a></li>
             </ul>
@@ -202,10 +196,11 @@
     </header>
 
     <main>
-        <h1>Calendário de Irrigação</h1>
-        <button id="clear-tasks">Limpar Todas as Tarefas</button>
+        <div class="navigation">
+            <a href="?mes={{ anterior_mes }}&ano={{ anterior_ano }}" class="nav-button">Anterior</a>
+            <a href="?mes={{ proximo_mes }}&ano={{ proximo_ano }}" class="nav-button">Próximo</a>
+        </div>
         <div class="calendar">
-            <!-- Dias da Semana -->
             <div class="week">
                 <div>Segunda</div>
                 <div>Terça</div>
@@ -216,12 +211,24 @@
                 <div>Domingo</div>
             </div>
 
-            <!-- Dias do mês -->
             <div class="days">
-                {% for day in dias %}
-                <div class="day" data-day="{{ day }}">
-                    <span class="date">{{ day }}</span>
-                    <div class="tasks"></div>
+                <!-- Render células vazias -->
+                {% for _ in celulas_vazias %}
+                <div class="day empty-day"></div>
+                {% endfor %}
+            
+                <!-- Renderização dos dias do mês -->
+                {% for dia in dias %}
+                <div class="day" data-dia="{{ dia.dia }}">
+                    <div class="date">{{ dia.dia }}</div>
+                    <div class="tasks">
+                        {% for tarefa in dia.tarefas %}
+                        <div class="task" data-id="{{ tarefa.id }}">
+                            {{ tarefa.descricao }}
+                            <button class="delete-task">🗑️</button>
+                        </div>
+                        {% endfor %}
+                    </div>
                     <button class="add-task">+</button>
                 </div>
                 {% endfor %}
@@ -230,95 +237,67 @@
     </main>
 
     <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            const addTaskButtons = document.querySelectorAll(".add-task");
-            const clearTasksButton = document.getElementById("clear-tasks");
+        document.addEventListener('DOMContentLoaded', function () {
+            const mes = parseInt("{{ mes }}");
+            const ano = parseInt("{{ ano }}");
+            const excluirTarefaUrlTemplate = "{% url 'calendario:excluir_tarefa' tarefa_id=0 %}";
     
-            // Função para salvar tarefas no localStorage
-            function saveTasks() {
-                const tasksData = {};
-                document.querySelectorAll(".day").forEach((dayElement) => {
-                    const day = dayElement.dataset.day;
-                    const tasks = [];
-                    dayElement.querySelectorAll(".task-item span").forEach((taskElement) => {
-                        tasks.push(taskElement.textContent);
-                    });
-                    tasksData[day] = tasks;
-                });
-                localStorage.setItem("tasks", JSON.stringify(tasksData));
-            }
-    
-            // Função para carregar tarefas do localStorage
-            function loadTasks() {
-                const tasksData = JSON.parse(localStorage.getItem("tasks")) || {};
-                document.querySelectorAll(".day").forEach((dayElement) => {
-                    const day = dayElement.dataset.day;
-                    const tasks = tasksData[day] || [];
-                    tasks.forEach((task) => {
-                        const taskElement = document.createElement("div");
-                        taskElement.classList.add("task-item");
-    
-                        const taskText = document.createElement("span");
-                        taskText.textContent = task;
-    
-                        const deleteButton = document.createElement("button");
-                        deleteButton.textContent = "🗑️";
-                        deleteButton.classList.add("delete-task");
-                        deleteButton.addEventListener("click", function () {
-                            taskElement.remove();
-                            saveTasks(); // Atualiza o armazenamento ao excluir
+            // Função para adicionar handlers de exclusão
+            function attachDeleteHandlers() {
+                document.querySelectorAll('.delete-task').forEach(button => {
+                    button.onclick = function () {
+                        const taskElement = this.closest('.task');
+                        const id = taskElement.dataset.id;
+                        const url = excluirTarefaUrlTemplate.replace('0', id);
+                        fetch(url, {
+                            method: 'POST',
+                            headers: { 'X-CSRFToken': '{{ csrf_token }}' }
+                        })
+                        .then(response => response.json())
+                        .then(data => {
+                            if (data.success) {
+                                taskElement.remove();
+                            }
                         });
-    
-                        taskElement.appendChild(taskText);
-                        taskElement.appendChild(deleteButton);
-                        dayElement.querySelector(".tasks").appendChild(taskElement);
-                    });
+                    };
                 });
             }
     
-            // Adiciona tarefas ao clicar no botão "+"
-            addTaskButtons.forEach((button) => {
-                button.addEventListener("click", function () {
-                    const dayElement = this.closest(".day");
-                    const day = dayElement.dataset.day;
-    
-                    const task = prompt(`Adicione uma tarefa para o dia ${day}:`);
-                    if (task) {
-                        const taskElement = document.createElement("div");
-                        taskElement.classList.add("task-item");
-    
-                        const taskText = document.createElement("span");
-                        taskText.textContent = task;
-    
-                        const deleteButton = document.createElement("button");
-                        deleteButton.textContent = "🗑️";
-                        deleteButton.classList.add("delete-task");
-                        deleteButton.addEventListener("click", function () {
-                            taskElement.remove();
-                            saveTasks(); // Atualiza o armazenamento ao excluir
+            // Adiciona tarefas
+            document.querySelectorAll('.add-task').forEach(button => {
+                button.onclick = function () {
+                    const dayElement = this.closest('.day');
+                    const dia = dayElement.dataset.dia;
+                    const descricao = prompt('Digite a descrição da tarefa:');
+                    if (descricao) {
+                        fetch("{% url 'calendario:adicionar_tarefa' %}", {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/x-www-form-urlencoded',
+                                'X-CSRFToken': '{{ csrf_token }}',
+                            },
+                            body: new URLSearchParams({ dia, mes, ano, descricao })
+                        })
+                        .then(response => response.json())
+                        .then(data => {
+                            if (data.id) {
+                                const taskElement = document.createElement('div');
+                                taskElement.classList.add('task');
+                                taskElement.setAttribute('data-id', data.id);
+                                taskElement.innerHTML = `
+                                    ${data.descricao}
+                                    <button class="delete-task">🗑️</button>
+                                `;
+                                dayElement.querySelector('.tasks').appendChild(taskElement);
+                                attachDeleteHandlers(); // Reanexa os handlers de exclusão
+                            }
                         });
-    
-                        taskElement.appendChild(taskText);
-                        taskElement.appendChild(deleteButton);
-                        dayElement.querySelector(".tasks").appendChild(taskElement);
-                        saveTasks(); // Salva as tarefas ao adicionar
                     }
-                });
+                };
             });
     
-            // Limpa todas as tarefas
-            clearTasksButton.addEventListener("click", function () {
-                if (confirm("Tem certeza que deseja apagar todas as tarefas?")) {
-                    const allTasks = document.querySelectorAll(".tasks");
-                    allTasks.forEach((tasksContainer) => {
-                        tasksContainer.innerHTML = ""; // Remove todas as tarefas
-                    });
-                    localStorage.removeItem("tasks"); // Limpa o armazenamento
-                }
-            });
-    
-            // Carrega tarefas salvas ao inicializar
-            loadTasks();
+            // Inicializa os handlers de exclusão ao carregar a página
+            attachDeleteHandlers();
         });
     </script>
     
