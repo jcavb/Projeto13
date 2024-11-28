@@ -86,7 +86,7 @@ def login_view(request):
 
         if user is not None:
             login(request, user)
-            return redirect('protegida') 
+            return redirect('jatoba:protegida')  # Inclua o namespace aqui
         else:
             messages.error(request, 'Email ou senha inválidos.')
     return render(request, 'login.html')
