@@ -1,7 +1,9 @@
-# calendario/urls.py
+from django.contrib import admin
 from django.urls import path
 from . import views
 from calendario import views
+
+app_name = 'calendario'
 
 urlpatterns = [
     # Define a URL para a página do calendário
