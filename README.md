@@ -19,20 +19,20 @@ Confira abaixo a logo oficial do Jatobá:
   - **Objetivo**: Facilitar a organização e acompanhamento das tarefas de manejo agrícola.
 
 ### 2. **Calendário de Culturas**
-  - Visualize o melhor período de plantio para cada cultura ao longo do ano.
-  - **Objetivo**: Planejar a produção agrícola de maneira otimizada com base nas melhores práticas sazonais.
+  - Adicione compromissos no calendário e os acompanhe.
+  - **Objetivo**: Planejar a produção agrícola de maneira otimizada.
 
 ### 3. **Info-Culturas**
   - Acesse informações detalhadas sobre cada tipo de cultura.
   - **Objetivo**: Garantir o manejo adequado de cada plantação, desde o plantio até a colheita.
 
-### 4. **Comunidade**
-  - Colabore em tempo real com outros membros da equipe, informando sobre atividades concluídas e pendentes.
-  - **Objetivo**: Criar um ambiente colaborativo para que todos os envolvidos estejam atualizados sobre o progresso e as necessidades do cultivo.
+### 4. **Estoque**
+  - Faça um controle de estoque, adicionando fertilizantes e sementes no seu estoque virtual.
+  - **Objetivo**: Criar um ambiente para melhor organização do seu estoque.
 
-### 5. **Lembretes Automáticos**
-  - Receba notificações e lembretes automáticos para garantir que atividades essenciais sejam realizadas no tempo certo.
-  - **Objetivo**: Evitar esquecimentos e garantir a saúde contínua das culturas.
+### 5. **Rotação**
+  - Veja quais culturas sao favoráveis e desfavoráveis para rotacionar com uma determinada cultura.
+  - **Objetivo**: Ter um maior controle e noção da rotatividade.
 
 ---
 
@@ -46,14 +46,15 @@ Transformar a maneira como a agricultura é gerida, oferecendo soluções que fa
 
 - [Jira - Gestão de Tarefas](https://cesar-grupo13.atlassian.net/jira/software/projects/KAN/boards/1)
 - [Apresentação Conceitual](https://docs.google.com/document/d/1YcFWUKt5CzpJgBr-Ovjdaf_afpZoh-Ol2bMEGYuE8Uc/edit)
-- [Protótipo de Baixa Fidelidade](https://whimsical.com/projetos-2-RQ9MwTocTEx5vwWRUrH7Qc)
+- [Protótipo de Média Fidelidade](https://github.com/user-attachments/assets/b6fca57c-4629-4b3d-a96e-a7934c8e3e7d)
 - [Jatoba](https://djangodeploy2-asb8e9a3aye4accj.brazilsouth-01.azurewebsites.net/)
 
 ---
 
 ## 🔄 Diagrama de Atividades do Sistema
-
+  ### Sr1
 ![image](https://github.com/user-attachments/assets/66542e1d-37c6-4d93-9549-2c1949d36f61)
+  ### Sr2
 ![Captura de Tela (454)](https://github.com/user-attachments/assets/55c2c9d7-3cf8-4cdd-bd17-ce9af03ebfcf)
 
 ---
@@ -69,8 +70,12 @@ Transformar a maneira como a agricultura é gerida, oferecendo soluções que fa
 
 - **Jira**: Para gestão de tarefas e acompanhamento do projeto.
 - **Azure**: Infraestrutura e hospedagem do sistema.
-- **Whimsical**: Para design de protótipos e fluxos.
+- **Figma**: Para design de protótipos e fluxos.
 - **GitHub**: Versionamento de código e colaboração.
+- **Cypress**: Testes automatizados.
+- **Sqlite**: Banco de dados.
+- **PostgreSQL**: Banco de dados.
+- **Node Js**: Rodar o cypress.
 
 ---
 
@@ -108,8 +113,7 @@ Transformar a maneira como a agricultura é gerida, oferecendo soluções que fa
 
 ## 📦 Issue Tracker / Bug Report
 
-![Captura de Tela (455)](https://github.com/user-attachments/assets/c8febfc3-6198-4b73-9075-8aaeba36cbca)
-
+![image](https://github.com/user-attachments/assets/99e4e52b-130e-490e-b19f-36734928e287)
 
 ---
 
