@@ -75,7 +75,7 @@ Transformar a maneira como a agricultura é gerida, oferecendo soluções que fa
 - [Jira - Gestão de Tarefas](https://cesar-grupo13.atlassian.net/jira/software/projects/KAN/boards/1)
 - [Apresentação Conceitual](https://docs.google.com/document/d/1YcFWUKt5CzpJgBr-Ovjdaf_afpZoh-Ol2bMEGYuE8Uc/edit)
 - [Protótipo de Média Fidelidade](https://github.com/user-attachments/assets/b6fca57c-4629-4b3d-a96e-a7934c8e3e7d)
-- [Jatoba](https://djangodeploy2-asb8e9a3aye4accj.brazilsouth-01.azurewebsites.net/)
+- [Jatoba](https://djangodeploy2-asb8e9a3aye4accj.brazilsouth-01.azurewebsites.net)
 
 ---
 
