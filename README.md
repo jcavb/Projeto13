@@ -50,10 +50,10 @@ Confira abaixo a logo oficial do Jatobá:
 ### 12. **Adicionar relatórios**
   - Como membro da equipe do CAIS, quero poder escrever relatórios que poderá ser acessado depois.
 
-## 13. **Características da cidade**
+### 13. **Características da cidade**
   - Como membro da equipe do CAIS, quero ver quais são as características da cidade durante a semana para que eu possa me programar melhor
 
-## 14. **Dashboard Personalizado**
+### 14. **Dashboard Personalizado**
   - Como membro da equipe do CAIS, eu quero poder acessar o aplicativo e visualizar nosso progresso por meio de dados concretos.
 
 ### 15. **Personalização do perfil**
@@ -61,6 +61,7 @@ Confira abaixo a logo oficial do Jatobá:
 
 ### 16. **Lembretes Automáticos**
   - Como membro da equipe do CAIS, quero receber notificações e lembretes automáticos sobre atividades essenciais.
+    
 ---
 
 ## 🎯 Nossa Missão
@@ -88,8 +89,9 @@ Transformar a maneira como a agricultura é gerida, oferecendo soluções que fa
 
 ## Jira
 
-![Captura de Tela (452)](https://github.com/user-attachments/assets/16b885db-2119-4236-b211-81acd58ff9ae)
-![Captura de Tela (453)](https://github.com/user-attachments/assets/24f2a8ce-bd72-4523-bbc5-6ca52eee055c)
+![Captura de Tela (456)](https://github.com/user-attachments/assets/72bf87d0-cc79-4f08-8b8f-b7d34e766e5b)
+![Captura de Tela (457)](https://github.com/user-attachments/assets/de06988c-5cb2-498a-8d2e-fd36b156f719)
+![Captura de Tela (458)](https://github.com/user-attachments/assets/b0cafc23-6990-4a6b-84c3-b6484cc30c47)
 
 ---
 
