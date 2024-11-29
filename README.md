@@ -101,7 +101,8 @@ Transformar a maneira como a agricultura é gerida, oferecendo soluções que fa
 
 ## 📦 Issue Tracker / Bug Report
 
-![Diagrama de Atividades](https://github.com/user-attachments/assets/76acda77-f2c0-430a-bda8-27b856a49906)
+![Captura de Tela (455)](https://github.com/user-attachments/assets/c8febfc3-6198-4b73-9075-8aaeba36cbca)
+
 
 ---
 
