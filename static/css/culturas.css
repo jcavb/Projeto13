@@ -1,74 +1,105 @@
+
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Oswald', 'Montserrat', sans-serif;
     margin: 0;
     padding: 0;
     background-color: #f9f9f9;
+    color: #333;
 }
 
 .container {
-    max-width: 600px;
-    margin: 0 auto;
+    max-width: 800px;
+    margin: 40px auto;
     background-color: #ffffff;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    padding: 20px;
+    padding: 20px 30px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
+/* Cabeçalho */
 header h1 {
-    font-size: 24px;
-    color: #3c3c3c;
+    font-size: 26px;
+    color: #008000;
     text-align: center;
     margin-bottom: 20px;
 }
 
+/* Informações Principais */
+.info {
+    margin-bottom: 25px;
+}
+
 .info p {
     font-size: 16px;
-    line-height: 1.5;
-    color: #666666;
-    padding: 5px 0;
+    line-height: 1.6;
+}
+
+.info strong {
+    color: #008000;
+}
+
+/* Linha do Tempo */
+.timeline {
+    margin-bottom: 25px;
 }
 
 .timeline h2 {
+    font-size: 20px;
+    color: #555;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.timeline-steps {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+}
+
+.step {
+    background-color: #f9f9f9;
+    border-left: 4px solid #90CAF9;
+    padding: 10px 15px;
+    border-radius: 5px;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+}
+
+.step-title {
     font-size: 18px;
-    color: #3c3c3c;
-    margin-bottom: 10px;
+    font-weight: bold;
+    color: #008000;
+    margin-bottom: 5px;
 }
 
-.timeline-bar {
-    position: relative;
-    margin: 20px 0;
+.step p {
+    font-size: 14px;
+    color: #666;
+    line-height: 1.5;
 }
 
-.progress-bar {
-    position: relative;
-    height: 4px;
-    background-color: #FFD580;
-    margin: 10px 0;
+/* Responsivo */
+@media (min-width: 768px) {
+    .timeline-steps {
+        grid-template-columns: 1fr 1fr;
+    }
 }
 
-.progress {
-    width: 100%;
-    height: 100%;
-    background-color: #FFAB40;
+.back-button {
+    position: fixed;
+    top: 20px; 
+    left: 20px; 
+    background-color: #008000; 
+    color: #fff; 
+    border: none;
+    padding: 10px 20px;
+    font-size: 14px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
+    z-index: 1000; 
 }
 
-.progress-point {
-    position: absolute;
-    top: -5px;
-    width: 15px;
-    height: 15px;
-    border-radius: 50%;
-    background-color: #FFAB40;
+.back-button:hover {
+    background-color: #006400; 
 }
-
-.progress-point:first-child {
-    left: 0;
-}
-
-.progress-point:nth-child(2) {
-    left: 25%;
-}
-
-.progress-point:nth-child(3){
-    left:0;
-}
-

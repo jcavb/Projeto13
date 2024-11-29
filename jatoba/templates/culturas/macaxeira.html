@@ -2,45 +2,53 @@
 <!DOCTYPE html>
 <html lang="pt">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Detalhes da Planta</title>
-<link rel="stylesheet" href="{% static 'css/culturas.css' %}">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalhes da Macaxeira</title>
+    <link rel="stylesheet" href="{% static 'css/culturas.css' %}">
 </head>
 <body>
+    <button class="back-button" onclick="history.back()">Voltar</button>
 <div class="container">
     <header>
         <h1>MACAXEIRA</h1>
     </header>
     <section>
         <div class="info">
-            <p>Clima: --- Quentes,temperaturas  entre 25°C e 30°C</p>
-            <p>Solo: --- Fertilizado,  solo franco </p>
+            <p><strong>Clima:</strong> Quentes, temperaturas entre 25°C e 30°C</p>
+            <p><strong>Solo:</strong> Fertilizado, solo franco</p>
+            <p><strong>pH do Solo:</strong> Neutro</p>
         </div>
         <div class="timeline">
-            <h2>Linha do tempo de crescimento</h2>
-            <div class="timeline-bar">
-                <span class="tag">Dia 1</span>
-
-                <span class="tag">Dia 7 - 10</span>
-
-                <span class="tag">Dia 15</span>
-                
-                <span class="tag">Dia 40 - 60</span>
-               
-                <div class="progress-bar">
-                    <div class="progress"></div>
-                    <span class="progress-point"></span>
-                    <span class="progress-point"></span>
-                    <span class="progress-point"></span>
-                    <span class="progress-point progress-point-last"></span>
+            <h2>Linha do Tempo de Crescimento</h2>
+            <div class="timeline-steps">
+                <div class="step">
+                    <span class="step-title">Dia 1</span>
+                    <p>Plantio inicial com corte das manivas.</p>
+                </div>
+                <div class="step">
+                    <span class="step-title">Dia 7 - 10</span>
+                    <p>Primeiros sinais de brotação nas manivas.</p>
+                </div>
+                <div class="step">
+                    <span class="step-title">Dia 15</span>
+                    <p>Fortalecimento do sistema radicular.</p>
+                </div>
+                <div class="step">
+                    <span class="step-title">Dia 90 - 120</span>
+                    <p>Raízes prontas para colheita.</p>
                 </div>
             </div>
         </div>
         <div class="info">
-            <p>PH do solo ---  Neutro</p>
+            <h2>Benefícios Nutricionais</h2>
+            <p>Fonte de carboidratos complexos, é uma ótima fonte de energia e possui baixo teor de gordura.</p>
+        </div>
+        <div class="info">
+            <h2>Curiosidades</h2>
+            <p>Conhecida também como mandioca ou aipim, é amplamente consumida em pratos típicos como a tapioca e a farofa.</p>
         </div>
     </section>
-    
 </div>
 </body>
+</html>

@@ -4,139 +4,383 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>Cuidados Diários</title>
+    <!-- Font Awesome para ícones -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
+    <!-- Arquivo CSS -->
     <link rel="stylesheet" href="{% static 'css/tarefas.css' %}">
+    <!-- Fontes -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Oswald:wght@200..700&display=swap" rel="stylesheet">
+    <!-- CSS Inline -->
+    <style>
+        /* Geral */
+        body {
+            font-family: 'Oswald', 'Montserrat', sans-serif;
+            background-color: #fcf4fc;
+            color: #333;
+            margin: 0;
+        }
+
+        header {
+            background-color: #04a47c;
+            color: white;
+            padding: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        header nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            gap: 15px;
+        }
+
+        header nav ul li {
+            display: inline;
+        }
+
+        header nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        h1 {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .back-button {
+            position: fixed;
+            top: 70px;
+            left: 10px;
+            background-color: #04a47c;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            font-family: 'Oswald', 'Montserrat', sans-serif; /* Igual ao restante da aplicação */
+            font-weight: bold; /* Ajuste de peso para combinar com outros botões */
+            font-size: 16px; /* Ajuste de tamanho para combinar */
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            z-index: 10000; /* Aumentado para garantir prioridade */
+        }
+    
+        .back-button:hover {
+            background-color: #04a47c;
+        }
+
+        /* Estilos adicionais para os checkboxes */
+        main {
+            padding: 20px;
+        }
+
+        #check {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+        }
+
+        .coluna {
+            flex: 1;
+            margin: 10px;
+            min-width: 200px;
+        }
+
+        .coluna h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .container {
+            display: block;
+            position: relative;
+            padding-left: 35px;
+            margin-bottom: 15px;
+            cursor: pointer;
+            font-size: 18px;
+            user-select: none;
+        }
+
+        .container input {
+            position: absolute;
+            opacity: 0;
+            cursor: pointer;
+            height: 0;
+            width: 0;
+        }
+
+        .checkmark {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 25px;
+            width: 25px;
+            background-color: #fcf4fc;
+            border-radius: 5px;
+            border: 2px solid #FFA500; /* Cor laranja da borda */
+        }
+
+        .container:hover input ~ .checkmark {
+            background-color: #ccc;
+        }
+
+        .container input:checked ~ .checkmark {
+            background-color: #04a47c;
+        }
+
+        .checkmark:after {
+            content: "";
+            position: absolute;
+            display: none;
+        }
+
+        .container input:checked ~ .checkmark:after {
+            display: block;
+        }
+
+        .container .checkmark:after {
+            left: 9px;
+            top: 5px;
+            width: 5px;
+            height: 10px;
+            border: solid white;
+            border-width: 0 3px 3px 0;
+            transform: rotate(45deg);
+        }
+
+        /* Footer */
+        footer {
+            background-color: #04a47c;
+            color: white;
+            text-align: center;
+            padding: 10px;
+        }
+        .location-date {
+            text-align: center;
+            font-size: 18px;
+            margin: 10px 0;
+        }
+
+    </style>
 </head>
 <body>
+    <button class="back-button" onclick="history.back()">Voltar</button>
     <header>
-        <section id="cabeca">
-            <div id="perfil">
-                <img src="{% static 'images/perfil.avif' %}" alt="Perfil" width="75" height="75">
-            </div>
-            <h3>Nome</h3>
-            <div class="direita">
-                <button class="btn-tarefas active" onclick="window.location.href='{% url 'tarefas' %}'">Cuidados Diários</button>
-                <button class="btn-tarefas">Calendário</button>
-                <a href="{% url 'infoculturas' %}" class="btn-tarefas">Info Culturas</a>
-            </div>
-        </section>
+        <nav>
+            <ul>
+                <li><a href="{% url 'jatoba:protegida' %}">Home</a></li>
+                <li><a href="{% url 'jatoba:tarefas' %}">Cuidados Diários</a></li>
+                <li><a href="{% url 'calendario:calendario' %}">Calendário</a></li>
+                <li><a href="{% url 'jatoba:infoculturas' %}">Info-Culturas</a></li>
+                <li><a href="{% url 'jatoba:rotacao' %}">Consórcio de Culturas</a></li>
+                <li><a href="{% url 'jatoba:menu' %}">Estoque</a></li>
+                <li><a href="{% url 'calendario:adicionar_observacao' %}" class="btn btn-primary">Relatório</a></li>
+            </ul>
+        </nav>
     </header>
-    
+
     <main>
-        <section id="logo">
-            <img src="{% static 'images/logo.jpg' %}" alt="Logo" width="400" height="400">
-        </section>
-        <section id="centro">
-            <div class="data"></div>
-            <div class="Carpina">
-                <i class="fa-solid fa-location-dot"></i>
-            </div>
-        </section>
-        
+
+        <div class="location-date">
+            Cuidados de hoje - <span id="current-date"></span> - <span><i class="fa fa-map-marker"></i> Carpina</span>
+            <p id="weather-info" style="font-size: 16px; margin-top: 10px;">Clima: Carregando...</p>
+        </div>
 
         <section id="check">
             <div class="coluna">
                 <h1>Regar:</h1>
-                <input type="checkbox" id="Abacate" value="Abacate">
-                <label for="Abacate">Abacate</label><br>
-                
-                <input type="checkbox" id="Banana" value="Banana">
-                <label for="Banana">Banana</label><br>
-                
-                <input type="checkbox" id="Brocolis" value="Brocolis">
-                <label for="Brocolis">Brocolis</label><br>
-                
-                <input type="checkbox" id="Cenoura" value="Cenoura">
-                <label for="Cenoura">Cenoura</label><br>
-                
-                <input type="checkbox" id="Couve" value="Couve">
-                <label for="Couve">Couve</label><br>
-                
-                <input type="checkbox" id="Macaxeira" value="Macaxeira">
-                <label for="Macaxeira">Macaxeira</label><br>
-                
-                <input type="checkbox" id="Rucula" value="Rucula">
-                <label for="Rucula">Rucula</label><br>
-                
-                <input type="checkbox" id="Tomate" value="Tomate">
-                <label for="Tomate">Tomate</label><br>
+                <label class="container">
+                    <input type="checkbox" id="Abacate">
+                    <div class="checkmark"></div>
+                    Abacate
+                </label>
+                <label class="container">
+                    <input type="checkbox" id="Banana">
+                    <div class="checkmark"></div>
+                    Banana
+                </label>
+                <label class="container">
+                    <input type="checkbox" id="Brocolis">
+                    <div class="checkmark"></div>
+                    Brócolis
+                </label>
+                <label class="container">
+                    <input type="checkbox" id="Cenoura">
+                    <div class="checkmark"></div>
+                    Cenoura
+                </label>
+                <label class="container">
+                    <input type="checkbox" id="Couve">
+                    <div class="checkmark"></div>
+                    Couve
+                </label>
+                <label class="container">
+                    <input type="checkbox" id="Macaxeira">
+                    <div class="checkmark"></div>
+                    Macaxeira
+                </label>
+                <label class="container">
+                    <input type="checkbox" id="Rucula">
+                    <div class="checkmark"></div>
+                    Rúcula
+                </label>
+                <label class="container">
+                    <input type="checkbox" id="Tomate">
+                    <div class="checkmark"></div>
+                    Tomate
+                </label>
             </div>
 
             <div class="coluna">
                 <h1>Colheita:</h1>
-                <input type="checkbox" id="Abacate_colheita" value="Abacate">
-                <label for="Abacate_colheita">Abacate</label><br>
-                
-                <input type="checkbox" id="Banana_colheita" value="Banana">
-                <label for="Banana_colheita">Banana</label><br>
-                
-                <input type="checkbox" id="Brocolis_colheita" value="Brocolis">
-                <label for="Brocolis_colheita">Brocolis</label><br>
-                
-                <input type="checkbox" id="Cenoura_colheita" value="Cenoura">
-                <label for="Cenoura_colheita">Cenoura</label><br>
-                
-                <input type="checkbox" id="Couve_colheita" value="Couve">
-                <label for="Couve_colheita">Couve</label><br>
-                
-                <input type="checkbox" id="Macaxeira_colheita" value="Macaxeira">
-                <label for="Macaxeira_colheita">Macaxeira</label><br>
-                
-                <input type="checkbox" id="Rucula_colheita" value="Rucula">
-                <label for="Rucula_colheita">Rucula</label><br>
-                
-                <input type="checkbox" id="Tomate_colheita" value="Tomate">
-                <label for="Tomate_colheita">Tomate</label><br>
+                <label class="container">
+                    <input type="checkbox" id="Abacate_colheita">
+                    <div class="checkmark"></div>
+                    Abacate
+                </label>
+                <label class="container">
+                    <input type="checkbox" id="Banana_colheita">
+                    <div class="checkmark"></div>
+                    Banana
+                </label>
+                <label class="container">
+                    <input type="checkbox" id="Brocolis_colheita">
+                    <div class="checkmark"></div>
+                    Brócolis
+                </label>
+                <label class="container">
+                    <input type="checkbox" id="Cenoura_colheita">
+                    <div class="checkmark"></div>
+                    Cenoura
+                </label>
+                <label class="container">
+                    <input type="checkbox" id="Couve_colheita">
+                    <div class="checkmark"></div>
+                    Couve
+                </label>
+                <label class="container">
+                    <input type="checkbox" id="Macaxeira_colheita">
+                    <div class="checkmark"></div>
+                    Macaxeira
+                </label>
+                <label class="container">
+                    <input type="checkbox" id="Rucula_colheita">
+                    <div class="checkmark"></div>
+                    Rúcula
+                </label>
+                <label class="container">
+                    <input type="checkbox" id="Tomate_colheita">
+                    <div class="checkmark"></div>
+                    Tomate
+                </label>
             </div>
 
             <div class="coluna">
                 <h1>Adubar:</h1>
-                <input type="checkbox" id="Abacate_adubar" value="Abacate">
-                <label for="Abacate_adubar">Abacate</label><br>
-                
-                <input type="checkbox" id="Banana_adubar" value="Banana">
-                <label for="Banana_adubar">Banana</label><br>
-                
-                <input type="checkbox" id="Brocolis_adubar" value="Brocolis">
-                <label for="Brocolis_adubar">Brocolis</label><br>
-                
-                <input type="checkbox" id="Cenoura_adubar" value="Cenoura">
-                <label for="Cenoura_adubar">Cenoura</label><br>
-                
-                <input type="checkbox" id="Couve_adubar" value="Couve">
-                <label for="Couve_adubar">Couve</label><br>
-                
-                <input type="checkbox" id="Macaxeira_adubar" value="Macaxeira">
-                <label for="Macaxeira_adubar">Macaxeira</label><br>
-                
-                <input type="checkbox" id="Rucula_adubar" value="Rucula">
-                <label for="Rucula_adubar">Rucula</label><br>
-                
-                <input type="checkbox" id="Tomate_adubar" value="Tomate">
-                <label for="Tomate_adubar">Tomate</label><br>
+                <label class="container">
+                    <input type="checkbox" id="Abacate_adubar">
+                    <div class="checkmark"></div>
+                    Abacate
+                </label>
+                <label class="container">
+                    <input type="checkbox" id="Banana_adubar">
+                    <div class="checkmark"></div>
+                    Banana
+                </label>
+                <label class="container">
+                    <input type="checkbox" id="Brocolis_adubar">
+                    <div class="checkmark"></div>
+                    Brócolis
+                </label>
+                <label class="container">
+                    <input type="checkbox" id="Cenoura_adubar">
+                    <div class="checkmark"></div>
+                    Cenoura
+                </label>
+                <label class="container">
+                    <input type="checkbox" id="Couve_adubar">
+                    <div class="checkmark"></div>
+                    Couve
+                </label>
+                <label class="container">
+                    <input type="checkbox" id="Macaxeira_adubar">
+                    <div class="checkmark"></div>
+                    Macaxeira
+                </label>
+                <label class="container">
+                    <input type="checkbox" id="Rucula_adubar">
+                    <div class="checkmark"></div>
+                    Rúcula
+                </label>
+                <label class="container">
+                    <input type="checkbox" id="Tomate_adubar">
+                    <div class="checkmark"></div>
+                    Tomate
+                </label>
             </div>
         </section>
     </main>
-    
-    <footer>
-        <h3>Precisa de ajuda. Entre em contato : (12) 3456-7890</h3>
-    </footer>
 
+    <footer>
+        <h3>Precisa de ajuda? Entre em contato: (12) 3456-7890</h3>
+    </footer>
 
     <script>
         document.addEventListener('DOMContentLoaded', (event) => {
-
             document.querySelectorAll('input[type="checkbox"]').forEach(checkbox => {
-
                 if (localStorage.getItem(checkbox.id) === 'true') {
                     checkbox.checked = true;
                 }
-
                 checkbox.addEventListener('change', function() {
                     localStorage.setItem(checkbox.id, this.checked);
                 });
             });
         });
     </script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const profileImg = document.getElementById('profile-img');
+        const dropdownMenu = document.getElementById('dropdown-menu');
+
+        profileImg.addEventListener('click', () => {
+            dropdownMenu.classList.toggle('dropdown-open');
+        });
+
+        document.addEventListener('click', (event) => {
+            if (!dropdownMenu.contains(event.target) && !profileImg.contains(event.target)) {
+                dropdownMenu.classList.remove('dropdown-open');
+            }
+        });
+    });
+
+    const updateDateAndWeather = () => {
+        const currentDate = new Date();
+        const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+        document.getElementById('current-date').textContent = currentDate.toLocaleDateString('pt-BR', options);
+
+        const apiKey = '86b1f439eea24f68a3b20455242811';
+        const city = 'Carpina';
+        fetch(`https://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${city}&lang=pt`)
+            .then(response => response.json())
+            .then(data => {
+                const temp = data.current.temp_c;
+                const desc = data.current.condition.text;
+                document.getElementById('weather-info').textContent = `Clima: ${temp}°C, ${desc}`;
+            })
+            .catch(() => {
+                document.getElementById('weather-info').textContent = 'Erro ao obter clima.';
+            });
+    };
+    updateDateAndWeather();
+</script>
 </body>
 </html>
