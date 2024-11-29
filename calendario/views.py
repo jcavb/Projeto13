@@ -1,12 +1,3 @@
-import locale
-
-try:
-    locale.setlocale(locale.LC_TIME, 'pt_BR.UTF-8')
-except locale.Error:
-    # Caso a localidade não esteja disponível, defina para a localidade padrão
-    locale.setlocale(locale.LC_TIME, '')
-    # Ou você pode optar por usar uma biblioteca como Babel para internacionalização
-
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login, authenticate
 from django.shortcuts import render, redirect
