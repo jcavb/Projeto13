@@ -20,35 +20,21 @@ jobs:
         with:
           python-version: '3.11'
 
-      # Instalação e configuração do locale
-      - name: Install and configure locale
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y locales
-          sudo locale-gen pt_BR.UTF-8
-          sudo update-locale LANG=pt_BR.UTF-8
-
-      # Verificação do locale
-      - name: Verify locale settings
-        run: locale
-
-      # Criação e ativação do ambiente virtual
-      - name: Create and start virtual environment
+      # Configuração do ambiente virtual
+      - name: Create and activate virtual environment
         run: |
           python -m venv venv
           source venv/bin/activate
 
-      # Instalação de dependências do Python
+      # Instalação de dependências
       - name: Install dependencies
         run: |
+          venv/bin/pip install --upgrade pip
           venv/bin/pip install -r requirements.txt
-          pip install reportlab
 
-      # Verificação dos pacotes instalados no ambiente virtual
-      - name: Verify Python environment and packages
-        run: |
-          venv/bin/python --version
-          venv/bin/pip list
+      # Verificação das dependências
+      - name: Verify installed packages
+        run: venv/bin/pip list
 
       # Configuração do Node.js para Cypress
       - name: Setup Node.js
@@ -118,4 +104,4 @@ jobs:
         with:
           app-name: 'djangodeploy2'
           slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_D51C3E4C02C5422BA34C7BA2BC9E8033 }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE }}
