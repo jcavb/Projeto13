@@ -1,15 +1,22 @@
 import locale
-locale.setlocale(locale.LC_TIME, 'pt_BR.UTF-8')
+
+try:
+    locale.setlocale(locale.LC_TIME, 'pt_BR.UTF-8')
+except locale.Error:
+    # Caso a localidade não esteja disponível, defina para a localidade padrão
+    locale.setlocale(locale.LC_TIME, '')
+    # Ou você pode optar por usar uma biblioteca como Babel para internacionalização
+
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login, authenticate
 from django.shortcuts import render, redirect
 from .models import Tarefa
-from django.core.exceptions import ObjectDoesNotExist # type: ignore
-from django.http import JsonResponse # type: ignore
+from django.core.exceptions import ObjectDoesNotExist  # type: ignore
+from django.http import JsonResponse  # type: ignore
 from django.contrib import messages
 from django.contrib.auth.models import User
 from .models import Cultura, Fertilizante, Semente, Rotacoes, Culturas
-from django.utils.timezone import now # type: ignore
+from django.utils.timezone import now  # type: ignore
 from django.contrib.auth.backends import ModelBackend
 from django.contrib.auth import get_user_model, login
 from django.shortcuts import get_object_or_404
@@ -18,12 +25,7 @@ from django.contrib.auth.decorators import login_required
 from datetime import datetime
 from django.http import HttpResponse
 from reportlab.pdfgen import canvas
-from django.contrib.auth.decorators import login_required
 import calendar
-from django.shortcuts import render
-from django.contrib.auth.decorators import login_required
-
-
 
 @login_required
 def adicionar_observacao(request):
@@ -42,7 +44,7 @@ def adicionar_observacao(request):
         # Adiciona cabeçalho no PDF
         p.drawString(100, 800, f"Relatório do Usuário: {request.user.username}")
         p.drawString(100, 780, "----------------------------------------")
-        
+
         # Adiciona a observação
         p.drawString(100, 750, "Observação:")
         p.drawString(100, 730, observacao)
@@ -55,12 +57,6 @@ def adicionar_observacao(request):
 
     # Caso GET, renderiza o formulário
     return render(request, 'adicionar_observacao.html')
-
-from datetime import datetime
-import calendar
-from django.shortcuts import render, redirect
-from .models import Tarefa
-from django.contrib.auth.decorators import login_required
 
 @login_required
 def calendario(request):
@@ -116,7 +112,6 @@ def adicionar_tarefa(request):
     else:
         return JsonResponse({'error': 'Método inválido'}, status=400)
 
-
 @login_required
 def excluir_tarefa(request, tarefa_id):
     if request.method == 'POST':
@@ -137,7 +132,7 @@ def login_view(request):
 
         if user is not None:
             login(request, user)
-            return redirect('protegida') 
+            return redirect('protegida')
         else:
             messages.error(request, 'Email ou senha inválidos.')
     return render(request, 'login.html')
@@ -190,14 +185,14 @@ def lista_tarefas(request):
                 return JsonResponse({'success': True})
             except ObjectDoesNotExist:
                 return JsonResponse({'success': False, 'error': 'Tarefa não encontrada'}, status=404)
-        
+
         # Adicionando nova tarefa
         elif 'nome_tarefa' in request.POST and 'categoria_tarefa' in request.POST:
             nome_tarefa = request.POST.get('nome_tarefa')
             categoria_tarefa = request.POST.get('categoria_tarefa')
             nova_tarefa = Tarefa(
-                nome=nome_tarefa, 
-                categoria=categoria_tarefa, 
+                nome=nome_tarefa,
+                categoria=categoria_tarefa,
                 data_ultima_acao=now(),  # Define a data atual como data_ultima_acao
                 concluida=False
             )
@@ -241,7 +236,7 @@ def rucula_infos(request):
 
 def tomate_infos(request):
     return render(request, 'culturas/tomate.html')
-    
+
 class AddFertilizante(View):
     def get(self, request):
         return render(request, 'fertilizante.html')
@@ -260,9 +255,9 @@ class AddFertilizante(View):
         )
         messages.success(request, "Fertilizante adicionado com sucesso!")
         return redirect('jatoba:menu')
-    
+
 class VerFertilizante(View):
-    def get (self, request):
+    def get(self, request):
         fertilizantes = Fertilizante.objects.all()
         return render(request, 'visualizar_fert.html', {'fertilizantes': fertilizantes})
 
@@ -278,7 +273,7 @@ def delete_fertilizante_view(request, id):
         return JsonResponse({'status': 'success', 'message': 'Fertilizante excluído com sucesso!'})
 
     return JsonResponse({'status': 'error', 'message': 'Requisição inválida'}, status=400)
-    
+
 class AddSemente(View):
     def get(self, request):
         return render(request, 'semente.html')
@@ -299,24 +294,19 @@ class AddSemente(View):
         return redirect('jatoba:menu')
 
 class VerSemente(View):
-    def get (self, request):
+    def get(self, request):
         sementes = Semente.objects.all()
         return render(request, 'visualizar_sem.html', {'sementes': sementes})
 
-from django.http import JsonResponse
-from django.shortcuts import get_object_or_404
-
 def delete_semente_view(request, id):
-    if request.method == 'POST':  # Verifica se a requisição é POST
+    if request.method == 'POST':
         try:
-            seme = get_object_or_404(Semente, id=id)  # Verifica se a semente existe
-            seme.delete()  # Exclui a semente
+            seme = get_object_or_404(Semente, id=id)
+            seme.delete()
             return JsonResponse({'status': 'success', 'message': 'Semente excluída com sucesso!'})
         except Exception as e:
-            # Retorna erro em caso de falha inesperada
             return JsonResponse({'status': 'error', 'message': 'Erro ao excluir a semente.', 'details': str(e)}, status=500)
 
-    # Resposta para métodos diferentes de POST
     return JsonResponse({'status': 'error', 'message': 'Método inválido. Apenas POST é permitido.'}, status=400)
 
 class Rotacao(View):
@@ -339,16 +329,12 @@ class Rotacao(View):
 
         return render(request, 'rotacao.html', context)
 
-
     def post(self, request):
         rotacao_cultura_id = request.POST.get('cultura')
         rotacao_id = request.POST.get('rotacao')
 
         # Redireciona para outra página ou implementa lógica adicional
         return redirect('rotacao')
-    
-from django.contrib.auth.decorators import login_required
-from django.utils.decorators import method_decorator
 
 @login_required
 def menu_view(request):
@@ -362,7 +348,6 @@ def menu_view(request):
     return render(request, 'menu.html', context)
 
 from django.contrib.auth import logout
-from django.shortcuts import redirect
 
 def logout_view(request):
     logout(request)
