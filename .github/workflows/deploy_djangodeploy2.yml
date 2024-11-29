@@ -20,19 +20,31 @@ jobs:
         with:
           python-version: '3.11'
 
-      # Configuração do ambiente virtual
+      # Instalação e configuração do locale
+      - name: Install and configure locale
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y locales
+          sudo locale-gen pt_BR.UTF-8
+          sudo update-locale LANG=pt_BR.UTF-8
+
+      # Verificação do locale
+      - name: Verify locale settings
+        run: locale -a
+
+      # Criação e ativação do ambiente virtual
       - name: Create and activate virtual environment
         run: |
           python -m venv venv
           source venv/bin/activate
 
-      # Instalação de dependências
+      # Instalação de dependências do Python
       - name: Install dependencies
         run: |
           venv/bin/pip install --upgrade pip
           venv/bin/pip install -r requirements.txt
 
-      # Verificação das dependências
+      # Verificação das dependências instaladas
       - name: Verify installed packages
         run: venv/bin/pip list
 
@@ -47,9 +59,11 @@ jobs:
         run: |
           npm ci
 
-      # Executar o servidor Django e os testes do Cypress
+      # Exportação do locale e execução do servidor e testes
       - name: Run local server and Cypress tests
         run: |
+          export LANG=pt_BR.UTF-8
+          export LC_ALL=pt_BR.UTF-8
           venv/bin/python manage.py migrate
           venv/bin/python manage.py runserver &
           sleep 5
