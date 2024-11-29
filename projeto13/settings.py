@@ -27,9 +27,7 @@ if NOT_PROD:
     DEBUG = True
     # SECURITY WARNING: keep the secret key used in production secret!
     SECRET_KEY = 'sua-chave-secreta'
-    ALLOWED_HOSTS = ['127.0.0.1'
-                     '169.254.129.2'
-                     , 'localhost']
+    ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.sqlite3',
