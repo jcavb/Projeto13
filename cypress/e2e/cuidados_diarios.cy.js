@@ -8,7 +8,7 @@ const userData = {
     before(() => {
       // Configurações iniciais
       cy.exec('rm -f db.sqlite3'); // Para Windows; substitua por 'rm -f db.sqlite3' no Linux/Mac
-      cy.exec('python manage.py migrate');
+      cy.exec('venv/bin/python manage.py migrate');
   
       // Cria um usuário no sistema
       cy.visit('http://127.0.0.1:8000/signup');
