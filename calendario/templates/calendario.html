@@ -1,0 +1,305 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calendário</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Oswald:wght@200..700&display=swap" rel="stylesheet">
+    <style>
+        /* Geral */
+        body {
+            font-family: 'Oswald', 'Montserrat', sans-serif;
+            background-color: #fcf4fc;
+            color: #333;
+            margin: 0;
+        }
+
+        header {
+            background-color: #04a47c;
+            color: white;
+            padding: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        header h1 {
+            font-size: 24px;
+            margin: 0;
+        }
+
+        header nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            gap: 15px;
+        }
+
+        header nav ul li {
+            display: inline;
+        }
+
+        header nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .navigation {
+            margin-top: 10px;
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .nav-button {
+            background-color: white;
+            color: #04a47c;
+            border: 2px solid #04a47c;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-size: 16px;
+            font-weight: bold;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.3s ease-in-out;
+        }
+
+        .nav-button:hover {
+            background-color: #027a5e;
+            color: white;
+        }
+
+        main {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 10px;
+        }
+
+        .calendar {
+            display: grid;
+            grid-template-rows: auto;
+            background: white;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .week {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            background-color: #04a47c;
+            color: white;
+            padding: 10px 0;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        .days {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 1px;
+        }
+
+        .day {
+            background: white;
+            padding: 10px;
+            min-height: 120px;
+            border: 1px solid #ddd;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .date {
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .tasks {
+            width: 100%;
+        }
+
+        .task {
+            background-color: #f0f0f0;
+            color: #333;
+            padding: 5px;
+            margin: 5px 0;
+            border-radius: 4px;
+            font-size: 14px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .task .delete-task {
+            background-color: #ff0000;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            padding: 2px 8px;
+            font-size: 12px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .task .delete-task:hover {
+            background-color: #cc0000;
+        }
+
+        .add-task {
+            background-color: #04a47c;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            font-size: 20px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background-color 0.3s;
+        }
+
+        .add-task:hover {
+            background-color: #027a5e;
+        }
+
+        .empty-day {
+            background: transparent;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Calendário de {{ nome_mes }} de {{ ano }}</h1>
+        <nav>
+            <ul>
+                <li><a href="{% url 'jatoba:protegida' %}">Home</a></li>
+                <li><a href="{% url 'jatoba:tarefas' %}">Cuidados Diários</a></li>
+                <li><a href="{% url 'calendario:calendario' %}">Calendário</a></li>
+                <li><a href="{% url 'jatoba:infoculturas' %}">Info-Culturas</a></li>
+                <li><a href="{% url 'jatoba:rotacao' %}">Consórcio de Culturas</a></li>
+                <li><a href="{% url 'jatoba:menu' %}">Estoque</a></li>
+                <li><a href="{% url 'calendario:adicionar_observacao' %}" class="btn btn-primary">Relatório</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <div class="navigation">
+            <a href="?mes={{ anterior_mes }}&ano={{ anterior_ano }}" class="nav-button">Anterior</a>
+            <a href="?mes={{ proximo_mes }}&ano={{ proximo_ano }}" class="nav-button">Próximo</a>
+        </div>
+        <div class="calendar">
+            <div class="week">
+                <div>Segunda</div>
+                <div>Terça</div>
+                <div>Quarta</div>
+                <div>Quinta</div>
+                <div>Sexta</div>
+                <div>Sábado</div>
+                <div>Domingo</div>
+            </div>
+
+            <div class="days">
+                <!-- Render células vazias -->
+                {% for _ in celulas_vazias %}
+                <div class="day empty-day"></div>
+                {% endfor %}
+            
+                <!-- Renderização dos dias do mês -->
+                {% for dia in dias %}
+                <div class="day" data-dia="{{ dia.dia }}">
+                    <div class="date">{{ dia.dia }}</div>
+                    <div class="tasks">
+                        {% for tarefa in dia.tarefas %}
+                        <div class="task" data-id="{{ tarefa.id }}">
+                            {{ tarefa.descricao }}
+                            <button class="delete-task">🗑️</button>
+                        </div>
+                        {% endfor %}
+                    </div>
+                    <button class="add-task">+</button>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const mes = parseInt("{{ mes }}");
+            const ano = parseInt("{{ ano }}");
+            const excluirTarefaUrlTemplate = "{% url 'calendario:excluir_tarefa' tarefa_id=0 %}";
+    
+            // Função para adicionar handlers de exclusão
+            function attachDeleteHandlers() {
+                document.querySelectorAll('.delete-task').forEach(button => {
+                    button.onclick = function () {
+                        const taskElement = this.closest('.task');
+                        const id = taskElement.dataset.id;
+                        const url = excluirTarefaUrlTemplate.replace('0', id);
+                        fetch(url, {
+                            method: 'POST',
+                            headers: { 'X-CSRFToken': '{{ csrf_token }}' }
+                        })
+                        .then(response => response.json())
+                        .then(data => {
+                            if (data.success) {
+                                taskElement.remove();
+                            }
+                        });
+                    };
+                });
+            }
+    
+            // Adiciona tarefas
+            document.querySelectorAll('.add-task').forEach(button => {
+                button.onclick = function () {
+                    const dayElement = this.closest('.day');
+                    const dia = dayElement.dataset.dia;
+                    const descricao = prompt('Digite a descrição da tarefa:');
+                    if (descricao) {
+                        fetch("{% url 'calendario:adicionar_tarefa' %}", {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/x-www-form-urlencoded',
+                                'X-CSRFToken': '{{ csrf_token }}',
+                            },
+                            body: new URLSearchParams({ dia, mes, ano, descricao })
+                        })
+                        .then(response => response.json())
+                        .then(data => {
+                            if (data.id) {
+                                const taskElement = document.createElement('div');
+                                taskElement.classList.add('task');
+                                taskElement.setAttribute('data-id', data.id);
+                                taskElement.innerHTML = `
+                                    ${data.descricao}
+                                    <button class="delete-task">🗑️</button>
+                                `;
+                                dayElement.querySelector('.tasks').appendChild(taskElement);
+                                attachDeleteHandlers(); // Reanexa os handlers de exclusão
+                            }
+                        });
+                    }
+                };
+            });
+    
+            // Inicializa os handlers de exclusão ao carregar a página
+            attachDeleteHandlers();
+        });
+    </script>
+    
+</body>
+</html>

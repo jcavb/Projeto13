@@ -1,20 +1,201 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Oswald:wght@200..700&display=swap" rel="stylesheet">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Página Protegida</title>
+    <title>Jatobá</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Oswald', 'Montserrat', sans-serif;
+            background-color: #fcf4fc;
+            color: #333;
+        }
+        header {
+            background-color: #04a47c;
+            color: #fcf4fc;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            position: relative;
+        }
+        header .profile {
+            display: flex;
+            align-items: center;
+            position: relative;
+        }
+        header .profile img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    margin-right: 5px; /* Ajusta o espaço entre a foto e o nome */
+    margin-left: 80px; /* Aumenta o espaço à esquerda da imagem, movendo-a para a direita */
+}
+        header .profile .username {
+            font-size: 16px; /* Tamanho da fonte do nome */
+            font-weight: bold;
+        }
+        header .dropdown-content {
+            display: none;
+            position: absolute;
+            top: 60px;
+            right: 10px;
+            background-color: white;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            width: 150px;
+            text-align: left;
+            z-index: 1000;
+        }
+        header .dropdown-content a {
+            color: #333;
+            text-decoration: none;
+            display: block;
+            padding: 10px 15px;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+        }
+        header .dropdown-content a:hover {
+            background-color: #f0f0f0;
+        }
+        header .profile .dropdown-open {
+            display: block;
+        }
+        .logo {
+            text-align: center;
+            margin: 20px 0;
+        }
+        .logo h1 {
+            font-family: Verdana, sans-serif;
+            font-size: 50px;
+            color: #04a47c;
+        }
+        .welcome-message {
+            text-align: center;
+            font-size: 20px;
+            font-weight: bold;
+            color: #333;
+        }
+        .location-date {
+            text-align: center;
+            font-size: 18px;
+            margin: 10px 0;
+        }
+        .buttons {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+            margin: 20px;
+        }
+        .buttons a {
+            background-color: #ff9933;
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 16px;
+            padding: 15px 30px;
+            border-radius: 20px;
+            text-align: center;
+        }
+        .buttons a:hover {
+            background-color: #ff7700;
+        }
+        footer {
+            background-color: #04a47c;
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+        footer a {
+            color: white;
+            text-decoration: underline;
+        }
+    </style>
 </head>
 <body>
-    <nav>
-        <ul>
-            <li><a href="/">Página Inicial</a></li>
-            <li><a href="/tarefas/">Tarefas</a></li>
-            <li><a href="/perfil/">Perfil</a></li>
-            <li><a href="/logout/">Logout</a></li>
-            <li><a href="/infoculturas/">Info-Culturas</a></li>
-        </ul>
-    </nav>
-    
+    <header>
+        <div class="profile">
+            <img src="/static/images/perfil.avif" alt="Foto de Perfil" id="profile-img">
+            <div class="username">{{ user_name }}</div>
+            <div class="dropdown-content" id="dropdown-menu">
+                <a href="{% url 'logout' %}">Logout</a>
+            </div>
+        </div>
+        
+    </header>
+
+    <section id="logo" style="text-align: center; margin-top: 15px;">
+        <img src="{% static 'images/logo.jpg' %}" alt="Logo" width="300" height="300">
+    </section>
+
+    <div class="welcome-message">
+        Bem vindo, {{ user_name }}
+    </div>
+
+    <div class="location-date">
+        Cuidados de hoje - <span id="current-date"></span> - <span>Carpina</span>
+        <p id="weather-info" style="font-size: 16px; margin-top: 10px;">Clima: Carregando...</p>
+    </div>
+
+    <div class="buttons">
+        <a href="{% url 'calendario:adicionar_observacao' %}" class="btn btn-primary">Relatório</a>
+        <a href="{% url 'jatoba:menu' %}">Estoque</a>
+        <a href="{% url 'jatoba:tarefas' %}">Cuidados Diários</a>
+        <a href="/infoculturas/">Info-Culturas</a>
+        <a href="{% url 'jatoba:rotacao' %}">Consórcio de Culturas</a>
+        <a href="{% url 'calendario:calendario' %}">Calendário</a>
+    </div>
+
+    <footer>
+        Precisa de ajuda? <a href="#">Entre em contato!</a>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const profileImg = document.getElementById('profile-img');
+            const dropdownMenu = document.getElementById('dropdown-menu');
+
+            profileImg.addEventListener('click', () => {
+                dropdownMenu.classList.toggle('dropdown-open');
+            });
+
+            document.addEventListener('click', (event) => {
+                if (!dropdownMenu.contains(event.target) && !profileImg.contains(event.target)) {
+                    dropdownMenu.classList.remove('dropdown-open');
+                }
+            });
+        });
+
+        const updateDateAndWeather = () => {
+            const currentDate = new Date();
+            const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+            document.getElementById('current-date').textContent = currentDate.toLocaleDateString('pt-BR', options);
+
+            const apiKey = '86b1f439eea24f68a3b20455242811';
+            const city = 'Carpina';
+            fetch(`https://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${city}&lang=pt`)
+                .then(response => response.json())
+                .then(data => {
+                    const temp = data.current.temp_c;
+                    const desc = data.current.condition.text;
+                    document.getElementById('weather-info').textContent = `Clima: ${temp}°C, ${desc}`;
+                })
+                .catch(() => {
+                    document.getElementById('weather-info').textContent = 'Erro ao obter clima.';
+                });
+        };
+        updateDateAndWeather();
+    </script>
 </body>
 </html>

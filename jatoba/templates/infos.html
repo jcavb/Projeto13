@@ -6,72 +6,138 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Lista de Itens</title>
 <link rel="stylesheet" href="{% static 'css/infos.css' %}">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Oswald:wght@200..700&display=swap" rel="stylesheet">
+<style>
+    /* Geral */
+    body {
+        font-family: 'Oswald', 'Montserrat', sans-serif;
+        background-color: #fcf4fc;
+        color: #333;
+        margin: 0;
+    }
+
+    header {
+        background-color: #04a47c;
+        color: white;
+        padding: 10px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    header nav ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        gap: 15px;
+    }
+
+    header nav ul li {
+        display: inline;
+    }
+
+    header nav ul li a {
+        color: white;
+        text-decoration: none;
+        font-weight: bold;
+    }
+
+    h1 {
+        text-align: center;
+        margin-top: 20px;
+    }
+
+    .back-button {
+            position: fixed;
+            top: 70px;
+            left: 10px;
+            background-color: #04a47c;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            font-family: 'Oswald', 'Montserrat', sans-serif; /* Igual ao restante da aplicação */
+            font-weight: bold; /* Ajuste de peso para combinar com outros botões */
+            font-size: 16px; /* Ajuste de tamanho para combinar */
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            z-index: 10000; /* Aumentado para garantir prioridade */
+        }
+    
+        .back-button:hover {
+            background-color: #04a47c;
+        }
+</style>
 </head>
 <body>
+    <button class="back-button" onclick="history.back()">Voltar</button>
 <div class="wrapper">
   <header>
-    <div class="header-content">
-        <h1>Nome</h1>
-        <ul class="navigation">
-            <a href="{% url 'tarefas' %}" class="btn-tarefas">Cuidados Diários</a>
-                <button class="btn-tarefas">Calendário</button>
-                <button class="btn-tarefas active">Info Culturas</button>
+    <nav>
+        <ul>
+            <li><a href="{% url 'jatoba:protegida' %}">Home</a></li>
+            <li><a href="{% url 'jatoba:tarefas' %}">Cuidados Diários</a></li>
+            <li><a href="{% url 'calendario:calendario' %}">Calendário</a></li>
+            <li><a href="{% url 'jatoba:infoculturas' %}">Info-Culturas</a></li>
+            <li><a href="{% url 'jatoba:rotacao' %}">Consórcio de Culturas</a></li>
+            <li><a href="{% url 'jatoba:menu' %}">Estoque</a></li>
+            <li><a href="{% url 'calendario:adicionar_observacao' %}" class="btn btn-primary">Relatório</a></li>
         </ul>
-        
-    </div>
-    <input type="search" placeholder="Pesquisar...">
+    </nav>
   </header>
 
   <section class="list">
-<div class="list-item">
-    <span>BANANA</span>
-    {% url 'banana_infos' as banana_url %}
-    <button class="more-info" onclick="window.location.href='{{ banana_url }}'">Mais informações ></button>    
-</div>
-
+    <div class="list-item">
+        <span>BANANA</span>
+        {% url 'jatoba:banana_infos' as banana_url %}
+        <button class="more-info" onclick="window.location.href='{{ banana_url }}'">Mais informações ></button>    
+    </div>
 
     <div class="list-item">
         <span>ABACATE</span>
-        {% url 'abacate_infos' as abacate_url %}
+        {% url 'jatoba:abacate_infos' as abacate_url %}
         <button class="more-info" onclick="window.location.href='{{ abacate_url }}'">Mais informações ></button>
     </div>
 
     <div class="list-item">
         <span>BRÓCOLIS</span>
-        {% url 'brocolis_infos' as brocolis_url %}
+        {% url 'jatoba:brocolis_infos' as brocolis_url %}
         <button class="more-info" onclick="window.location.href='{{ brocolis_url }}'">Mais informações ></button>
     </div>
 
     <div class="list-item">
         <span>RÚCULA</span>
-        {% url 'rucula_infos' as rucula_url %}
+        {% url 'jatoba:rucula_infos' as rucula_url %}
         <button class="more-info" onclick="window.location.href='{{ rucula_url }}'">Mais informações ></button>
     </div>
 
     <div class="list-item">
         <span>COUVE</span>
-        {% url 'couve_infos' as couve_url %}
+        {% url 'jatoba:couve_infos' as couve_url %}
         <button class="more-info" onclick="window.location.href='{{ couve_url }}'">Mais informações ></button>
     </div>
 
     <div class="list-item">
         <span>TOMATE</span>
-        {% url 'tomate_infos' as tomate_url %}
+        {% url 'jatoba:tomate_infos' as tomate_url %}
         <button class="more-info" onclick="window.location.href='{{ tomate_url }}'">Mais informações ></button>
     </div>
 
     <div class="list-item">
         <span>CENOURA</span>
-        {% url 'cenoura_infos' as cenoura_url %}
+        {% url 'jatoba:cenoura_infos' as cenoura_url %}
         <button class="more-info" onclick="window.location.href='{{ cenoura_url }}'">Mais informações ></button>
     </div>
     
     <div class="list-item">
         <span>MACAXEIRA</span>
-        {% url 'macaxeira_infos' as macaxeira_url %}
+        {% url 'jatoba:macaxeira_infos' as macaxeira_url %}
         <button class="more-info" onclick="window.location.href='{{ macaxeira_url }}'">Mais informações ></button>
     </div>
-    
   </section>
 </div>
 </body>
