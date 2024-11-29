@@ -8,7 +8,7 @@ const adminData = {
 beforeEach(() => {
     // Limpa o banco de dados e executa as migrações
     cy.exec('rm -f db.sqlite3'); // No Windows, usa 'del /f' para deletar
-    cy.exec('python manage.py migrate');
+    ccy.exec('venv/bin/python manage.py migrate');
     
     // Verifique se o servidor está funcionando antes de rodar os testes
     cy.request('http://127.0.0.1:8000') // Verifica se o servidor responde
