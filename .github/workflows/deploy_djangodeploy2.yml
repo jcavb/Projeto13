@@ -31,29 +31,22 @@ jobs:
       - name: Verify installed packages
         run: venv/bin/pip list
 
-      - name: Install Cypress dependencies
+      - name: Run local server
         run: |
-          npm install cypress
-
-      - name: Run Cypress tests
-        run: |
-          # Start the Django server in the background
-          source venv/bin/activate
           python manage.py migrate
           python manage.py runserver &
           sleep 5
-          # Run Cypress tests
           npx cypress run
 
       - name: Cleaning testing files
         run: |
-          rm db.sqlite3 || true
-          rm .env || true
-          rm -rf cypress || true
-          rm -rf node_modules || true
-          rm cypress.config.js || true
-          rm package-lock.json || true
-          rm package.json || true
+          rm .env
+          rm db.sqlite3
+          rm cypress.config.js
+          rm package-lock.json
+          rm package.json
+          rm -rf cypress
+          rm -rf node_modules
 
       - name: Zip artifact for deployment
         run: |
