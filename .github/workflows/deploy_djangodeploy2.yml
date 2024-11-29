@@ -11,36 +11,54 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      # Checkout do código
       - uses: actions/checkout@v4
 
+      # Configuração do Python
       - name: Set up Python version
         uses: actions/setup-python@v5
         with:
           python-version: '3.11'
 
+      # Criação e ativação do ambiente virtual
       - name: Create and start virtual environment
         run: |
           python -m venv venv
           source venv/bin/activate
 
+      # Instalação de dependências do Python
       - name: Install dependencies
         run: |
           venv/bin/pip install -r requirements.txt
-          npm ci  # Instalar as dependências do Cypress
 
-      - name: Verify installed packages
-        run: venv/bin/pip list
-
-      - name: Run local server
+      # Verificação dos pacotes instalados no ambiente virtual
+      - name: Verify Python environment and packages
         run: |
-          python manage.py migrate
-          python manage.py runserver &
+          venv/bin/python --version
+          venv/bin/pip list
+
+      # Configuração do Node.js para Cypress
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16'
+
+      # Instalação das dependências do Cypress
+      - name: Install Cypress dependencies
+        run: |
+          npm ci
+
+      # Executar o servidor Django e os testes do Cypress
+      - name: Run local server and Cypress tests
+        run: |
+          venv/bin/python manage.py migrate
+          venv/bin/python manage.py runserver &
           sleep 5
           npx cypress run
 
+      # Limpeza de arquivos de teste
       - name: Cleaning testing files
         run: |
-          rm .env
           rm db.sqlite3
           rm cypress.config.js
           rm package-lock.json
@@ -48,10 +66,12 @@ jobs:
           rm -rf cypress
           rm -rf node_modules
 
+      # Criação do arquivo zip para deploy
       - name: Zip artifact for deployment
         run: |
           zip release.zip ./* -r
 
+      # Upload do artefato para o job de deploy
       - name: Upload artifact for deployment jobs
         uses: actions/upload-artifact@v4
         with:
@@ -68,14 +88,17 @@ jobs:
       url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
     
     steps:
+      # Download do artefato do job de build
       - name: Download artifact from build job
         uses: actions/download-artifact@v4
         with:
           name: python-app
 
+      # Descompactação do artefato
       - name: Unzip artifact for deployment
         run: unzip release.zip
 
+      # Deploy para o Azure Web App
       - name: 'Deploy to Azure Web App'
         uses: azure/webapps-deploy@v3
         id: deploy-to-webapp
