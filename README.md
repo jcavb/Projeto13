@@ -54,6 +54,7 @@ Transformar a maneira como a agricultura é gerida, oferecendo soluções que fa
 ## 🔄 Diagrama de Atividades do Sistema
 
 ![image](https://github.com/user-attachments/assets/66542e1d-37c6-4d93-9549-2c1949d36f61)
+![Captura de Tela (454)](https://github.com/user-attachments/assets/55c2c9d7-3cf8-4cdd-bd17-ce9af03ebfcf)
 
 ---
 
