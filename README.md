@@ -42,8 +42,7 @@ Confira abaixo a logo oficial do Jatobá:
   - Como membro da equipe do CAIS, eu quero poder deletar os fertilizantes que tenho no estoque.
 
 ### 10. **Rotação**
-  - Veja quais culturas sao favoráveis e desfavoráveis para rotacionar com uma determinada cultura.
-  - **Objetivo**: Ter um maior controle e noção da rotatividade.
+  - Como membro da equipe do CAIS,  quero poder saber quais combinações são mais viáveis para eficiência do plantio.
 
 ### 11. **Relatório**
   - Como membro da equipe do CAIS,  quero poder acessar em um documento compacto tudo aquilo que já foi realizado por nós e até imprimir para armazenar melhor.
