@@ -1,0 +1,14 @@
+{
+  "name": "projeto13-2",
+  "version": "1.0.0",
+  "description": "Teste E2E",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "cypress": "^13.16.0"
+  }
+}
