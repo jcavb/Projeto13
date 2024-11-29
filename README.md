@@ -150,5 +150,5 @@ Transformar a maneira como a agricultura é gerida, oferecendo soluções que fa
 
 Assista ao vídeo de demonstração do projeto Jatobá para entender melhor suas funcionalidades e interface:
 
-[Assista ao Screencast](https://youtu.be/oaZuyw6cs7c)
+[Assista ao Screencast](https://drive.google.com/file/d/1bbYdPmFa8nDsjd0PE-vJK2euMtXcFCC2/view?usp=sharing)
 [Assista ao E2E](https://drive.google.com/file/d/18FBIe-Pgh6vYbdfOINgJCQ9If2c-DPB-/view?usp=sharing)
