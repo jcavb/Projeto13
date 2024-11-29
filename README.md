@@ -15,25 +15,53 @@ Confira abaixo a logo oficial do Jatobá:
 ## ✨ Principais Funcionalidades
 
 ### 1. **Cuidados Diários**
-  - Acesse checklists diários de atividades essenciais para manter o funcionamento das tarefas em dia.
-  - **Objetivo**: Facilitar a organização e acompanhamento das tarefas de manejo agrícola.
+  - Como membro da equipe do CAIS, eu gostaria de acessar um checklist das atividades diárias de cuidado.
 
 ### 2. **Calendário de Culturas**
-  - Adicione compromissos no calendário e os acompanhe.
-  - **Objetivo**: Planejar a produção agrícola de maneira otimizada.
+  - Como membro da equipe do CAIS, quero visualizar o melhor período de plantio de cada cultura ao longo do ano para planejar a produção de forma eficiente
 
 ### 3. **Info-Culturas**
-  - Acesse informações detalhadas sobre cada tipo de cultura.
-  - **Objetivo**: Garantir o manejo adequado de cada plantação, desde o plantio até a colheita.
+  - Como membro da equipe do CAIS,  quero poder saber quais combinações são mais viáveis para eficiência do plantio.
 
-### 4. **Estoque**
-  - Faça um controle de estoque, adicionando fertilizantes e sementes no seu estoque virtual.
-  - **Objetivo**: Criar um ambiente para melhor organização do seu estoque.
+### 4. **VIsualização do estoque de sementes**
+  - Como membro da equipe do CAIS, eu quero poder visualizar melhor nossas sementes para me organizar mais eficientemente no momento de repor.
 
-### 5. **Rotação**
+### 5. **Adicionar sementes ao estoque**
+  - Como membro da equipe do CAIS, eu quero poder adicionar as sementes que tenho no estoque.
+
+### 6. **Deleta sementes do estoque**
+  - Como membro da equipe do CAIS, eu quero poder deletar as sementes que tenho no estoque.
+
+### 7. **VIsualização do estoque de fertilizantes**
+  - Como membro da equipe do CAIS, eu quero poder visualizar melhor nossos fertilizantes para me organizar mais eficientemente no momento de repor.
+
+### 8. **Adicionar fertilizantes ao estoque**
+  - Como membro da equipe do CAIS, eu quero poder adicionar os fertilizantes que tenho no estoque.
+
+### 9. **Deleta fertilizantes do estoque**
+  - Como membro da equipe do CAIS, eu quero poder deletar os fertilizantes que tenho no estoque.
+
+### 10. **Rotação**
   - Veja quais culturas sao favoráveis e desfavoráveis para rotacionar com uma determinada cultura.
   - **Objetivo**: Ter um maior controle e noção da rotatividade.
 
+### 11. **Relatório**
+  - Como membro da equipe do CAIS,  quero poder acessar em um documento compacto tudo aquilo que já foi realizado por nós e até imprimir para armazenar melhor.
+
+### 12. **Adicionar relatórios**
+  - Como membro da equipe do CAIS, quero poder escrever relatórios que poderá ser acessado depois.
+
+## 13. **Características da cidade**
+  - Como membro da equipe do CAIS, quero ver quais são as características da cidade durante a semana para que eu possa me programar melhor
+
+## 14. **Dashboard Personalizado**
+  - Como membro da equipe do CAIS, eu quero poder acessar o aplicativo e visualizar nosso progresso por meio de dados concretos.
+
+### 15. **Personalização do perfil**
+  - Como membro da equipe do CAIS, eu quero poder colocar no aplicativo o que já foi feito pela empresa antes da existência dele.
+
+### 16. **Lembretes Automáticos**
+  - Como membro da equipe do CAIS, quero receber notificações e lembretes automáticos sobre atividades essenciais.
 ---
 
 ## 🎯 Nossa Missão
