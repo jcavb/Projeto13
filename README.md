@@ -58,6 +58,13 @@ Transformar a maneira como a agricultura é gerida, oferecendo soluções que fa
 
 ---
 
+## Jira
+
+![Captura de Tela (452)](https://github.com/user-attachments/assets/16b885db-2119-4236-b211-81acd58ff9ae)
+![Captura de Tela (453)](https://github.com/user-attachments/assets/24f2a8ce-bd72-4523-bbc5-6ca52eee055c)
+
+---
+
 ## 🛠 Tecnologias Utilizadas
 
 - **Jira**: Para gestão de tarefas e acompanhamento do projeto.
