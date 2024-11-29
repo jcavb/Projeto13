@@ -42,6 +42,7 @@ jobs:
       - name: Install dependencies
         run: |
           venv/bin/pip install -r requirements.txt
+          pip install reportlab
 
       # Verificação dos pacotes instalados no ambiente virtual
       - name: Verify Python environment and packages
